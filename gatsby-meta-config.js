@@ -1,6 +1,6 @@
 module.exports = {
   title: `Sunny's devlog`,
-  description: `Blog posted about ...`,
+  description: `Sunny 개발 블로그입니다!!`,
   author: `Sunny Son`,
   introduction: `개발자는 오늘도 뚠뚠`,
   siteUrl: `https://www.sunny-son.space`, // Your blog site url
@@ -21,10 +21,10 @@ module.exports = {
     countOfInitialPost: 10, // Config your initial count of post
   },
   sponsor: {
-    buyMeACoffeeId: 'jbee',
+    buyMeACoffeeId: 'sunnyson',
   },
   share: {
-    facebookAppId: '', // Add facebookAppId for using facebook share feature v3.2
+    facebookAppId: '450210102809338', // Add facebookAppId for using facebook share feature v3.2
   },
   ga: '', // Add your google analytics tranking ID
 }

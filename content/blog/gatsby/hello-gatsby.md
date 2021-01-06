@@ -5,7 +5,7 @@ category: 'gatsby'
 draft: false
 ---
 
-안녕하세요 블로그장 써니입니다. 블로그 잘부탁해요!!
+안녕하세요 블로그주인 써니입니다. 블로그 잘부탁해요!!
 
 ```java
 public static void main(String[] args) {
