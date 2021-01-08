@@ -1,6 +1,6 @@
 ---
-title: 'Route53 설정하기'
-date: 2021-01-08
+title: '정적 페이지 웹 호스팅 - 2.Route53 설정하기'
+date: 2021-01-08 19:00:00
 category: 'AWS'
 draft: false
 ---
