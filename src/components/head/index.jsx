@@ -35,6 +35,10 @@ export function Head({ description, lang, meta, keywords, title }) {
                 content: `website`,
               },
               {
+                name: 'google-site-verification',
+                content: 'b1VvetnlTaNcsKGDhtryA7i0WrBwNp4iE3DRHNwQPzI'
+              },
+              {
                 name: `twitter:card`,
                 content: `summary_large_image`,
               },
@@ -54,9 +58,9 @@ export function Head({ description, lang, meta, keywords, title }) {
               .concat(
                 keywords.length > 0
                   ? {
-                      name: `keywords`,
-                      content: keywords.join(`, `),
-                    }
+                    name: `keywords`,
+                    content: keywords.join(`, `),
+                  }
                   : []
               )
               .concat(meta)}
