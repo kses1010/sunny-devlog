@@ -6,16 +6,19 @@ draft: false
 ---
 
 # Github Action으로 Spring boot, React.js를 배포해보자!
+
 ![image](https://user-images.githubusercontent.com/49144662/104315729-bd67ac00-551e-11eb-84f1-6144ec8fc980.png)
 
 이 문서는 Github Actions을 이용하여 CI/CD 환경을 만들고 EC2에 Spring boot, React.js를 배포하는 것이 목표입니다.
 
 ## 0. Github Actions란?
+
 **Github Actions**는 Github 저장소를 기반으로 Github에서 제공하는 Workflow 자동화 도구 입니다. Workflow는 Github 저장소에서 발생하는 `build`, `test`, `release`, `deploy` 등 다양한 이벤트를 기반으로 직접 원하는 Workflow를 만들 수 있습니다.
 
 Github Actions는 Runner 위에서 실행이 되고, Runner는 가상 머신 위에서 실행이 됩니다. Github에서 두 종류의 Runner를 제공합니다. Github-hosted Runner, Self-Hosted Runner(사용자가 직접 호스팅하는 환경)가 있습니다.
 
 ### 스펙
+
 Github-Hosted Runner는 마소에서 지원해주는 Azure의 가상 머신 위에서 돌아갑니다. 하지만 가상 머신의 사양은 그리 좋진 않습니다.
 
 - 2-core CPU
@@ -25,17 +28,20 @@ Github-Hosted Runner는 마소에서 지원해주는 Azure의 가상 머신 위�
 백엔드 저장소 빌드 보다는 프론트엔드 저장소 빌드하는 목적으로 둔다면 충분히 쓸 수 있을 듯하네요.
 
 ### 비용
+
 공개 저장소 경우에는 무료이며, 비공개 저장소는 계정에 부여한 무료 사용량 이후에 과금이 됩니다. Workflow는 저장소마다 최대 20개까지 등록이 가능하며 Workflow의 Job이라는 단계마다 최대 6시간 동안 실행이 가능하며, 초과하면 자동으로 중지됩니다.
 
 그리고 Job 안에서 Github API를 호출할 때 1시간 동안 최대 1000번까지만 가능합니다.
 
 ### 그런데 왜 Github Actions?
+
 비용적인 장점도 좋지만 다른 CI/CD 툴(Circle CI/CD, Travis CI/CD)보다 Github Actions를 사용한 이유는
+
 1. 다른 CI/CD 보다 굉장히 쉽고 간단합니다. 공식문서와 최근에는 국내에도 여러 레퍼런스가 있어 참고하기 쉽습니다.
 2. 해당 프로젝트 저장소에서 따로 CI/CD 툴을 설치하거나 hook을 걸 필요가 없습니다.
 3. Travis CI/CD 보다 훨씬 빨랐습니다. (제경우에는...)
 
-사기업 대부분은 Jenkins를 사용할 테지만 간단, 작은 프로젝트 같은 경우에는 Github Actions가 잘 맞았습니다. 
+사기업 대부분은 Jenkins를 사용할 테지만 간단, 작은 프로젝트 같은 경우에는 Github Actions가 잘 맞았습니다.
 
 그럼 AWS CodeDeploy설정부터 차례차례 진행겠습니다~ :smile:
 
@@ -49,12 +55,12 @@ Github-Hosted Runner는 마소에서 지원해주는 Azure의 가상 머신 위�
 
 ```bash
 sudo apt remove --purge ruby
-$ sudo apt autoremove
-$ sudo apt -y install software-properties-common
-$ sudo apt-add-repository ppa:brightbox/ruby-ng
-$ sudo apt update
-$ sudo apt install -y ruby2.4
-$ ruby --version
+sudo apt autoremove
+sudo apt -y install software-properties-common
+sudo apt-add-repository ppa:brightbox/ruby-ng
+sudo apt update
+sudo apt install -y ruby2.4
+ruby --version
 ruby 2.4.6p354 (2019-04-01 revision 67394) [x86_64-linux-gnu]
 ```
 
@@ -82,7 +88,7 @@ sudo service codedeploy-agent start
 
 `wget [https://버켓네임.s3.리전식별자.amazonaws.com/latest/install](https://bucket-name.s3.region-identifier.amazonaws.com/latest/install)`
 
- CodeDeploy 리소스 키트 버킷 참조 할 것: [링크](https://docs.aws.amazon.com/ko_kr/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names)
+CodeDeploy 리소스 키트 버킷 참조 할 것: [링크](https://docs.aws.amazon.com/ko_kr/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names)
 
 ## 2.1 IAM설정하기
 
@@ -113,7 +119,7 @@ AWSS3FullAccess
 
 - 컴퓨터 유형: EC2/온프레미스
 
-    애플리케이션 이름: 꼭 기억해야합니다!! Github Action workflow 사항에 기입해야하기 떄문이죠.
+  애플리케이션 이름: 꼭 기억해야합니다!! Github Action workflow 사항에 기입해야하기 떄문이죠.
 
 ![06](https://user-images.githubusercontent.com/49144662/104314762-39f98b00-551d-11eb-9be0-c936304e3bcd.png)
 
@@ -126,8 +132,8 @@ AWSS3FullAccess
 
 - 배포방법 선택: 현재위치
 - 환경구성
-    - Amazon EC2 인스턴스
-    - 키-값: EC2인스턴스 이름보고 선택
+  - Amazon EC2 인스턴스
+  - 키-값: EC2인스턴스 이름보고 선택
 
 ![08](https://user-images.githubusercontent.com/49144662/104314766-3b2ab800-551d-11eb-82d0-aa51ec5e5d51.png)
 
@@ -136,7 +142,7 @@ AWSS3FullAccess
 ![09](https://user-images.githubusercontent.com/49144662/104314768-3b2ab800-551d-11eb-89f7-6158e1c0532c.png)
 
 - 배포 설정: CodeDeployDefault.AllAtOnce 선택
-    - 로드 밸런싱 비활성화 (설정하지 않았기 때문에 선택하지 않겠습니다)
+  - 로드 밸런싱 비활성화 (설정하지 않았기 때문에 선택하지 않겠습니다)
 
 ![10](https://user-images.githubusercontent.com/49144662/104314769-3bc34e80-551d-11eb-9e96-48c3a31d96d7.png)
 
@@ -163,7 +169,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [ dev ]
+    branches: [dev]
 
 jobs:
   backend:
@@ -188,7 +194,7 @@ jobs:
 
       - name: Gradle 빌드
         run: ./gradlew build
-      
+
   frontend:
     name: CI with Node.js
     runs-on: ubuntu-latest
@@ -196,15 +202,15 @@ jobs:
       run:
         shell: bash
         working-directory: client
-        
+
     strategy:
       matrix:
         node-version: [12.16.x]
-    
+
     steps:
       - name: 체크아웃 Github-Action
         uses: actions/checkout@v2
-        
+
       - name: node.js 12 설치 ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -212,7 +218,7 @@ jobs:
 
       - name: npm 설치
         run: npm install
-      
+
       - name: npm 빌드
         run: npm run build
 ```
@@ -222,10 +228,10 @@ jobs:
 ```yaml
 jobs:
   작업이름1:
-		
+
 ### 해야할 runs on, steps 등등
 
-	작업이름2:  
+작업이름2:
 ```
 
 ### CD
@@ -237,7 +243,7 @@ name: CD with Gradle
 
 on:
   push:
-    branches: [ dev ]
+    branches: [dev]
 
 jobs:
   backend:
@@ -282,7 +288,7 @@ name: CD with Node
 
 on:
   push:
-    branches: [ dev ]
+    branches: [dev]
 
 jobs:
   backend:
@@ -296,11 +302,11 @@ jobs:
     strategy:
       matrix:
         node-version: [12.16.x]
-    
+
     steps:
       - name: 체크아웃 Github-Action
         uses: actions/checkout@v2
-               
+
       - name: node.js 12 설치 ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -308,10 +314,10 @@ jobs:
 
       - name: npm 설치
         run: npm install
-      
+
       - name: npm 빌드
         run: npm run build
-     
+
       - name: zip 생성
         run: zip -qq -r ./build-fe.zip .
         shell: bash
@@ -330,22 +336,22 @@ jobs:
         run: aws deploy create-deployment --application-name EC2-S3-Deploy-FE --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name dev-FE --s3-location bucket=codesquad-deploy,bundleType=zip,key=client/build-fe.zip
 ```
 
-프론트 CD 같은경우에는 zip 생성하여 cp로 한 이유는 
+프론트 CD 같은경우에는 zip 생성하여 cp로 한 이유는
 
 `zip does not support timestamps before 1980` 에러가 나서 Action이 작동이 안되기 때문에 zip를 직접하여 cp로 S3 복사했습니다. 만약 에러가 발생하지 않으면 그대로 진행하셔도 됩니다.
 
 - AWS 연결 설정
 
 ```yaml
-      - name: AWS 설정
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
+- name: AWS 설정
+  uses: aws-actions/configure-aws-credentials@v1
+  with:
+    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    aws-region: ap-northeast-2
 ```
 
-4번에서 받았던 액세스키 ID와 액세스 Secret Key를 적어주면 됩니다. 
+4번에서 받았던 액세스키 ID와 액세스 Secret Key를 적어주면 됩니다.
 
 적용시키려는 Github Repository에서
 
@@ -355,7 +361,7 @@ jobs:
 
 ![14](https://user-images.githubusercontent.com/49144662/104314780-3cf47b80-551d-11eb-8f5e-5bff8e56c7da.png)
 
-액세스 ID 키와 액세스 Secret을 설정하면 됩니다. 그러나, 만약 권한이 없을 경우 권한이 있는분에게 설정해달라고 부탁합니다. 
+액세스 ID 키와 액세스 Secret을 설정하면 됩니다. 그러나, 만약 권한이 없을 경우 권한이 있는분에게 설정해달라고 부탁합니다.
 
 - S3 경로와 배포 경로
 
@@ -541,11 +547,9 @@ run: unset CI && npm run build
 
 Github Actions과 AWS CodeDeploy를 이용하여 쾌적한 개발활동하길 바랍니다 :yum:
 
-
-
 ## 출처
 
 - 코드스쿼드 에어비앤비 11조 (Dion, Han): [링크](https://github.com/codesquad-member-2020/airbnb-11)
-- [github action과 aws code deploy를 이용하여 spring boot 배포하기](https://isntyet.github.io/deploy/github-action%EA%B3%BC-aws-code-deploy%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-spring-boot-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0(1)/)
+- [github action과 aws code deploy를 이용하여 spring boot 배포하기](<https://isntyet.github.io/deploy/github-action%EA%B3%BC-aws-code-deploy%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-spring-boot-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0(1)/>)
 - [AWS EC2 / AWS S3 / Codeship 으로 웹 서비스 테스트 및 자동 배포](https://hyungseok.kr/developments/11#10-ubuntu-1804-%EC%97%90%EC%84%9C-directory-not-empty-dir_s_rmdir-%EC%97%90%EB%9F%AC)
 - [https://johngrib.github.io/wiki/CodeDeploy/](https://johngrib.github.io/wiki/CodeDeploy/)
