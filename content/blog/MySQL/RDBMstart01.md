@@ -5,7 +5,7 @@ category: 'MySQL'
 draft: false
 ---
 
-![관계형 데이터베이스 실전 입문](http://image.yes24.com/momo/TopCate858/MidCate010/85790837.jpg)
+!![image](https://user-images.githubusercontent.com/49144662/110805546-887c9900-82c4-11eb-826f-cf11efbde763.png)
 
 관계형 데이터베이스의 기초지식이 필요하여 '관계형 데이터베이스 실전 입문'을 읽고 각 장마다 정리하기로 했습니다.
 
