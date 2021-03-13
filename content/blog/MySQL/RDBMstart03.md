@@ -5,8 +5,6 @@ category: 'MySQL'
 draft: false
 ---
 
-- 목차
-
 # 1. DB 설계란
 
 > 정규화 이론(Normalization Theory)
@@ -204,7 +202,7 @@ SQL은 테이블에 기본키(Primary Key)가 있지만, 관계형 모델에는 
 
 → 1NF이며 후보키가 한 개의 속성으로 된 릴레이션은 자동으로 2NF가 된다.
 
-[부분 함수 종속성의 예](https://www.notion.so/1d18724e767a4e4e966bed38bd2849c6)
+![image](https://user-images.githubusercontent.com/49144662/111033934-c0b3e100-8456-11eb-9849-6042f6350d6c.png)
 
 중복이 릴레이션에 포함돼 있으므로 모순이 발생한 것이다. 이 릴레이션에는 {이름} → {학년} 이라는 함수 종속이 존재한다. → 같은 학생에 관해서 여러 번 학년이 등록되게 됐다.
 
@@ -228,9 +226,7 @@ SQL은 테이블에 기본키(Primary Key)가 있지만, 관계형 모델에는 
 
 {학년}을 제외한 속성{이름, 수업}으로 프로젝션한다.
 
-[무손실 분해 - 이름, 학년](https://www.notion.so/b277d4df795d49ae900ff98171ccb668)
-
-[무손실 분해](https://www.notion.so/f32a7c275113477dab069e7ae5e90b12)
+![image](https://user-images.githubusercontent.com/49144662/111033980-f2c54300-8456-11eb-9ace-d2cf9903e551.png)
 
 ## 제3 정규형(3NF)
 
@@ -238,7 +234,7 @@ SQL은 테이블에 기본키(Primary Key)가 있지만, 관계형 모델에는 
 
 예를 들어 두 개의 키가 아닌 속성의 집합 X, Y에 함수 종속성 X → Y 가 존재한다고 하면, X의 값은 슈퍼키의 값을 알면 정해지고 X의 값이 정해지면 Y의 값도 정해진다.
 
-[추이 함수 종속성의 예](https://www.notion.so/221585812f4e491bb33d76cc7aa6a0bb)
+![image](https://user-images.githubusercontent.com/49144662/111034017-17211f80-8457-11eb-93c8-1d6947f742ee.png)
 
 {학과} → {대표번호} 라는 함수 종속성이 존재한다. 3NF의 무손실 분해는 2NF와 거의 같다.
 
@@ -248,7 +244,7 @@ BCNF는 자명하지 않은 함수 종속성(Non FD)이 모두 제거된 상태�
 
 2NF는 후보키의 진부분집합에서 키가 아닌 속성에 대한 함수 종속성을 제거했다. 3NF는 키가 아닌 속성에서 다른 키가 아닌 속성에 대한 함수 종속성을 제거했다. 남아있는 패턴은 키가 아닌 속성에서 후보키의 진부분함수에 대한 함수 종속성이다.
 
-[3NF이지만 BCNF가 아닌 릴레이션](https://www.notion.so/f333345945ea40b3aafe9cb50803ce5d)
+![image](https://user-images.githubusercontent.com/49144662/111034047-328c2a80-8457-11eb-8334-196b56299454.png)
 
 문제의 이 릴레이션은 진도 쪽이 수업보다 자세한 정보라는 점이다. 진도 쪽을 알면 수업을 알 수 있는 관계성을 가진다. 즉, {진도} → {수업}라는 함수 종속성이 존재한다.
 
