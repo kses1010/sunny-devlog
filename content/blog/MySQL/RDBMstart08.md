@@ -1,5 +1,5 @@
 ---
-title: '관계형 데이터베이스 실전 입문 - 08. '
+title: '관계형 데이터베이스 실전 입문 - 08. SELECT를 공략하자'
 date: 2021-03-22
 category: 'MySQL'
 draft: false
