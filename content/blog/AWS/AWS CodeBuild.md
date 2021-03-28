@@ -1,5 +1,5 @@
 ---
-title: 'Github Actions와 CodeBuild로 Build 설정하기'
+title: 'Github Actions와 CodeBuild로 CI Build 환경 설정하기'
 date: 2021-03-28
 category: 'AWS'
 draft: false
