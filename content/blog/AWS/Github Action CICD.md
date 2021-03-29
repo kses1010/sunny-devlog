@@ -1,7 +1,7 @@
 ---
 title: 'Github Actions, AWS Deploy로 CI/CD해보자!'
 date: 2021-01-11
-category: 'CI/CD'
+category: 'AWS'
 draft: false
 ---
 
