@@ -15,7 +15,7 @@ draft: false
 
 RDB의 인덱스는 조금 더 똑똑한 방법으로 검색을 수행한다. B+트리를 구조를 가진다.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d7556fa9-ffc3-4fe9-9d78-1ceff0ad2179/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d7556fa9-ffc3-4fe9-9d78-1ceff0ad2179/Untitled.png)
+![02](https://user-images.githubusercontent.com/49144662/114875988-d2fbb300-9e38-11eb-8779-4c15ebb49abf.png)
 
 B+트리는 데이터(인덱스의 값)가 저장된 **리프 노드**와 리프 노드까지의 경로 역할을 하는 **논리프 노드**로 구성된다. 경로의 출발점이 되는 노드는 **루트 노드**라고 한다. 논리프 노드에는 자식 노드가 보유하는 값 중에 최솟값이 저장돼 있다.
 
@@ -92,9 +92,23 @@ B+트리 인덱스는 후방 일치나 중간 일치 등을 잘 처리하지 못
 
 전문 검색 인덱스는 전치 인덱스로 구현된다. 전치 인덱스란 행에 포함된 단어나 부분 문자열에 그행의 포인터(ROWID나 클러스터 인덱스의 경우에는 기본키)가 저장된 구조의 인덱스다. 물론 단어와 행은 1:1로 대응하지 않으므로 전치 인덱스의 항목 수는 테이블의 행 수보다 훨씬 많아진다.
 
-[전치 인덱스](https://www.notion.so/d644003d9f4f4557808ea781525e5208)
+### 전치 인덱스
 
-[전치 인덱스](https://www.notion.so/a9df869d70614f25b445a49bfc76ad95)
+| row_id | text                  |
+| ------ | --------------------- |
+| 1      | Relational Model      |
+| 2      | Model View Controller |
+| 3      | Materialized View     |
+
+| word         | row_id |
+| ------------ | ------ |
+| Controller   | 2      |
+| Materialized | 3      |
+| Model        | 1      |
+| Model        | 2      |
+| Relational   | 1      |
+| View         | 1      |
+| View         | 2      |
 
 스페이스로 단어가 구분되는 영어와 같은 언어라면 문장에서 단어를 구분하는 것은 간단하다. 하지만 띄어쓰기가 없는 언어에서는 전치 인덱스를 어떻게 작성해야 할까?
 
@@ -125,7 +139,7 @@ R트리 인덱스는 지도상의 지점을 검색하는 데 사용하는 인덱
 
 R트리의 R은 Rectangle의 앞 문자로 **최소 경계 사각형(Minimum Bounding Rectangle, MBR)**이라는 개념을 사용해 인덱스를 구성한다. MBR이란 어떤 도형을 둘러 싼 최소의 사각형(직사각형)이다.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a8057d6a-bd2f-47a3-834d-201f7a434b01/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a8057d6a-bd2f-47a3-834d-201f7a434b01/Untitled.png)
+![03](https://user-images.githubusercontent.com/49144662/114875993-d3944980-9e38-11eb-9b83-0637f9e9000a.png)
 
 R트리를 구성하려면 먼저 요소가되는 도형 전부를 MBR로 바꾼다. 다음은 주변에 있는 임의의 사각형을 모두 포함하는 사각형을 새롭게 작성한다. 이 사각형은 내부에 포함된 사각형의 부모 노드가 된다.
 
@@ -133,7 +147,7 @@ R트리를 구성하려면 먼저 요소가되는 도형 전부를 MBR로 바꾼
 
 부모 노드의 수가 많을 때는 상위의 부모 노드가 되는 MBR을 만들도록 트리를 구성한다. 최종적으로 모든 사각형을 내부에 포함하는 MBR이 루트 노드가 된다.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/821107cd-a488-4e81-986d-b95e4daaae8e/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/821107cd-a488-4e81-986d-b95e4daaae8e/Untitled.png)
+![04](https://user-images.githubusercontent.com/49144662/114875995-d3944980-9e38-11eb-9ad5-950c1e7519b4.png)
 
 ## 함수 인덱스
 
@@ -151,9 +165,24 @@ B+트리 인덱스는 행별로 대응하는 인덱스 항목이 생성되고 �
 
 컬럼별로 여러 개의 비트맵이 생성된다. 컬럼별로 여러 개의 비트맵이 생성된다. 비트 중에 1이 있으면 그 행의 값이 비트맵의 값이 되어 있다는 것을 나타낸다.
 
-[비트맵 인덱스](https://www.notion.so/cbafa9c24e7b4cbabd224562ba951f25)
+### 비트맵 인덱스
 
-[비트맵 인덱스](https://www.notion.so/fe39cadbbb63416790d4f3870375d08b)
+| name   | grade |
+| ------ | ----- |
+| 이유정 | 1     |
+| 정은오 | 2     |
+| 한혜린 | 4     |
+| 홍윤서 | 3     |
+| 서정은 | 2     |
+| 정승효 | 3     |
+| 백하은 | 4     |
+
+| value | bitmap  |
+| ----- | ------- |
+| 1     | 1000000 |
+| 2     | 0100100 |
+| 3     | 0001010 |
+| 4     | 0010001 |
 
 grade가 2인 비트맵은 2번째와 5번째의 비트가 1이므로 2번째와 5번째 행의 학생이 2학년이라는 것을 알 수 있다. 각 비트맵은 B+트리에 비해 훨씬 크기가 작아지므로 인덱스 스캔이 매우 빠르다.
 
@@ -177,7 +206,7 @@ MySQL에서 가장 많이 사용되는 InnoDB 스토리지 엔진은 모든 테�
 
 파티션은 각각 같은 구조를 가진 테이블이며 인덱스도 파티션마다 존재한다.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5b88df70-1411-43e4-9b9e-cf895238fed4/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5b88df70-1411-43e4-9b9e-cf895238fed4/Untitled.png)
+![05](https://user-images.githubusercontent.com/49144662/114875997-d42ce000-9e38-11eb-8264-275dd86a26fb.png)
 
 세 개의 파티션이 정의돼 있고 날짜에 따라 파티션이 나뉘어져 있을 것이다. 어떤 파티션에 속할 것인지 정하는 키(파티션 키)를 검색 조건으로 지정하면 해당 파티션만 검색하면 되므로 검색 효율이 향상된다.
 
@@ -422,7 +451,21 @@ ORDER BY name;
 
 예를 들어 (col1, col2, col3)라는 인덱스가 있을 때 WHERE col1 = 100 AND col2 = 'abc' ORDER BY col3라는 조건이 있다면 정렬을 인덱스로 해결할 수 있다. 그러나 WHERE col1 = 100 ORDER BY col3와 같이 col2가 빠져있을 때는 인덱스를 사용하면 정렬을 할 수 없다. WHERE 절에 지정된 범위 인덱스 항목은 정렬키의 col3가 아니고, col2가 앞쪽에 오는 순서로 정렬돼 있기 때문이다.
 
-[정렬을 인덱스로 해결한 예](https://www.notion.so/273afff793da4cbf89aac8585ddda40e)
+### 정렬을 인덱스로 해결한 예시
+
+| col1 | col2 | col3 |
+| ---- | ---- | ---- |
+| 99   | abc  | 1    |
+| 99   | xyz  | 1    |
+| 100  | aaa  | 1    |
+| 100  | aaa  | 2    |
+| 100  | abc  | 1    |
+| 100  | abc  | 2    |
+| 100  | abc  | 3    |
+| 100  | abc  | 4    |
+| 100  | xyz  | 1    |
+| 101  | abc  | 1    |
+| 101  | abc  | 2    |
 
 WHERE col1 = 100 AND col2 = 'abc' ORDER BY col3라는 조건에 해당하는 4줄이다. 정렬의 순서가 ASC라면 네 개의 행을 위에서부터 순서대로, DESC라면 아래에서부터 순서대로 읽으면 된다는 것을 알 수 있다.
 
