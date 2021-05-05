@@ -1,6 +1,6 @@
 ---
 title: '관계형 데이터베이스 실전 입문 - 05. 릴레이션의 직교성'
-date: 2021-03-15
+date: 2021-03-16
 category: 'MySQL'
 draft: false
 ---
