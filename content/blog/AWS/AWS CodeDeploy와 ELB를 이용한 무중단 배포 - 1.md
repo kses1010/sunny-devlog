@@ -144,7 +144,7 @@ HTTPS 프로토콜을 추가하고 Load Balancer 포트 443을 엽니다.
 
 ACM 인증서를 선택합니다. ACM이 없다면 ACM을 생성하고 추가합니다.
 
-[ACM 설정과 Route 53설정하기](https://www.notion.so/ACM-Route-53-2784382c0a53408ab7aa3f1ba57a8ef1)
+[ACM 설정과 Route 53설정하기](https://www.sunny-son.space/AWS/Route53%20%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/)
 
 **3단계: 보안 그룹 구성**
 
@@ -179,3 +179,5 @@ HTTP:80에서 리다이렉션합니다.
 ![image](https://user-images.githubusercontent.com/49144662/142973352-a7a61395-5dc8-4f79-8e45-64f89539bbff.png)
 
 - Route 53에 해당 ELB의 DNS를 등록합니다. 레코드 유형은 CNAME으로 설정합니다.
+
+다음은 AWS AutoScaling, Deploy, script를 이용하여 배포하겠습니다.
