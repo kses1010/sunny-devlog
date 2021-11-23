@@ -180,4 +180,4 @@ HTTP:80에서 리다이렉션합니다.
 
 - Route 53에 해당 ELB의 DNS를 등록합니다. 레코드 유형은 CNAME으로 설정합니다.
 
-다음은 AWS AutoScaling, Deploy, script를 이용하여 배포하겠습니다.
+다음은 AWS AutoScaling, Deploy, script를 이용하여 배포해보겠습니다!!
