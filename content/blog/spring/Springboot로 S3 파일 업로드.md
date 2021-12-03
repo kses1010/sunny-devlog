@@ -25,7 +25,7 @@ Spring-Cloud-AWS 의존성을 추가합니다.
 
 ### 환경변수 설정
 
-```yaml
+```properties
 # AWS Account Credentials (AWS 접근 키)
 cloud.aws.credentials.accessKey={액세스키}
 cloud.aws.credentials.secretKey={액세스 시크릿 키}
