@@ -1,11 +1,11 @@
 ---
 title: 'Springboot로 S3 파일 업로드하기'
 date: 2021-12-03 13:22:00
-category: 'AWS'
+category: 'Spring'
 draft: false
 ---
 
-이번 포스팅은 스프링에서 AWS S3 파일 업로드하는 방법입니다. 
+이번 포스팅은 스프링에서 AWS S3 파일 업로드하는 방법입니다.
 
 주로 이미지 파일을 올릴 때 많이 사용되곤 합니다.
 
@@ -135,6 +135,7 @@ public static String buildFileName(String category, String originalFileName) {
 ```
 
 파일이름 생성할 때 사용하는 Utils
+
 - `fileExtensionIndex` : 파일 확장자 구분선
 - `fileExtension` : 파일 확장자
 - `fileName` : 파일 이름
@@ -199,11 +200,12 @@ public static String buildFileName(String category, String originalFileName) {
 
 - `buildHeaders`: 헤더 설정
 
-    - `setContentType(MediaType.APPLICATION_OCTET_STREAM)`
-        - 전송하는 파일의 종류에 따라 Content-Type을 지정해줍니다.
+  - `setContentType(MediaType.APPLICATION_OCTET_STREAM)`
 
-    - `setContentDisposition(CommonUtils.createContentDisposition(resourcePath)`
-        - 다운로드 받았을 때의 보여줄 파일 이름을 넣습니다.
+    - 전송하는 파일의 종류에 따라 Content-Type을 지정해줍니다.
+
+  - `setContentDisposition(CommonUtils.createContentDisposition(resourcePath)`
+    - 다운로드 받았을 때의 보여줄 파일 이름을 넣습니다.
 
 ### Service
 
@@ -235,7 +237,7 @@ public static String buildFileName(String category, String originalFileName) {
 	private static final String CATEGORY_PREFIX = "/";
 	private static final String TIME_SEPARATOR = "_";
   private static final int UNDER_BAR_INDEX = 1;
-	
+
 	public static ContentDisposition createContentDisposition(String categoryWithFileName) {
     String fileName = categoryWithFileName.substring(
         categoryWithFileName.lastIndexOf(CATEGORY_PREFIX) + UNDER_BAR_INDEX);
@@ -253,6 +255,7 @@ public static String buildFileName(String category, String originalFileName) {
 # 추가: 다중 업로드
 
 ### Controller
+
 ```java
   @PostMapping("/upload")
   public FileUploadResponse uploadFile(
@@ -264,9 +267,11 @@ public static String buildFileName(String category, String originalFileName) {
     return awsS3Service.uploadFile(userId, category, multipartFiles);
   }
 ```
+
 - `@RequestPart` 의 파라미터를 `List<MultipartFile>`로 받습니다.
 
 ### Service
+
 ```java
   public FileUploadResponse uploadFile(long userId, String category, List<MultipartFile> multipartFiles) {
     List<String> fileUrls = new ArrayList<>();
@@ -293,8 +298,8 @@ public static String buildFileName(String category, String originalFileName) {
     return new FileUploadResponse(fileUrls);
   }
 ```
-- 파일 갯수를 제외하곤 나머지는 동일합니다.
 
+- 파일 갯수를 제외하곤 나머지는 동일합니다.
 
 ## 출처
 
