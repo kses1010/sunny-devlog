@@ -1,5 +1,5 @@
 ---
-title: 'Kotlin In Action 1장'
+title: 'Kotlin In Action - 1장 코틀린 소개'
 date: 2022-09-28
 category: 'kotlin'
 draft: false
