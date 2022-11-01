@@ -1,6 +1,6 @@
 ---
 title: 'Kotlin In Action - 4장 클래스, 객체, 인터페이스'
-date: 2022-10-17
+date: 2022-10-24
 category: 'kotlin'
 draft: false
 ---
