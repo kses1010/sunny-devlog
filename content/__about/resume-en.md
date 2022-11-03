@@ -41,7 +41,7 @@ Blog. [**https://sunny-son.space**](https://sunny-son.space)
 ## Backend
 
 - Language: **Java, Kotlin,** Python
-- Back-End: **Spring, JPA,** Spring Security, \*\*\*\*Gradle
+- Back-End: **Spring, JPA,** Spring Security, Gradle
 - Database: **MySQL**, Postgresql, Redis
 
 ## Infra
@@ -114,7 +114,7 @@ Blog. [**https://sunny-son.space**](https://sunny-son.space)
 
 # Projects.
 
-### [코드스쿼드 도서관](https://librarycodesquad.com)
+### 코드스쿼드 도서관
 
 코드스쿼드내 도서를 관리하기 위해서 개발시작. 웹으로 도서 검색 및 도서 대여가 가능하며, 관리자 페이지를 이용한 도서 관리.
 
@@ -140,7 +140,7 @@ AWS(S3, EC2, RDS, Route53, ACM, CloudFront), Nginx, Github Action CI/CD(프론�
 
 # Education.
 
-### [코드스쿼드 마스터즈코스](https://codesquad.kr/page/masters.html)
+### [코드스쿼드 마스터즈코스](https://codesquad.kr/masters)
 
 2020.01 ~ 06
 
