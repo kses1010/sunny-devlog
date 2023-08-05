@@ -67,6 +67,7 @@ console.log(x) // 10
     <script>
       'use strict'
 
+
     </script>
     <script>
       x = 1 // 에러가 발생하지 않음
