@@ -516,7 +516,7 @@ getElementsByTagName, getElementsByClassName 메서드가 반환하는 HTMLColle
 </html>
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/36d3677a-6bdb-4b23-9e2f-a7b122a23c95/Untitled.png)
+![image](https://github.com/kses1010/sunny-devlog/assets/49144662/c8a9f220-09af-4874-89bc-ddd25ec57ae6)
 
 그러나, 두 번째 `li` 요소만 class 값이 변경되지 않는다.
 
