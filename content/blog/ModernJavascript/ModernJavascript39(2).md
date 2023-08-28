@@ -5,8 +5,6 @@ category: 'Javascript'
 draft: false
 ---
 
-- 목차
-
 # 3. 노드 탐색
 
 DOM 트리의 노드를 옮겨 다니며 탐색해야 할 때가 있다.
