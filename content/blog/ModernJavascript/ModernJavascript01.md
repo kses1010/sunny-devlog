@@ -1,6 +1,6 @@
 ---
 title: 'Modern Javascript Deep Dive - 1~3장 자바스크립트와 개발환경, 실행방법'
-date: 2023-07-30
+date: 2023-07-30 14:27:20
 category: 'Javascript'
 draft: false
 ---
@@ -69,5 +69,4 @@ arr.forEach(console.log);
 ### Live Server 플러그인
 
 클라이언트 사이드 Web API를 포함한 자바스크립트를 실행하려면 브라우저에서 실행해야 한다.
-
 다음 플러그인을 설치하고 `Go Live` 버튼을 눌러 가상 서버를 띄워 확인이 가능하다.
