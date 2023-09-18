@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 5장 표현식과 문'
-date: 2023-07-30
+title: 'Modern Javascript Deep Dive - 5장 표현식과 문'
+date: 2023-07-30 15:55:20
 category: 'Javascript'
 draft: false
 ---
