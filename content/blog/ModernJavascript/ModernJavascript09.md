@@ -1,5 +1,5 @@
 ---
-title: 'Modrn Javascript Deep Dive - 9장 타입 변환과 단축 평가'
+title: 'Modern Javascript Deep Dive - 9장 타입 변환과 단축 평가'
 date: 2023-08-01 00:13:03
 category: 'Javascript'
 draft: false
