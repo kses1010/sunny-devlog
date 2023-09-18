@@ -28,9 +28,9 @@ ECMAScript 사양에 따르면 숫자 타입의 값은 배정밀도 64비트 부
 
 ```jsx
 // 모두 숫자 타입
-var integer = 10
-var double = 10.12
-var negative = -10
+var integer = 10;
+var double = 10.12;
+var negative = -10;
 ```
 
 정수, 실수, 2진수, 8진수, 16진수 모두 메모리에 배정밀도 64비트 부동소수점 형식의 2진수로 저장된다.
@@ -38,24 +38,24 @@ var negative = -10
 자바스크립트는 2진수, 8진수, 16진수를 표현하기 위한 데이터 타입을 제공하지 않기 때문에 이들 값을 참조하면 모두 10진수로 해석된다.
 
 ```jsx
-var binary = 0b01000001 // 2진수
-var octal = 0o101 // 8진수
-var hex = 0x41 // 16진수
+var binary = 0b01000001; // 2진수
+var octal = 0o101; // 8진수
+var hex = 0x41; // 16진수
 
 // 표기법만 다른 뿐 모두 같은 값이다.
-console.log(binary) // 65;
-console.log(octal) // 65;
-console.log(hex) // 65;
-console.log(binary === octal) // true;
-console.log(octal === hex) // true;
+console.log(binary) // 65
+console.log(octal) // 65
+console.log(hex) // 65
+console.log(binary === octal) // true
+console.log(octal === hex) // true
 ```
 
 자바스크립트의 숫자 타입은 정수만을 위한 타입이 없고 모든 수를 실수로 처리한다고 했다. 이는 정수로 표시된다 해도 사실은 실수라는 것을 의미한다. 따라서 정수로 표시되는 수끼리 나누더라도 실수가 나올 수 있다.
 
 ```jsx
-console.log(1 === 1.0) // true
-console.log(4 / 2) // 2
-console.log(5 / 2) // 2.5
+console.log(1 === 1.0); // true
+console.log(4 / 2); // 2
+console.log(5 / 2); // 2.5
 ```
 
 숫자 타입은 추가적으로 세 가지 특별한 값도 표현할 수 있다.
@@ -65,15 +65,15 @@ console.log(5 / 2) // 2.5
 - NaN: 산술 연산 불가(not-a-number)
 
 ```jsx
-console.log(10 / 0) // Infinity
-console.log(10 / -0) // -Infinity
-console.log(1 * 'String') // NaN
+console.log(10 / 0); // Infinity
+console.log(10 / -0); // -Infinity
+console.log(1 * 'String'); // NaN
 ```
 
 자바스크립트는 대소문자를 구별하므로 NaN을 NAN, Nan, nan과 같이 표현하면 에러가 발생할 수 있다.
 
 ```jsx
-var x = nan // ReferenceError: nan is not defined
+var x = nan; // ReferenceError: nan is not defined
 ```
 
 # 2. 문자열 타입
@@ -85,18 +85,18 @@ var x = nan // ReferenceError: nan is not defined
 자바스크립트에서 가장 일반적인 표기법은 작은따옴표를 사용하는 것이다.
 
 ```jsx
-var string
-string = '문자열'
-string = '문자열'
-string = `문자열`
-string = '작은따옴표로 감싼 문자열 내의 "큰따옴표"는 문자열로 인식된다.'
-string = "큰따옴표로 감싼 문자열 내의 '작은따옴표'는 문자열로 인식된다."
+var string;
+string = '문자열';
+string = '문자열';
+string = `문자열`;
+string = '작은따옴표로 감싼 문자열 내의 "큰따옴표"는 문자열로 인식된다.';
+string = "큰따옴표로 감싼 문자열 내의 '작은따옴표'는 문자열로 인식된다.";
 ```
 
 만약 문자열을 따옴표로 감싸지 않으면 자바스크립트 엔진은 키워드나 식별자 같은 토큰으로 인식한다.
 
 ```jsx
-var string = hello // ReferenceError: hello is not defined
+var string = hello; // ReferenceError: hello is not defined
 ```
 
 그리고 만약 따옴표로 문자열을 감싸지 않는다면 스페이스와 같은 공백 문자도 포함시킬 수 없다.
@@ -114,8 +114,8 @@ ES6부터 템플릿 리터럴이라고 하는 새로운 문자열 표기법이 �
 템플릿 리터럴은 런타임에 일반 문자열로 변환되어 처리한다. 주로 백틱(``)을 사용해 표현한다.
 
 ```jsx
-var template = `Template Literal`
-console.log(template)
+var template = `Template Literal`;
+console.log(template);
 ```
 
 ## 3.1 멀티라인 문자열
@@ -141,8 +141,8 @@ console.log(template);
 ```jsx
 var template2 = `<ul>
     <li><a href="#>Home</a></li>
-</ul>`
-console.log(template2)
+</ul>`;
+console.log(template2);
 ```
 
 ## 3.2 표현식 삽입
@@ -150,33 +150,33 @@ console.log(template2)
 문자열은 문자열 연산자 `+` 를 사용해 연결할 수 있다. `+` 연산자는 피연산자 중 하나 이상이 문자열인 경우 문자열 연결 연산자로 동작한다. 그 외의 경우는 덧셈 연산자로 동작한다.
 
 ```jsx
-var first = 'Sunny'
-var last = 'Son'
+var first = 'Sunny';
+var last = 'Son';
 
 // ES5: 문자열 연결
-console.log('My name is ' + first + ' ' + last + '.')
+console.log('My name is ' + first + ' ' + last + '.');
 ```
 
 템플릿 리터럴에서는 표현식 삽입을 통해 간단히 문자열을 삽입할 수 있다.
 
 ```jsx
-var first = 'Sunny'
-var last = 'Son'
+var first = 'Sunny';
+var last = 'Son';
 
 // ES5: 문자열 연결
-console.log(`My name is ${first} ${last}`)
+console.log(`My name is ${first} ${last}`);
 ```
 
 표현식을 삽입하려면 `${}` 으로 표현식을 감싼다. 이때 표현식의 평가 결과가 문자열이 아니더라도 문자열로 타입이 강제로 변환되어 삽입된다.
 
 ```jsx
-console.log(`1 + 2 = ${1 + 2}`) // 1 + 2 = 3
+console.log(`1 + 2 = ${1 + 2}`); // 1 + 2 = 3
 ```
 
 표현식 삽입은 반드시 템플릿 리터럴 내에서 사용해야 한다. 일반 문자열에서의 표현식 삽입은 문자열로 취급.
 
 ```jsx
-console.log('1 + 2 = ${1 + 2}') // 1 + 2 = ${1 + 2}
+console.log('1 + 2 = ${1 + 2}'); // 1 + 2 = ${1 + 2}
 ```
 
 # 4. 불리언 타입
@@ -184,11 +184,11 @@ console.log('1 + 2 = ${1 + 2}') // 1 + 2 = ${1 + 2}
 불리언 타입의 값은 논리적 참, 거짓을 나타내는 true와 false 뿐이다.
 
 ```jsx
-var foo = true
-console.log(foo) // true
+var foo = true;
+console.log(foo); // true
 
-foo = false
-console.log(foo) // false
+foo = false;
+console.log(foo); // false
 ```
 
 # 5. undefined 타입
@@ -200,8 +200,8 @@ var 키워드로 선언한 변수는 암묵적으로 undefined로 초기화된�
 → 변수를 선언한 이후 값을 할당하지 않은 변수를 참조하면 undefined가 반환된다.
 
 ```jsx
-var foo
-console.log(foo) // undefined
+var foo;
+console.log(foo); // undefined
 ```
 
 undefined는 개발자가 의도적으로 할당하기 위한 값이 아니라 자바스크립트 엔진이 변수를 초기화할 때 사용하는 값이다.
@@ -219,8 +219,8 @@ null 타입의 값은 null이 유일하다. 자바스크립트는 대소문자�
 → 이전에 할당되어 있던 값에 대한 참조를 명시적으로 제거하는 것을 의미하며, 자바스크립트 엔진은 누구도 참조하지 않는 메모리 공간에 대해 가비지 콜렉션을 수행할 것이다.
 
 ```jsx
-var foo = 'Lee'
-foo = null
+var foo = 'Lee';
+foo = null;
 ```
 
 함수가 유효한 값을 변환할 수 없는 경우 명시적으로 null을 반환하기도 한다.
@@ -254,15 +254,15 @@ foo = null
 
 ```jsx
 // 심벌 값 생성
-var key = Symbol('key')
-console.log(typeof key) // symbol
+var key = Symbol('key');
+console.log(typeof key); // symbol
 
 // 객체 생성
-var obj = {}
+var obj = {};
 
 // 이름이 충돌할 위험이 없는 유일무이한 값인 심벌을 프로퍼티 키로 사용한다.
-obj[key] = 'value'
-console.log(obj[key]) // value
+obj[key] = 'value';
+console.log(obj[key]); // value
 ```
 
 # 8. 객체 타입
@@ -276,7 +276,7 @@ console.log(obj[key]) // value
 ## 9.1 데이터 타입에 의한 메모리 공간의 확보와 참조
 
 ```jsx
-var score = 100
+var score = 100;
 ```
 
 위 코드가 실행되면 컴퓨터는 숫자 값 100을 저장하기 위해 메모리 공간을 확보한 다음, 확보된 메모리에 숫자 값100을 2진수로 저장한다.
@@ -316,32 +316,32 @@ int num;
 자바스크립트는 타입을 선언하지 않는다. 다만 var, let, const 키워드를 사용해 변수를 선언할 뿐이다.
 
 ```jsx
-var foo
-console.log(typeof foo) // undefined
+var foo;
+console.log(typeof foo); // undefined
 
-foo = 3
-console.log(typeof foo) // number
+foo = 3;
+console.log(typeof foo); // number
 
-foo = 'Hello'
-console.log(typeof foo) // string
+foo = 'Hello';
+console.log(typeof foo); // string
 
-foo = true
-console.log(typeof foo) // boolean
+foo = true;
+console.log(typeof foo); // boolean
 
-foo = null
-console.log(typeof foo) // object
+foo = null;
+console.log(typeof foo); // object
 
-foo = Symbol()
-console.log(typeof foo) // symbol
+foo = Symbol();
+console.log(typeof foo); // symbol
 
-foo = {}
-console.log(typeof foo) // object
+foo = {};
+console.log(typeof foo); // object
 
-foo = []
-console.log(typeof foo) // object
+foo = [];
+console.log(typeof foo); // object
 
-foo = function() {}
-console.log(typeof foo) // function
+foo = function() {};
+console.log(typeof foo); // function
 ```
 
 자바스크립트에서는 값을 할당하는 시점에 변수의 타입이 동적으로 결정되고 변수의 타입을 언제든지 자유롭게 변경할 수 있다.
