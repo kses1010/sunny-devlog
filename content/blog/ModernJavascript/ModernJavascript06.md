@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 6장 데이터 타입'
-date: 2023-07-30
+title: 'Modern Javascript Deep Dive - 6장 데이터 타입'
+date: 2023-07-30 20:37:25
 category: 'Javascript'
 draft: false
 ---
@@ -15,6 +15,7 @@ draft: false
 |           | undefined 타입       | var 키워드로 선언된 변수에 암묵적으로 할당하는 값   |
 |           | null 타입            | 값이 없다는 것을 의도적으로 명시할 때 사용하는 값   |
 |           | 심벌 타입(Symbol)    | ES6에서 추가된 7번째 타입                           |
+| --------- | -------------------- | --------------------------------------------------- |
 | 객체 타입 |                      | 객체, 함수, 배열 등                                 |
 
 # 1. 숫자 타입
@@ -128,9 +129,11 @@ var template = '<ul>\n\t<li><a href="#>Home</a></li>\n</ul>';
 console.log(template);
 
 // 결과값
-<ul>
-	<li><a href="#>Home</a></li>
-</ul>
+/*
+  <ul>
+    <li><a href="#>Home</a></li>
+  </ul>
+*/
 ```
 
 템플릿 리터럴을 사용하면 이스케이프 시퀀스를 사용하지 않고도 줄바꿈이 적용된다.
