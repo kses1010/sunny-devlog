@@ -14,7 +14,7 @@ draft: false
 변수는 하나의 값을 저장하기 위해 메모리 공간 자체 또는 그 메모리 공간을 식별하기 위해 붙인 이름이다.
 
 ```jsx
-var sum = 10 + 20
+var sum = 10 + 20;
 ```
 
 가장 기본적인 방법은 리터럴을 사용하는 것이다.
@@ -34,9 +34,9 @@ var sum = 10 + 20
 다음 예제 모두 표현식이다.
 
 ```jsx
-var score = 100
-var score = 50 + 50
-score
+var score = 100;
+var score = 50 + 50;
+score;
 ```
 
 값으로 평가될 수 있는 문은 모두 표현식이다.
@@ -49,22 +49,22 @@ score
 
 ```jsx
 // 변수 선언문
-var x
+var x;
 
 // 할당문
-x = 5
+x = 5;
 
 // 함수 선언문
-function foo() {}
+function foo() {};
 
 // 조건문
 if (x > 1) {
-  console.log(x)
+  console.log(x);
 }
 
 // 반복문
 for (var i = 0; i < 2; i++) {
-  console.log(i)
+  console.log(i);
 }
 ```
 
@@ -79,13 +79,12 @@ for (var i = 0; i < 2; i++) {
 ```jsx
 function foo() {
   return
-  {
-  }
+  {}
 }
 // API의 동작결과 return; {};
 // 개발자의 예측 return {};
 
-console.log(foo())
+console.log(foo());
 ```
 
 `ESLint` 같은 정적 분석 도구에서도 세미콜론 사용을 기본으로 설정하고 있으며 현재 자바스크립트 진영에서는 세미콜론 사용을 권장하는 분위기이므로 세미콜론을 붙이는 것을 기본으로 하면 된다.
@@ -94,10 +93,10 @@ console.log(foo())
 
 ```jsx
 // 변수 선언문은 값으로 평가될 수 없으므로 표현식이 아님
-var x
+var x;
 // 1, 2, 1 + 2, x = 1 + 2 모두 표현식.
 // x = 1 + 2는 표현식이면서 완전한 문
-x = 1 + 2
+x = 1 + 2;
 ```
 
 문에는 표현식인 문과 표현식이 아닌 문이 있다.
