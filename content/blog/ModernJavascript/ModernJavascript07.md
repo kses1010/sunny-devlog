@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 7장 연산자'
-date: 2023-07-31
+title: 'Modern Javascript Deep Dive - 7장 연산자'
+date: 2023-07-31 21:26:20
 category: 'Javascript'
 draft: false
 ---
@@ -112,7 +112,7 @@ console.log(x) // 'Hello'
 
 `-` 단항 연산자는 피연산자의 부호를 반전한 값을 반환한다. 마찬가지로 숫자 타입이 아닌 피연산자에 사용하면 피연산자를 숫자 타입으로 변환하여 반환한다.
 
-```jsx
+```javascript
 ;-(-10) // 10
 
 // 문자열 숫자를 숫자로 타입 변환

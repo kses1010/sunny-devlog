@@ -38,7 +38,7 @@ var user = { id: 1, name: 'Lee' };
 var users = {
 	{ id: 1, name: 'Lee' },
 	{ id: 2, name: 'Kim' }
-}
+};
 ```
 
 변수의 값에 저장하는 것을 할당(대입, 저장)이라 하고, 변수에 저장된 값을 읽어 들이는 것을 참조라 한다.
@@ -58,7 +58,7 @@ var users = {
 다음은 var 키워드를 활용한 변수 선언이다.
 
 ```jsx
-var score // 변수 선언(변수 선언문)
+var score; // 변수 선언(변수 선언문)
 ```
 
 변수를 선언한 이후, 아직 변수에 값을 할당하지 않았다. 따라서 변수 선언에 의해 확보된 메모리 공간은 비어 있을것으로 생각할 수 있으나 확보된 메모리 공간에는 자바스크립트 엔진에 의해 `undefined` 라는 값이 암묵적으로 할당되어 초기화 된다.
@@ -83,9 +83,9 @@ var score // 변수 선언(변수 선언문)
 # 4. 변수 선언의 실행 시점과 변수 호이스팅
 
 ```jsx
-console.log(score) // undefiend
+console.log(score); // undefiend
 
-var score // 변수 선언문
+var score; // 변수 선언문
 ```
 
 변수 선언문보다 변수를 참조하는 코드가 앞에 있다. 자바스크립트 코드는 인터프리터에 의해 한 줄씩 순차적으로 실행되므로 `console.log(score)` 가 가장 먼저 실행되고 순차적으로 다음 줄에 있는 코드를 실행한다.
@@ -111,11 +111,11 @@ var score // 변수 선언문
 변수에 값을 할당할때는 할당 연산자 `=` 을 사용한다.
 
 ```jsx
-var score // 변수 선언
-score = 80 // 값의 할당
+var score; // 변수 선언
+score = 80; // 값의 할당
 
 // 하나의 문으로 단축 표현할 수 있다.
-var score = 80
+var score = 80;
 ```
 
 주의할 점은 변수 선언과 값의 할당의 실행 시점이 다르다.
@@ -123,12 +123,12 @@ var score = 80
 **변수 선언은 소스코드가 순차적으로 실행되는 시점인 런타임 이전에 먼저 실행되지만 값의 할당은 소스코드가 순차적으로 실행되는 시점인 런타임에 실행된다.**
 
 ```jsx
-console.log(score) // undefined
+console.log(score); // undefined
 
-var score
-score = 80
+var score;
+score = 80;
 
-console.log(score) // 80
+console.log(score); // 80
 ```
 
 자바스크립트 엔진은 변수의 선언과 값의 할당을 2개의 문으로 나누어 각각 실행한다.
@@ -140,12 +140,12 @@ console.log(score) // 80
 다음 예제도 위 예제와 같은 출력을 볼 수있다.
 
 ```jsx
-console.log(score) // undefined
+console.log(score); // undefined
 
-score = 80
-var score
+score = 80;
+var score;
 
-console.log(score) // 80
+console.log(score); // 80
 ```
 
 # 6. 값의 재할당
@@ -153,8 +153,8 @@ console.log(score) // 80
 재할당이란 이미 값이 할당되어 있는 변수에 새로운 값을 또다시 할당하는 것을 말한다.
 
 ```jsx
-var score = 80
-score = 90
+var score = 80;
+score = 90;
 ```
 
 `var` 키워드로 선언한 변수는 값을 재할당할 수 있다. 저장된 값을 버리고 새로운 값을 저장하는 것이다.
