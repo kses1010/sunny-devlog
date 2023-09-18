@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 4장 변수'
-date: 2023-07-30
+title: 'Modern Javascript Deep Dive - 4장 변수'
+date: 2023-07-30 15:13:52
 category: 'Javascript'
 draft: false
 ---
@@ -118,7 +118,7 @@ score = 80 // 값의 할당
 var score = 80
 ```
 
-이주의할 점은 변수 선언과 값의 할당의 실행 시점이 다르다.
+주의할 점은 변수 선언과 값의 할당의 실행 시점이 다르다.
 
 **변수 선언은 소스코드가 순차적으로 실행되는 시점인 런타임 이전에 먼저 실행되지만 값의 할당은 소스코드가 순차적으로 실행되는 시점인 런타임에 실행된다.**
 
