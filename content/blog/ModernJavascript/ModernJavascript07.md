@@ -9,22 +9,22 @@ draft: false
 
 ```jsx
 // 산술 연산자
-5 * 4 // 20
+5 * 4; // 20
 
 // 문자열 연결 연산자
-'My name is ' + 'Son' // 'My name is Son'
+'My name is ' + 'Son'; // 'My name is Son'
 
 // 할당 연산자
-color = 'red' // 'red'
+color = 'red'; // 'red'
 
 // 비교 연산자
-3 > 5 // false
+3 > 5; // false
 
 // 논리 연산자
-true && false // false
+true && false; // false
 
 // 타입 연산자
-typeof 'Hi' // string
+typeof 'Hi'; // string
 ```
 
 # 1. 산술 연산자
@@ -40,11 +40,11 @@ typeof 'Hi' // string
 산술 연산은 피연산자의 값이 바뀌는 경우는 없고 언제나 새로운 값을 만든다.
 
 ```jsx
-5 + 2 // 7
-5 - 2 // 3
-5 * 2 // 10
-5 / 2 // 2.5
-5 % 2 // 1
+5 + 2; // 7
+5 - 2; // 3
+5 * 2; // 10
+5 / 2; // 2.5
+5 % 2; // 1
 ```
 
 ## 1.2 단항 산술 연산자
@@ -54,75 +54,75 @@ typeof 'Hi' // string
 증가/감소(++/—) 연산자는 피연산자의 값을 변경하는 부수효과가 있다.
 
 ```jsx
-var x = 1
+var x = 1;
 
-x++
-console.log(x) // 2;
+x++;
+console.log(x); // 2
 
-x--
-console.log(x) // 1;
+x--;
+console.log(x); // 1
 ```
 
 증가/감소(++/—) 연산자는 위치에 의미가 있다.
 
 ```jsx
 var x = 5,
-  result
+var result;
 
 // 선할당 후증가
-result = x++
-console.log(result, x) // 5 6
+result = x++;
+console.log(result, x); // 5 6
 
 // 선증가 후할당
-result = ++x
-console.log(result, x) // 7 7
+result = ++x;
+console.log(result, x); // 7 7
 ```
 
 `+` 단항 연산자는 피연산자에 어떠한 효과도 없다.
 
 ```jsx
-;+10 // 10
-;+-10 // -10
++10; // 10
++-10; // -10
 ```
 
 숫자 타입이 아닌 피연산자에 `+` 단항 연산자를 사용하면 피연산자를 숫자 타입으로 변환하여 반환한다. 이때 피연산자를 변경하는 것은 아니고 숫자 타입으로 변환한 값을 생성해서 반환한다.
 
 ```jsx
-var x = '1'
+var x = '1';
 
-console.log(+x) // 1
+console.log(+x); // 1
 // 부수효과 발생하지 않음
-console.log(x) // '1'
+console.log(x); // '1'
 
 // 불리언 값을 숫자로 타입 변환
-x = true
-console.log(+x) // 1
-console.log(x) // true
+x = true;
+console.log(+x); // 1
+console.log(x); // true
 
 // 불리언 값을 숫자로 타입 변환
-x = false
-console.log(+x) // 0
-console.log(x) // false
+x = false;
+console.log(+x); // 0
+console.log(x); // false
 
 // 문자열을 숫자로 타입 변환할 수 없으므로 NaN을 반환
-x = 'Hello'
-console.log(+x) // NaN
-console.log(x) // 'Hello'
+x = 'Hello';
+console.log(+x); // NaN
+console.log(x); // 'Hello'
 ```
 
 `-` 단항 연산자는 피연산자의 부호를 반전한 값을 반환한다. 마찬가지로 숫자 타입이 아닌 피연산자에 사용하면 피연산자를 숫자 타입으로 변환하여 반환한다.
 
 ```javascript
-;-(-10) // 10
+-(-10); // 10
 
 // 문자열 숫자를 숫자로 타입 변환
-;-'10' // 10
+-'10'; // 10
 
 // 불리언 값을 숫자로 타입 변환
-;-true // -1
+-true; // -1
 
 // 문자열을 숫자로 타입 변환할 수 없으므로 NaN을 반환
-;-'Hello' // NaN
+-'Hello'; // NaN
 ```
 
 ## 1.3 문자열 연결 연산자
@@ -131,24 +131,24 @@ console.log(x) // 'Hello'
 
 ```jsx
 // 문자열 연결 연산자
-'1' + 2 // '12'
-1 + '2' // '12'
+'1' + 2; // '12'
+1 + '2'; // '12'
 
 // 산술 연산자
-1 + 2 // 3
+1 + 2; // 3
 
 // true는 1로 타입 변환
-1 + true // 2
+1 + true; // 2
 
 // false는 0으로 타입 변환
-1 + false // 1
+1 + false; // 1
 
 // null은 0으로 타입 변환
-1 + null // 1
+1 + null; // 1
 
 // undefined는 숫자로 타입 변환되지 않는다.
-;+undefined // NaN
-1 + undefined // NaN
++undefined; // NaN
+1 + undefined; // NaN
 ```
 
 자바스크립트는 개발자의 의도와는 상관없이 자바스크립트 엔진에 의해 타입이 자동으로 바뀐다.
@@ -162,43 +162,43 @@ console.log(x) // 'Hello'
 할당 연산자는 좌항의 변수에 값을 할당하므로 변수 값이 변하는 부수 효과가 있다.
 
 ```jsx
-var x
+var x;
 
-x = 10
-console.log(x) // 10
+x = 10;
+console.log(x); // 10
 
-x += 5
-console.log(x) // 15
+x += 5;
+console.log(x); // 15
 
-x -= 5
-console.log(x) // 10
+x -= 5;
+console.log(x); // 10
 
-x *= 5
-console.log(x) // 50
+x *= 5;
+console.log(x); // 50
 
-x /= 5
-console.log(x) // 10
+x /= 5;
+console.log(x); // 10
 
-x %= 5
-console.log(x) // 0
+x %= 5;
+console.log(x); // 0
 
-var str = 'My name is '
+var str = 'My name is ';
 
 // 문자열 연결 연산자
-str += 'Son'
-console.log(str) // 'My name is Son'
+str += 'Son';
+console.log(str); // 'My name is Son'
 ```
 
 할당문은 값으로 평가되는 표현식인 문으로서 할당된 값으로 평가된다. 그래서 연쇄 할당이 가능하다.
 
 ```jsx
-var x
-console.log((x = 10)) // 10
+var x;
+console.log((x = 10)); // 10
 
-var a, b, c
-a = b = c = 0
+var a, b, c;
+a = b = c = 0;
 
-console.log(a, b, c) // 0 0 0
+console.log(a, b, c); // 0 0 0
 ```
 
 # 3. 비교 연산자
@@ -223,10 +223,10 @@ console.log(a, b, c) // 0 0 0
 동등 비교 연산자는 좌항과 우항의 피연산자를 비교할 때 먼저 암묵적 타입 변환을 통해 타입을 일치시킨 후 같은 값인지 비교한다.
 
 ```jsx
-5 == 5 // true
+5 == 5; // true
 
 // 타입이 다르지만 암묵적 타입 변환을 통해 타입을 일치시키면 동등이다.
-5 == '5' // true
+5 == '5'; // true
 ```
 
 동등 비교 연산자(==)는 예측하기 어려운 결과를 만들어 낸다.
@@ -236,43 +236,43 @@ console.log(a, b, c) // 0 0 0
 일치 비교 연산자는 좌항과 우항의 피연산자가 타입도 같고 값도 같은 경우에 한하여 true를 반환한다.
 
 ```jsx
-5 === 5 // true
+5 === 5; // true
 
-5 === '5' // false
+5 === '5'; // false
 ```
 
 일치 비교 연산자에서 주의할 것은 NaN이다.
 
 ```jsx
 // NaN은 자신과 일치하지 않는 유일한 값이다.
-NaN === NaN // false
+NaN === NaN; // false
 ```
 
 NaN인지 조사하려면 빌트인 함수 `isNaN` 을 사용한다.
 
 ```jsx
-isNaN(NaN) // true
-isNaN(10) // false
-isNaN(1 + undefined) // true
+isNaN(NaN); // true
+isNaN(10); // false
+isNaN(1 + undefined); // true
 ```
 
 숫자 0도 주의해야한다. 자바스크립트에는 양의 0과 음의 0이 있는데 둘을 비교하면 true를 반환한다.
 
 ```jsx
-0 === -0 // true
-0 == -0 // true
+0 === -0; // true
+0 == -0; // true
 ```
 
 부동등 비교 연산자와 불일치 비교 연산자는 반대 개념이다.
 
 ```jsx
-5 != 8 // true
-5 != 5 // false
-5 != '5' // false
+5 != 8; // true
+5 != 5; // false
+5 != '5'; // false
 
-5 !== 8 // true
-5 !== 5 // false
-5 !== '5' // true
+5 !== 8; // true
+5 !== 5; // false
+5 !== '5'; // true
 ```
 
 ## 3.2 대소 관계 비교 연산자
@@ -280,10 +280,10 @@ isNaN(1 + undefined) // true
 대소 관계 비교 연산자는 피연산자의 크기를 비교하여 불리언 값을 반환한다.
 
 ```jsx
-5 > 0 // true
-5 < 0 // false
-5 >= 5 // true
-5 <= 5 // true
+5 > 0; // true
+5 < 0; // false
+5 >= 5; // true
+5 <= 5; // true
 ```
 
 # 4. 삼항 조건 연산자
@@ -294,18 +294,18 @@ isNaN(1 + undefined) // true
 
 ```jsx
 // 조건식 ? 조건식이 true일 때 반환할 값 : 조건식이 false일 때 반환한 값
-var result = score >= 60 ? 'pass' : 'fail':
+var result = score >= 60 ? 'pass' : 'fail';
 ```
 
 물음표(?) 앞의 첫 번째 피 연산자는 조건식, 불리언 타입의 값으로 평가될 표현식이다. 만약 조건식의 평가 결과가 불리언 값이 아니면 불리언 값으로 암묵적 타입 변환된다.
 
 ```jsx
-var x = 2
+var x = 2;
 
 // 2 % 2는 0이고 0은 false로 암묵적 타입 변환된다.
-var result = x % 2 ? '홀수' : '짝수'
+var result = x % 2 ? '홀수' : '짝수';
 
-console.log(result) // '짝수'
+console.log(result); // '짝수'
 ```
 
 삼항 조건 연산자의 첫 번째 피 연산자는 조건식이므로 삼항 조건 연산자 표현식은 조건문이다.
@@ -313,14 +313,17 @@ console.log(result) // '짝수'
 → `if…else` 문을 사용해도 삼항 조건 연산자 표현식과 유사하게 처리할 수 있다.
 
 ```jsx
-var x = 2,
-  result
+var x = 2;
+var result;
 
 // 2 % 2는 0이고 0은 false로 암묵적 타입 변환된다.
-if (x % 2) result = '홀수'
-else result = '짝수'
+if (x % 2) {
+	result = '홀수'
+} else {
+	result = '짝수'
+}
 
-console.log(result) // 짝수
+console.log(result); // 짝수
 ```
 
 삼항 조건 연산자 표현식은 값처럼 사용할 수 있지만 `if...else` 문은 값처럼 사용할 수 없다.
@@ -417,7 +420,7 @@ typeof 연산자로 null 값을 연산해 보면 “null”이 아닌 “object�
 → 값이 null 타입인지 확인할 때는 typeof 연산자를 사용하지 말고 일치 연산자(===)를 사용해야한다.
 
 ```jsx
-var foo = null
+var foo = null;
 
 typeof foo === null // false
 foo === null // true
@@ -453,15 +456,15 @@ Math.pow(2, -2)
 음수를 거듭제곱의 밑으로 사용해 계산하려면 괄호로 묶어야한다.
 
 ```jsx
-;(-5) ** 2 // SyntaxError
-;(-5) ** 2 // 25
+(-5) ** 2 // SyntaxError
+(-5) ** 2 // 25
 ```
 
 지수 연산자는 다른 산술 연산자와 마찬가지로 할당 연산자와 함께 사용할 수 있다.
 
 ```jsx
-var num = 5
-num **= 2 // 25
+var num = 5;
+num **= 2; // 25
 ```
 
 지수 연산자는 이항 연산자 중에서 우선순위가 가장 높다.
@@ -486,20 +489,20 @@ num **= 2 // 25
 부수 효과가 있는 연사자는 할당 연산자(=), 증가/감소 연산자(++/—), delete 연산자다.
 
 ```jsx
-var x
+var x;
 
-x = 1
-console.log(x) // 1
+x = 1;
+console.log(x); // 1
 
-x++
-console.log(x) // 2
+x++;
+console.log(x); // 2
 
 var o = {
   a: 1,
-}
+};
 
 // delete 연산자는 객체의 프로퍼티를 삭제하는 부수 효과가 있다.
 // o 객체를 사용하는 다른 코드에 영향을 준다.
-delete o.a
-console.log(o) // {}
+delete o.a;
+console.log(o); // {}
 ```
