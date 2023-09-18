@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 8장 제어문'
-date: 2023-07-31
+title: 'Modern Javascript Deep Dive - 8장 제어문'
+date: 2023-07-31 23:06:59
 category: 'Javascript'
 draft: false
 ---
@@ -16,18 +16,18 @@ draft: false
 ```jsx
 // 블록문
 {
-  var foo = 10
+  var foo = 10;
 }
 
 // 제어문
-var x = 1
+var x = 1;
 if (x < 10) {
-  x++
+  x++;
 }
 
 // 함수 선언문
 function sum(a, b) {
-  return a + b
+  return a + b;
 }
 ```
 
@@ -54,32 +54,32 @@ if 문의 조건식은 불리언 값으로 평가되어야 한다. 만약 if 문
 조건식을 더 추가하고 싶으면 `else if` 문을 사용한다.
 
 ```jsx
-var num = 2
-var kind
+var num = 2;
+var kind;
 
 // if 문
 if (num > 0) {
-  kind = '양수' // 음수를 구별할 수 없다.
+  kind = '양수'; // 음수를 구별할 수 없다.
 }
-console.log(kind) // 양수
+console.log(kind); // 양수
 
 // if...else 문
 if (num > 0) {
-  kind = '양수'
+  kind = '양수';
 } else {
-  kind = '음수' // 0은 음수가 아님
+  kind = '음수'; // 0은 음수가 아님
 }
-console.log(kind) // 양수
+console.log(kind); // 양수
 
 // if...else 문
 if (num > 0) {
-  kind = '양수'
+  kind = '양수';
 } else if (num < 0) {
-  kind = '음수'
+  kind = '음수';
 } else {
-  kind = '영'
+  kind = '영';
 }
-console.log(kind) // 양수
+console.log(kind); // 양수
 ```
 
 대부분의 `if…else` 문은 삼항 조건 연산자로 바꿔 쓸 수 있다.
@@ -122,22 +122,22 @@ switch (month) {
   case 8:
   case 10:
   case 12:
-    days = 31
-    break
+    days = 31;
+    break;
   case 4:
   case 6:
   case 9:
   case 11:
-    days = 30
-    break
+    days = 30;
+    break;
   case 2:
-    days = (year % 4 === 0 && year & (100 !== 0)) || year % 400 === 0 ? 29 : 28
-    break
+    days = (year % 4 === 0 && year & (100 !== 0)) || year % 400 === 0 ? 29 : 28;
+    break;
   default:
-    console.log('Invalid month')
+    console.log('Invalid month');
 }
 
-console.log(days)
+console.log(days);
 ```
 
 # 3. 반복문
@@ -173,12 +173,12 @@ for (;;) {...}
 for 문은 반복 횟수가 명확할 때, while 문은 반복 횟수가 불명확할 때 주로 사용한다.
 
 ```jsx
-var count = 0
+var count = 0;
 
 // count가 3보다 작을 때까지 코드 블록 반복 수행
 while (count < 3) {
-  console.log(count) //0 1 2
-  count++
+  console.log(count); //0 1 2
+  count++;
 }
 ```
 
@@ -191,12 +191,12 @@ while (true) {...}
 또한 무한루프더라도 break 문으로 코드 블록을 탈출할 수 있다.
 
 ```jsx
-var count = 0
+var count = 0;
 while (true) {
-  console.log(count)
-  count++
+  console.log(count);
+  count++;
 
-  if (count === 3) break
+  if (count === 3) break;
 } // 0 1 2
 ```
 
@@ -207,11 +207,11 @@ while (true) {
 → 코드 블록은 무조건 한 번 이상 실행된다.
 
 ```jsx
-var count = 0
+var count = 0;
 
 do {
-  console.log(count)
-  count++
+  console.log(count);
+  count++;
 } while (count < 3)
 // 0 1 2
 ```
@@ -222,17 +222,17 @@ do {
 
 ```jsx
 if (true) {
-  break // SyntaxError
+  break; // SyntaxError
 }
 
 // foo라는 식별자가 붙은 레이블 블록문
 foo: {
-  console.log(1)
+  console.log(1);
   break foo // foo 레이블 블록문 탈출
-  console.log(2)
+  console.log(2);
 }
 
-console.log('Done!')
+console.log('Done!');
 
 // 1
 // Done!
@@ -247,10 +247,10 @@ outer: for (var i = 0; i < 3; i++) {
   for (var j = 0; j < 3; j++) {
     // i + j === 3 이면 outer라는 식별자가 붙은 레이블 for 문을 탈출한다.
     if (i + j === 3) break outer
-    console.log(`inner [${i}, ${j}]`)
+    console.log(`inner [${i}, ${j}]`);
   }
 }
-console.log('Done!')
+console.log('Done!');
 
 // inner [0, 0]
 // inner [0, 1]
@@ -267,14 +267,14 @@ console.log('Done!')
 `break` 문처럼 반복문을 탈출하지는 않는다.
 
 ```jsx
-var string = 'Hello World.'
-var search = 'l'
-var count = 0
+var string = 'Hello World.';
+var search = 'l';
+var count = 0;
 
 for (var i = 0; i < string.length; i++) {
-  if (string[i] !== search) continue
-  count++ // continue 문이 실행되면 이 문은 실행하지 않음.
+  if (string[i] !== search) continue;
+  count++; // continue 문이 실행되면 이 문은 실행하지 않음.
 }
 
-console.log(count) // 3
+console.log(count); // 3
 ```
