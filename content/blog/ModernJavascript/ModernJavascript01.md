@@ -1,5 +1,5 @@
 ---
-title: 'Modrn Javascript Deep Dive - 1~3장 자바스크립트와 개발환경, 실행방법'
+title: 'Modern Javascript Deep Dive - 1~3장 자바스크립트와 개발환경, 실행방법'
 date: 2023-07-30
 category: 'Javascript'
 draft: false
