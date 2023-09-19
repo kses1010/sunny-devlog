@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 12장 함수'
-date: 2023-08-01
+title: 'Modern Javascript Deep Dive - 12장 함수'
+date: 2023-08-01 18:27:38
 category: 'Javascript'
 draft: false
 ---
@@ -10,11 +10,11 @@ draft: false
 ```jsx
 // f(x, y) = x + y
 function add(x, y) {
-  return x + y
+  return x + y;
 }
 
 // f(2, 5) = 7
-add(2, 5) // 7
+add(2, 5); // 7
 ```
 
 **함수는 일련의 과정을 문(statement)으로 구현하고 코드 블록으로 감싸서 하나의 실행 단위로 정의한 것.**
@@ -26,7 +26,7 @@ add(2, 5) // 7
 ```jsx
 // 함수 정의
 function add(x, y) {
-  return x + y
+  return x + y;
 }
 ```
 
@@ -34,10 +34,10 @@ function add(x, y) {
 
 ```jsx
 // 함수 호출
-var result = add(2, 5)
+var result = add(2, 5);
 
 // 함수 add에 인수 2, 5를 전달하면서 호출하면 반환값 7을 반환한다.
-console.log(result) // 7
+console.log(result); // 7
 ```
 
 # 2. 함수를 사용하는 이유
@@ -55,7 +55,7 @@ console.log(result) // 7
 ```jsx
 // 변수에 함수 리터럴을 할당
 var f = function add(x, y) {
-  return x + y
+  return x + y;
 }
 ```
 
@@ -88,14 +88,14 @@ var f = function add(x, y) {
 ```jsx
 // 함수 선언문
 function add(x, y) {
-  return x + y
+  return x + y;
 }
 
 // 함수 참조
-console.dir(add) // [Function: add]
+console.dir(add); // [Function: add]
 
 // 함수 호출
-console.log(add(2, 5)) // 7
+console.log(add(2, 5)); // 7
 ```
 
 **함수 선언문은 함수 이름을 생략할 수 없다.**
@@ -114,10 +114,10 @@ function (x, y) {
 
 ```jsx
 var add = function add(x, y) {
-  return x + y
+  return x + y;
 }
 
-console.log(add(2, 5))
+console.log(add(2, 5));
 ```
 
 자바스크립트 엔진이 코드의 문맥에 따라 동일한 함수 리터럴을 표현식이 아닌 문인 함수 선언문으로 해석하는 경우와 표현식인 문인 함수 리터럴 표현식으로 해석하는 경우가 있기 때문이다.
@@ -128,17 +128,17 @@ console.log(add(2, 5))
 // 기명 함수 리터럴을 단독으로 사용하면 함수 선언문으로 해석된다.
 // 함수 선언문에서는 함수 이름을 생략할 수 있다.
 function foo() {
-  console.log('foo')
+  console.log('foo');
 }
 
-foo() // foo
+foo(); // foo
 
 // 함수 리터럴을 피연산자로 사용하면 함수 선언문이 아니라 함수 리터럴 표현식으로 해석된다.
 // 함수 리터럴에서는 함수 이름을 생략할 수 있다.
-;(function bar() {
+(function bar() {
   console.log('bar')
-})
-bar() // ReferenceError
+});
+bar(); // ReferenceError
 ```
 
 **자바스크립트 엔진은 생성된 함수를 호출하기 위해 함수 이름과 동일한 이름의 식별자를 암묵적으로 생성하고, 거기에 함수 객체를 할당한다.**
@@ -146,11 +146,11 @@ bar() // ReferenceError
 ```jsx
 // add: 식별자 // add(): 함수이름
 var add = function add(x, y) {
-  return x + y
+  return x + y;
 }
 
 // 여기의 add는 식별자
-console.log(add(2, 5))
+console.log(add(2, 5));
 ```
 
 **함수는 함수 이름으로 호출하는 것이 아니라 함수 객체를 가리키는 식별자로 호출한다.**
@@ -164,10 +164,10 @@ console.log(add(2, 5))
 ```jsx
 // 함수 표현식
 var add = function(x, y) {
-  return x + y
+  return x + y;
 }
 
-console.log(add(2, 5)) // 7
+console.log(add(2, 5)); // 7
 ```
 
 함수 리터럴의 함수 이름은 생략할 수 있다. 이러한 함수를 익명함수라 한다.
@@ -176,35 +176,35 @@ console.log(add(2, 5)) // 7
 
 ```jsx
 var add = function foo(x, y) {
-  return x + y
+  return x + y;
 }
 
 // 식별자로 호출
-console.log(add(2, 5))
+console.log(add(2, 5));
 
 // 함수 이름으로 호출하면 ReferenceError가 발생한다.
-console.log(foo(2, 5))
+console.log(foo(2, 5));
 ```
 
 ## 4.3 함수 생성 시점과 함수 호이스팅
 
 ```jsx
 // 함수 참조
-console.dir(add) // [Function: add]
-console.dir(sub) // undefined
+console.dir(add); // [Function: add]
+console.dir(sub); // undefined
 
 // 함수 호출
-console.log(add(2, 5)) // 7
-console.log(sub(2, 5)) // TypeError
+console.log(add(2, 5)); // 7
+console.log(sub(2, 5)); // TypeError
 
 // 함수 선언문
 function add(x, y) {
-  return x + y
+  return x + y;
 }
 
 // 함수 표현식
 var sub = function(x, y) {
-  return x - y
+  return x - y;
 }
 ```
 
@@ -223,8 +223,8 @@ var sub = function(x, y) {
 ## 4.4 Function 생성자 함수
 
 ```jsx
-var add = new Function('x', 'y', 'return x + y')
-console.log(add(2, 5))
+var add = new Function('x', 'y', 'return x + y');
+console.log(add(2, 5));
 ```
 
 Function 생성자 함수로 함수를 생성하는 방식은 일반적이지 않으며 바람직하지도 않다.
@@ -233,20 +233,20 @@ Function 생성자 함수로 생성한 함수는 클로저를 생성하지 않�
 
 ```jsx
 var add1 = (function() {
-  var a = 10
+  var a = 10;
   return function(x, y) {
-    return x + y + a
+    return x + y + a;
   }
-})()
+})();
 
-console.log(add1(1, 2)) // 13
+console.log(add1(1, 2)); // 13
 
 var add2 = (function() {
-  var a = 10
-  return new Function('x', 'y', 'return x + y + a;')
-})()
+  var a = 10;
+  return new Function('x', 'y', 'return x + y + a;');
+})();
 
-console.log(add2(1, 2)) // ReferenceError
+console.log(add2(1, 2)); // ReferenceError
 ```
 
 ## 4.5 화살표 함수
@@ -255,8 +255,8 @@ ES6에서 도입된 화살표 함수는 function 키워드 대신 화살표(`⇒
 
 ```jsx
 // 화살표 함수
-const add = (x, y) => x + y
-console.log(add(2, 5)) // 7
+const add = (x, y) => x + y;
+console.log(add(2, 5)); // 7
 ```
 
 # 5. 함수 호출
@@ -270,26 +270,26 @@ console.log(add(2, 5)) // 7
 ```jsx
 // 함수 선언문
 function add(x, y) {
-  return x + y
+  return x + y;
 }
 
 // 함수 호출
 // 인수 1과 2가 매개변수 x와 y에 순서대로 할당되고 함수 몸체의 문들이 실행된다.
-var result = add(1, 2)
+var result = add(1, 2);
 ```
 
 매개변수의 스코프는 함수 내부다.
 
 ```jsx
 function add(x, y) {
-  console.log(x, y) // 2 5
-  return x + y
+  console.log(x, y); // 2 5
+  return x + y;
 }
 
-add(2, 5)
+add(2, 5);
 
 // add 함수의 매개변수 x, y는 함수 몸체 내부에서만 참조할 수 있다.
-console.log(x, y) // ReferenceError
+console.log(x, y); // ReferenceError
 ```
 
 함수는 매개변수의 개수와 인수의 개수가 일치하는지 체크하지 않는다.
@@ -298,20 +298,20 @@ console.log(x, y) // ReferenceError
 
 ```jsx
 function add(x, y) {
-  return x + y
+  return x + y;
 }
 
-console.log(add(2)) // NaN
+console.log(add(2)); // NaN
 ```
 
 매개변수보다 인수가 더 많은 경우 초과된 인수는 무시된다.
 
 ```jsx
 function add(x, y) {
-  return x + y
+  return x + y;
 }
 
-console.log(add(2, 5, 10)) // 7
+console.log(add(2, 5, 10)); // 7
 ```
 
 사실 초과된 인수가 그냥 버려지는 것은 아니다.
@@ -320,11 +320,11 @@ console.log(add(2, 5, 10)) // 7
 
 ```jsx
 function add(x, y) {
-  console.log(arguments) // [Arguments] { '0': 2, '1': 5, '2': 10 }
-  return x + y
+  console.log(arguments); // [Arguments] { '0': 2, '1': 5, '2': 10 }
+  return x + y;
 }
 
-console.log(add(2, 5, 10))
+console.log(add(2, 5, 10));
 ```
 
 arguments 객체는 함수를 정의할 때 매개변수 개수를 확정할 수 없는 가변 인자 함수를 구현할 때 유용하게 사용된다.
@@ -333,11 +333,11 @@ arguments 객체는 함수를 정의할 때 매개변수 개수를 확정할 수
 
 ```jsx
 function add(x, y) {
-  return x + y
+  return x + y;
 }
 
-console.log(add(2)) // NaN
-console.log(add('a', 'b')) // 'ab'
+console.log(add(2)); // NaN
+console.log(add('a', 'b')); // 'ab'
 ```
 
 자바스크립트 문법상 어떠한 문제도 없으므로 자바스크립트 엔진은 아무런 이의 제기없이 위 코드를 실행한다.
@@ -351,14 +351,14 @@ console.log(add('a', 'b')) // 'ab'
 function add(x, y) {
   if (typeof x !== 'number' || typeof y !== 'number') {
     // 매개변수를 통해 전달된 인수의 타입이 부적절한 경우 에러를 발생시킨다.
-    throw new TypeError('인수는 모두 숫자 값이어야 합니다.')
+    throw new TypeError('인수는 모두 숫자 값이어야 합니다.');
   }
 
-  return x + y
+  return x + y;
 }
 
-console.log(add(2)) // TypeError: 인수는 모두 숫자 값이어야 합니다.
-console.log(add('a', 'b')) // TypeError: 인수는 모두 숫자 값이어야 합니다.
+console.log(add(2)); // TypeError: 인수는 모두 숫자 값이어야 합니다.
+console.log(add('a', 'b')); // TypeError: 인수는 모두 숫자 값이어야 합니다.
 ```
 
 arguments 객체를 통해 인수 개수를 확인할 수 도 있다.
@@ -368,26 +368,26 @@ function add(a, b, c) {
   a = a || 0
   b = b || 0
   c = c || 0
-  return a + b + c
+  return a + b + c;
 }
 
-console.log(add(1, 2, 3)) // 6
-console.log(add(1, 2)) // 3
-console.log(add(1)) // 1
-console.log(add()) // 0
+console.log(add(1, 2, 3)); // 6
+console.log(add(1, 2)); // 3
+console.log(add(1)); // 1
+console.log(add()); // 0
 ```
 
 ES6에서 도입된 매개변수 기본값을 사용하면 함수 내에서 수행하던 인수 체크 및 초기화를 간소화할 수 있다.
 
 ```jsx
 function add(a = 0, b = 0, c = 0) {
-  return a + b + c
+  return a + b + c;
 }
 
-console.log(add(1, 2, 3)) // 6
-console.log(add(1, 2)) // 3
-console.log(add(1)) // 1
-console.log(add()) // 0
+console.log(add(1, 2, 3)); // 6
+console.log(add(1, 2)); // 3
+console.log(add(1)); // 1
+console.log(add()); // 0
 ```
 
 ## 5.3 매개변수의 최대 개수
@@ -404,12 +404,12 @@ console.log(add()) // 0
 
 ```jsx
 function multiply(x, y) {
-  return x * y // 반환문
+  return x * y; // 반환문
 }
 
 // 함수 호출은 반환값으로 평가된다.
-var result = multiply(3, 5)
-console.log(result) // 15
+var result = multiply(3, 5);
+console.log(result); // 15
 ```
 
 반환문은 두 가지 역할을 한다.
@@ -418,30 +418,30 @@ console.log(result) // 15
 
 ```jsx
 function multiply(x, y) {
-  return x * y // 반환문
+  return x * y; // 반환문
   // 반환문 이후에 다른 문이 존재하면 그 문은 실행되지 않고 무시한다.
-  console.log('실행되지 않음')
+  console.log('실행되지 않음');
 }
 
-console.log(multiply(3, 5)) // 15
+console.log(multiply(3, 5)); // 15
 ```
 
 - 반환문은 return 키워드 뒤에 오는 표현식을 평가해 반환한다. return 키워드 뒤에 반환값으로 사용할 표현식을 명시하지 않으면 undefined가 반환한다.
 
 ```jsx
 function foo() {
-  return
+  return;
 }
 
-console.log(foo()) // undefined
+console.log(foo()); // undefined
 ```
 
 반환문은 생략이 가능하다. 함수는 함수 몸체의 마지막 문까지 실행한 후 암묵적으로 undefined를 반환한다.
 
 ```jsx
-function foo() {}
+function foo() {};
 
-console.log(foo()) // undefined
+console.log(foo()); // undefined
 ```
 
 return 키워드와 반환값으로 사용할 표현식 사이에 줄바꿈이 있으면 세미콜론 자동 삽입이 된다.
@@ -452,7 +452,7 @@ function multiply(x, y) {
   x + y // 무시된다.
 }
 
-console.log(multiply(3, 5)) // undefined
+console.log(multiply(3, 5)); // undefined
 ```
 
 # 6. 참조에 의한 전달과 외부 상태의 변경
@@ -460,25 +460,25 @@ console.log(multiply(3, 5)) // undefined
 ```jsx
 // 매개변수 primitive는 원시 값을 전달받고, 매개변수 obj는 객체를 전달받는다.
 function changeVal(primitive, obj) {
-  primitive += 100
-  obj.name = 'Son'
+  primitive += 100;
+  obj.name = 'Son';
 }
 
 // 외부 상태
-var num = 100
-var person = { name: 'sunny' }
+var num = 100;
+var person = { name: 'sunny' };
 
-console.log(num) // 100
-console.log(person) // {name: "sunny"}
+console.log(num); // 100
+console.log(person); // {name: "sunny"}
 
 // 원시 값은 값 자체가 복사되어 전달되고 객체는 참조 값이 복사되어 전달된다.
-changeVal(num, person)
+changeVal(num, person);
 
 // 원시 값은 원본이 훼손되지 않는다.
-console.log(num) // 100
+console.log(num); // 100
 
 // 객체는 원본이 훼손된다.
-console.log(person) // {name: "Son"}
+console.log(person); // {name: "Son"}
 ```
 
 외부 참조를 통해 객체의 상태 훼손을 막기위해서는 객체를 불변 객체로 만들어 사용하는 것이다.
@@ -495,11 +495,11 @@ console.log(person) // {name: "Son"}
 
 ```jsx
 // 익명 즉시 실행 함수
-;(function() {
+(function() {
   var a = 3
   var b = 5
   return a * b
-})()
+})();
 ```
 
 즉시 실행 함수는 함수 이름이 없는 익명 함수를 사용하는 것이 일반적이다.
@@ -508,13 +508,13 @@ console.log(person) // {name: "Son"}
 
 ```jsx
 // 익명 즉시 실행 함수
-;(function foo() {
+(function foo() {
   var a = 3
   var b = 5
   return a * b
-})()
+})();
 
-foo() // ReferenceError
+foo(); // ReferenceError
 ```
 
 즉시 실행 함수도 일반 함수처럼 값을 반환할 수 있고 인수를 전달할 수도 있다.
@@ -543,17 +543,17 @@ console.log(res); // 15
 
 ```jsx
 function countdown(n) {
-  for (var i = n; i >= 0; i--) console.log(i)
+  for (var i = n; i >= 0; i--) console.log(i);
 }
-countdown(10)
+countdown(10);
 
 // 재귀 호출
 function countdown(n) {
-  if (n < 0) return
-  console.log(n)
-  countdown(n - 1) // 재귀 호출
+  if (n < 0) return;
+  console.log(n);
+  countdown(n - 1); // 재귀 호출
 }
-countdown(10)
+countdown(10);
 ```
 
 ## 7.3 중첩 함수
@@ -564,19 +564,19 @@ countdown(10)
 
 ```jsx
 function outer() {
-  var x = 1
+  var x = 1;
 
   // 중첩 함수
   function inner() {
-    var y = 2
+    var y = 2;
     // 외부 함수의 변수를 참조할 수 있다.
-    console.log(x + y) // 3
+    console.log(x + y); // 3
   }
 
-  inner()
+  inner();
 }
 
-outer()
+outer();
 ```
 
 ES6부터 함수 정의는 문이 위치할 수 있는 문맥이라면 어디든 지 가능하다. ES6부터는 if 문이나 for 문 등의 코드 블록 내에서도 정의할 수 있다.
@@ -591,10 +591,10 @@ ES6부터 함수 정의는 문이 위치할 수 있는 문맥이라면 어디든
 // n만큼 어떤 일을 반복한다.
 function repeat(n) {
   // i를 출력한다.
-  for (var i = 0; i < n; i++) console.log(i)
+  for (var i = 0; i < n; i++) console.log(i);
 }
 
-repeat(5)
+repeat(5);
 ```
 
 repeat 함수는 `console.log(i)` 에 강하게 의존하고 있어 다른 일을 할 수 없다.
@@ -605,19 +605,19 @@ repeat 함수는 `console.log(i)` 에 강하게 의존하고 있어 다른 일�
 // n만큼 어떤 일을 반복한다.
 function repeat(n) {
   // i를 출력한다.
-  for (var i = 0; i < n; i++) console.log(i)
+  for (var i = 0; i < n; i++) console.log(i);
 }
 
-repeat(5)
+repeat(5);
 
 function repeat2(n) {
   for (var i = 0; i < n; i++) {
     // i가 홀수만 출력한다.
-    if (i % 2) console.log(i)
+    if (i % 2) console.log(i);
   }
 }
 
-repeat2(5) // 1 3
+repeat2(5); // 1 3
 ```
 
 함수들은 반복하는 일은 변하지 않고 공통적으로 수행하지만 반복하면서 하는 일의 내용은 다르다.
@@ -630,23 +630,23 @@ repeat2(5) // 1 3
 // 외부에서 전달받은 f를 n만큼 반복 호출한다.
 function repeat(n, f) {
   for (var i = 0; i < n; i++) {
-    f(i) // i를 전달하면서 f를 호출
+    f(i); // i를 전달하면서 f를 호출
   }
 }
 
 var logAll = function(i) {
-  console.log(i)
+  console.log(i);
 }
 
 // 반복 호출할 함수를 인수로 전달한다.
-repeat(5, logAll) // 0 1 2 3 4
+repeat(5, logAll); // 0 1 2 3 4
 
 var logOdds = function(i) {
-  if (i % 2) console.log(i)
+  if (i % 2) console.log(i);
 }
 
 // 반복 호출할 함수를 인수로 전달한다.
-repeat(5, logOdds) // 1 3
+repeat(5, logOdds); // 1 3
 ```
 
 **함수의 매개변수를 통해 다른 함수의 내부로 전달되는 함수를 콜백 함수(callback function)라고 하며, 매개변수를 통해 함수의 외부에서 콜백 함수를 전달받은 함수를 고차 함수(Higher-Order Function, HOF)라고 한다.**
@@ -663,8 +663,8 @@ repeat(5, logOdds) // 1 3
 // 익명 함수 리터럴을 콜백 함수로 고차 함수에 전달한다.
 // 익명 함수 리터럴은 repeat 함수를 호출할 때마다 평가되어 함수 객체를 생성한다.
 repeat(5, function(i) {
-  if (i % 2) console.log(i) // 1 3
-})
+  if (i % 2) console.log(i); // 1 3
+});
 ```
 
 콜백 함수를 다른 곳에서도 호출할 필요가 있거나, 콜백 함수를 전달받는 함수가 자주 호출된다면 함수 외부에서 콜백 함수를 정의한 후 함수 참조를 고차 함수에 전달하는 편이 효율적이다.
@@ -672,11 +672,11 @@ repeat(5, function(i) {
 ```jsx
 // logOdds 함수는 단 한 번만 생성된다.
 var logOdds = function(i) {
-  if (i % 2) console.log(i)
-}
+  if (i % 2) console.log(i);
+};
 
 // 고차 함수에 함수 참조를 전달한다.
-repeat(5, logOdds)
+repeat(5, logOdds);
 ```
 
 위 예제는 logOdds 함수는 단 한 번만 생성된다. 하지만 콜백 함수를 익명 함수 리터럴로 정의하면서 곧바로 고차 함수에 전달하면 고차 함수가 호출될 때마다 콜백 함수가 생성된다.
@@ -686,24 +686,24 @@ repeat(5, logOdds)
 ```jsx
 // 콜백 함수를 사용하는 고차 함수 map
 var res = [1, 2, 3].map(function(item) {
-  return item * 2
-})
+  return item * 2;
+});
 
-console.log(res) // [2, 4, 6]
+console.log(res); // [2, 4, 6]
 
 // 콜백 함수를 사용하는 고차 함수 filter
 res = [1, 2, 3].filter(function(item) {
-  return item % 2
-})
+  return item % 2;
+});
 
-console.log(res) // [1, 3]
+console.log(res); // [1, 3]
 
 // 콜백 함수를 사용하는 고차 함수 reduce
 res = [1, 2, 3].reduce(function(acc, cur) {
-  return acc + cur
-})
+  return acc + cur;
+});
 
-console.log(res) // 6
+console.log(res); // 6
 ```
 
 ## 7.5 순수 함수와 비순수 함수
@@ -719,35 +719,35 @@ console.log(res) // 6
 → 순수 함수는 어떤 외부 상태에도 의존하지 않으며 외부 상태를 변경하지도 않는 함수다.
 
 ```jsx
-var count = 0 // 현재 카운트를 나타내는 상태
+var count = 0; // 현재 카운트를 나타내는 상태
 
 // 순수 함수 increase 는 동일한 인수가 전달되면 언제나 동일한 값을 반환한다.
 function increase(n) {
-  return ++n
+  return ++n;
 }
 
 // 순수 함수가 반환한 결과값을 변수에 재할당해서 상태를 변경
-count = increase(count)
-console.log(count) // 1
+count = increase(count);
+console.log(count); // 1
 
-count = increase(count)
-console.log(count) // 2
+count = increase(count);
+console.log(count); // 2
 ```
 
 외부 상태에 의존하는 함수를 비순수 함수라고 한다.
 
 ```jsx
-var count = 0 // 현재 카운트를 나타내는 상태
+var count = 0; // 현재 카운트를 나타내는 상태
 
 // 순수 함수 increase 는 동일한 인수가 전달되면 언제나 동일한 값을 반환한다.
 function increase(n) {
-  return ++count
+  return ++count;
 }
 
 // 비순수 함수가 외부 상태(count)를 변경하므로 상태 변화를 추적하기 어려워진다.
-increase()
-console.log(count) // 1
+increase();
+console.log(count); // 1
 
-increase()
-console.log(count) // 2
+increase();
+console.log(count); // 2
 ```
