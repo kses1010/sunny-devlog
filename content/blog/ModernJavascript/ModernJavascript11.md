@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 11장 원시 값과 객체의 비교'
-date: 2023-08-01
+title: 'Modern Javascript Deep Dive - 11장 원시 값과 객체의 비교'
+date: 2023-08-01 15:50:48
 category: 'Javascript'
 draft: false
 ---
@@ -30,12 +30,12 @@ draft: false
 
 ```jsx
 // const 키워드를 사용해 선언한 변수는 재할당이 금지된다.
-const o = {}
+const o = {};
 
 // const 키워드를 사용해 선언한 변수에 할당한 원시 값(상수)은 변경할 수 없다.
 // 하지만 const 키워드를 사용해 선언한 변수에 할당한 객체는 변경할 수 있다.
-o.a = 1
-console.log(o) // { a: 1 }
+o.a = 1;
+console.log(o); // { a: 1 }
 ```
 
 원시 값을 할당한 변수에 새로운 원시 값을 재할당하면 메모리 공간에 저장되어 있는 재할당 이전의 원시 값을 변경하는 것이 아니라 새로운 메모리 공간을 확보하고 재할당한 원시 값을 저장한 후, 변수는 새롭게 재할당한 원시 값을 카리킨다. → 변수가 참조하던 메모리 공간의 주소가 바뀐다.
@@ -48,8 +48,8 @@ ECMAScript 사양에 문자열 타입(2바이트)과 수자 타입(8바이트) �
 
 ```jsx
 // 문자열은 0개 이상의 문자로 이뤄진 집합
-var str1 = '' // 0개의 문자로 이뤄진 문자열(빈문자열)
-var str2 = 'Hello' // 5개의 문자로 이뤄진 문자열
+var str1 = ''; // 0개의 문자로 이뤄진 문자열(빈문자열)
+var str2 = 'Hello'; // 5개의 문자로 이뤄진 문자열
 ```
 
 자바스크립트는 개발자의 편의를 위해 원시 타입의 문자열 타입을 제공한다.
@@ -59,8 +59,8 @@ var str2 = 'Hello' // 5개의 문자로 이뤄진 문자열
 → 문자열이 생성된 이후에는 변경할 수 없음을 의미한다.
 
 ```jsx
-var str = 'Hello'
-str = 'world'
+var str = 'Hello';
+str = 'world';
 ```
 
 이 경우 식별자 str은 문자열 ‘Hello’가 저장된 메모리 공간을 가리키다 두번째 문이 실행되면 ‘world’ 문자열을 새로운 메모리에 생성하고 str은 이것을 가리키게 된다.
@@ -68,26 +68,26 @@ str = 'world'
 문자열은 유사 배열 객체이며 이터러블이므로 배열과 유사하게 각 문자에 접근할 수 있다.
 
 ```jsx
-var str = 'string'
+var str = 'string';
 
-console.log(str[0]) // s
-console.log(str.length) // 6
-console.log(str.toUpperCase()) // STRING
+console.log(str[0]); // s
+console.log(str.length); // 6
+console.log(str.toUpperCase()); // STRING
 ```
 
 ## 1.3 값에 의한 전달
 
 ```jsx
-var score = 80
-var copy = score
+var score = 80;
+var copy = score;
 
-console.log(score) // 80
-console.log(copy) // 80
+console.log(score); // 80
+console.log(copy); // 80
 
-score = 100
+score = 100;
 
-console.log(score) // 100
-console.log(copy) // 80
+console.log(score); // 100
+console.log(copy); // 80
 ```
 
 변수에 변수를 할당했을 때는 어떻게 전달될까?
@@ -97,11 +97,11 @@ console.log(copy) // 80
 변수에 원시 값을 갖는 변수를 할당하면 할당받는 변수(copy)에는 할당되는 변수(score)의 원시 값이 복사되어 전달된다. → **값에 의한 전달**
 
 ```jsx
-var score = 80
-var copy = score
+var score = 80;
+var copy = score;
 
-console.log(score, copy) // 80, 80
-console.log(score === copy) // true
+console.log(score, copy); // 80, 80
+console.log(score === copy); // true
 ```
 
 **score, copy의 값은 80이지만 각자 다른 메모리 공간에 저장된 별개의 값이다.**
@@ -109,16 +109,16 @@ console.log(score === copy) // true
 만약 score 변수의 값을 변경한다면
 
 ```jsx
-var score = 80
-var copy = score
+var score = 80;
+var copy = score;
 
-console.log(score, copy) // 80 80
-console.log(score === copy) // true
+console.log(score, copy); // 80 80
+console.log(score === copy); // true
 
-score = 100
+score = 100;
 
-console.log(score, copy) // 100 80
-console.log(score === copy) // false
+console.log(score, copy); // 100 80
+console.log(score === copy); // false
 ```
 
 참고로 “값에 의한 전달” 이라는 용어는 자바스크립트를 위한 용어가 아니므로 오해가 생길 수 있다.
@@ -140,7 +140,7 @@ console.log(score === copy) // false
 ```jsx
 var person = {
   name: 'Son',
-}
+};
 ```
 
 객체를 할당한 변수가 기억하는 메모리 주소를 통해 메모리 공간에 접근하면 **참조 값(reference value)**에 접근 할 수 있다.
@@ -149,10 +149,10 @@ var person = {
 // 할당이 이뤄지는 시점에 객체 리터럴이 해석되고, 그 결과 객체가 생성된다.
 var person = {
   name: 'Son',
-}
+};
 
 // person 변수에 저장되어 있는 참조 값으로 실제 객체에 접근한다.
-console.log(person) // { name: "Son" }
+console.log(person); // { name: "Son" }
 ```
 
 객체를 할당한 변수는 재할당 없이 객체를 직접 변경할 수 있다.
@@ -163,15 +163,15 @@ console.log(person) // { name: "Son" }
 // 할당이 이뤄지는 시점에 객체 리터럴이 해석되고, 그 결과 객체가 생성된다.
 var person = {
   name: 'Son',
-}
+};
 
 // 프로퍼티 값 갱신
-person.name = 'Sunny'
+person.name = 'Sunny';
 
 // 프로퍼티 동적 생성
-person.address = 'Seoul'
+person.address = 'Seoul';
 
-console.log(person) // { name: "Sunny", address: "Seoul }
+console.log(person); // { name: "Sunny", address: "Seoul }
 ```
 
 객체를 생성하고 관리하는 방식은 매우 복잡하며 비용이 많이 드는 일이다.
@@ -189,19 +189,19 @@ const o = {
   x: {
     y: 1,
   },
-}
+};
 
 // 얕은 복사
-const c1 = { ...o }
-console.log(c1 === o) // false
-console.log(c1.x === o.x) // true
+const c1 = { ...o };
+console.log(c1 === o); // false
+console.log(c1.x === o.x); // true
 
 // clondeDeep을 사용한 깊은 복사
-const _ = require('lodash')
+const _ = require('lodash');
 // 깊은 복사
-const c2 = _.cloneDeep(o)
-console.log(c2 === o) // false
-console.log(c2.x === o.x) // false
+const c2 = _.cloneDeep(o);
+console.log(c2 === o); // false
+console.log(c2.x === o.x); // false
 ```
 
 얕은 복사와 깊은 복사로 생성된 객체는 원본과는 다른 객체다.
@@ -211,19 +211,19 @@ console.log(c2.x === o.x) // false
 참고로 다음과 같이 원시 값을 할당한 변수를 다른 변수에 할당하는 것을 깊은 복사, 객체를 할당한 변수를 다른 변수에 할당하는 것을 얕은 복사라고 부른 경우도 있다.
 
 ```jsx
-const v = 1
+const v = 1;
 
 // 깊은 복사 라고도 한다.
-const c1 = v
-console.log(c1 === v) // true
+const c1 = v;
+console.log(c1 === v); // true
 
 const o = {
   x: 1,
-}
+};
 
 // 얕은 복사 라고도 한다.
-const c2 = o
-console.log(c2 === o) // true
+const c2 = o;
+console.log(c2 === o); // true
 ```
 
 ## 2.2 참조에 의한 전달
@@ -233,9 +233,9 @@ console.log(c2 === o) // true
 ```jsx
 var person = {
   name: 'Son',
-}
+};
 
-var copy = person
+var copy = person;
 ```
 
 객체를 가리키는 변수(원본, person)를 다른 변수(사본, copy)에 할당하면 원본의 **참조 값이 복사되어 전달**된다.
@@ -249,19 +249,19 @@ var copy = person
 ```jsx
 var person = {
   name: 'Son',
-}
+};
 
-var copy = person
+var copy = person;
 
-console.log(copy === person) // true
+console.log(copy === person); // true
 
 // copy를 통해 객체 변경
-copy.name = 'Sunny'
+copy.name = 'Sunny';
 // person을 통해 객체 변경
-person.address = 'Seoul'
+person.address = 'Seoul';
 
-console.log(person) // { name: 'Sunny', address: 'Seoul' }
-console.log(copy) // { name: 'Sunny', address: 'Seoul' }
+console.log(person); // { name: 'Sunny', address: 'Seoul' }
+console.log(copy); // { name: 'Sunny', address: 'Seoul' }
 ```
 
 `**값에 의한 전달`과 `참조에 의한 전달`은 식별자가 기억하는 메모리 공간에 저장되어 있는 복사해서 전달한다는 면에서 동일하다.\*\*
@@ -273,12 +273,12 @@ console.log(copy) // { name: 'Sunny', address: 'Seoul' }
 ```jsx
 var person1 = {
   name: 'Son',
-}
+};
 
 var person2 = {
   name: 'Son',
-}
+};
 
-console.log(person1 === person2) // false : 참조 값은 전혀 다른값
-console.log(person1.name === person2.name) // true : 값으로 평가될 수 있는 표현식
+console.log(person1 === person2); // false : 참조 값은 전혀 다른값
+console.log(person1.name === person2.name); // true : 값으로 평가될 수 있는 표현식
 ```
