@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 13장 스코프'
-date: 2023-08-02
+title: 'Modern Javascript Deep Dive - 13장 스코프'
+date: 2023-08-02 13:19:22
 category: 'Javascript'
 draft: false
 ---
@@ -11,7 +11,7 @@ draft: false
 
 자바스크립트의 var 키워드로 선언한 변수와 let 또는 const 키워드로 선언한 변수의 스코프도 다르게 동작한다.
 
-```
+```jsx
 function add(x, y) {
     // 매개변수는 함수 몸체 내부에서만 참조할 수 있다.
     // 즉, 매개변수의 스코프(유효범위)는 함수 몸체 내부다.
@@ -28,28 +28,28 @@ console.log(x, y); // ReferenceError
 변수는 코드의 가장 바깥 영역뿐 아니라 코드 블록이나 함수 몸체 내에서도 선언할 수 있다. 이때 코드 블록이나 함수는 중첩될 수 있다.
 
 ```jsx
-var var1 = 1 // 코드의 가장 바깥 영역에서 선언한 변수
+var var1 = 1; // 코드의 가장 바깥 영역에서 선언한 변수
 
 if (true) {
-  var var2 = 2 // 코드 블록 내에서 선언한 변수
+  var var2 = 2; // 코드 블록 내에서 선언한 변수
   if (true) {
-    var var3 = 3 // 중첩된 코드 블록 내에서 선언한 변수
+    var var3 = 3; // 중첩된 코드 블록 내에서 선언한 변수
   }
 }
 
 function foo() {
-  var var4 = 4 // 함수 내에서 선언한 변수
+  var var4 = 4; // 함수 내에서 선언한 변수
 
   function bar() {
-    var var5 = 5 // 중첩된 함수 내에서 선언한 변수
+    var var5 = 5; // 중첩된 함수 내에서 선언한 변수
   }
 }
 
-console.log(var1) // 1
-console.log(var2) // 2
-console.log(var3) // 3
-console.log(var4) // ReferenceError
-console.log(var5) // ReferenceError
+console.log(var1); // 1
+console.log(var2); // 2
+console.log(var3); // 3
+console.log(var4); // ReferenceError
+console.log(var5); // ReferenceError
 ```
 
 모든 식별자는 자신이 선언된 위치에 따라 다른 코드가 식별자 자신을 참조할 수 있는 유효 범위가 결정된다.
@@ -57,16 +57,16 @@ console.log(var5) // ReferenceError
 **→ 스코프라 한다. 즉, 스코프는 식별자가 유효한 범위를 말한다.**
 
 ```jsx
-var x = 'global'
+var x = 'global';
 
 function foo() {
-  var x = 'local'
-  console.log(x)
+  var x = 'local';
+  console.log(x);
 }
 
-foo()
+foo();
 
-console.log(x)
+console.log(x);
 
 // local
 // global
@@ -82,22 +82,22 @@ console.log(x)
 
 ```jsx
 function foo() {
-  var x = 1
+  var x = 1;
   // var 키워드로 선언된 변수는 같은 스코프 내에서 중복 선언을 허용한다.
   // 아래 변수 선언문은 자바스크립트 엔진에 의해 var 키워드가 없는 것처럼 동작한다.
-  var x = 2
-  console.log(x) // 2
+  var x = 2;
+  console.log(x); // 2
 }
 
-foo()
+foo();
 
 function bar() {
-  let x = 1
+  let x = 1;
   // let이나 const 키워드로 선언된 변수는 같은 스코프 내에서 중복 선언을 허용하지 않는다.
-  let x = 2 // SyntaxError
+  let x = 2; // SyntaxError
 }
 
-bar()
+bar();
 ```
 
 # 2. 스코프의 종류
@@ -105,31 +105,31 @@ bar()
 코드는 전역과 지역으로 구분할 수 있다.
 
 ```jsx
-var x = 'global x'
-var y = 'global y'
+var x = 'global x';
+var y = 'global y';
 
 function outer() {
-  var z = "outer's local z"
+  var z = "outer's local z";
 
-  console.log(x)
-  console.log(y)
-  console.log(z)
+  console.log(x);
+  console.log(y);
+  console.log(z);
 
   function inner() {
-    var x = "inner's local x"
+    var x = "inner's local x";
 
-    console.log(x)
-    console.log(y)
-    console.log(z)
+    console.log(x);
+    console.log(y);
+    console.log(z);
   }
 
-  inner()
+  inner();
 }
 
-outer()
+outer();
 
-console.log(x)
-// console.log(z); -> ReferenceError
+console.log(x);
+console.log(z); -> ReferenceError
 
 // global x
 // global y
@@ -169,17 +169,17 @@ console.log(x)
 ## 3.1 스코프 체인에 의한 변수
 
 ```jsx
-var x = 'global x'
+var x = 'global x';
 
 function outer() {
-  var z = "outer's local z"
+  var z = "outer's local z";
 
-  console.log(z)
+  console.log(z);
 }
 
-outer()
+outer();
 
-console.log(x) // global x
+console.log(x); // global x
 // console.log(z); -> ReferenceError
 ```
 
@@ -190,18 +190,18 @@ console.log(x) // global x
 ```jsx
 // 전역 함수
 function foo() {
-  console.log('global function foo')
+  console.log('global function foo');
 }
 
 function bar() {
   // 중첩 함수
   function foo() {
-    console.log('local function foo')
+    console.log('local function foo');
   }
-  foo()
+  foo();
 }
 
-bar()
+bar();
 
 // local function foo
 ```
@@ -219,46 +219,46 @@ bar()
 → 함수 레벨 스코프라 한다.
 
 ```jsx
-var x = 1
+var x = 1;
 
 if (true) {
   // var 키워드로 선언된 변수는 함수의 코드 블록(함수 몸체)만을 지역 스코프로 인정한다.
   // 함수 밖에서 var 키워드로 선언된 변수는 코드 블록 내에서 선언되었다 할지라도 모두 전역 변수다.
   // 따라서 x는 지역 변수다. 이미 선언된 전역 변수 x가 있으므로 x변수는 중복 선언된다.
-  var x = 10
+  var x = 10;
 }
 
-console.log(x) // 10
+console.log(x); // 10
 ```
 
 var 키워드를 사용할 경우 의도치 않은 전역 변수의 값이 재할당 될 수 있다.
 
 ```jsx
-var i = 10
+var i = 10;
 
 for (var i = 0; i < 5; i++) {
-  console.log(i) // 0 1 2 3 4
+  console.log(i); // 0 1 2 3 4
 }
 
-console.log(i) // 5
+console.log(i); // 5
 ```
 
 # 5. 렉시컬 스코프
 
 ```jsx
-var x = 1
+var x = 1;
 
 function foo() {
-  var x = 10
-  bar()
+  var x = 10;
+  bar();
 }
 
 function bar() {
-  console.log(x)
+  console.log(x);
 }
 
-foo()
-bar()
+foo();
+bar();
 
 // 1
 // 1
