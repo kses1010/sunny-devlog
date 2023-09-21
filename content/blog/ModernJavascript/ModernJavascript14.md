@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 14장 전역 변수의 문제점'
-date: 2023-08-02
+title: 'Modern Javascript Deep Dive - 14장 전역 변수의 문제점'
+date: 2023-08-02 13:55:01
 category: 'Javascript'
 draft: false
 ---
@@ -15,13 +15,13 @@ draft: false
 
 ```jsx
 function foo() {
-  var x = 'local'
-  console.log(x) // local
-  return x
+  var x = 'local';
+  console.log(x); // local
+  return x;
 }
 
-foo()
-console.log(x) // ReferenceError
+foo();
+console.log(x); // ReferenceError
 ```
 
 **→ 지역 변수의 생명 주기는 함수의 생명주기와 일치한다.**
@@ -29,15 +29,15 @@ console.log(x) // ReferenceError
 일반적으로 함수가 종료하면 함수가 생성한 스코프도 소멸한다. 하지만 누군가가 스코프를 참조하고 있다면 스코프는 해제되지 않고 생존하게 된다. → 클로저
 
 ```jsx
-var x = 'global'
+var x = 'global';
 
 function foo() {
-  console.log(x) // ㄱ
-  var x = 'local'
+  console.log(x); // ㄱ
+  var x = 'local';
 }
 
-foo()
-console.log(x)
+foo();
+console.log(x);
 
 // undefined
 // global
@@ -78,12 +78,12 @@ var 키워드로 선언한 전역 변수는 전역 객체의 프로퍼티가 된
 더욱이 var 키워드는 변수의 중복 선언을 허용하므로 생명 주기가 긴 전역 변수는 변수 이름이 중복될 가능성이 있다. 변수 이름이 중복되면 의도치 않은 재할당이 이뤄진다.
 
 ```jsx
-var x = 1
+var x = 1;
 //...
 
 // 변수의 중복 선언. 기존 변수에 값을 재할당한다.
-var x = 100
-console.log(x) // 100
+var x = 100;
+console.log(x); // 100
 ```
 
 ### 스코프 체인 상에서 종점에 존재
@@ -107,12 +107,12 @@ console.log(x) // 100
 이러한 특성을 이용해 전역 변수의 사용을 제한한다.
 
 ```jsx
-;(function() {
-  var foo = 10 // 즉시 실행 함수의 지역 변수
+(function() {
+  var foo = 10; // 즉시 실행 함수의 지역 변수
   //...
-})()
+})();
 
-console.log(foo) // ReferenceError
+console.log(foo); // ReferenceError
 ```
 
 전역 변수를 생성하지 않으므로 라이브러리 등에 자주 사용된다.
@@ -122,24 +122,24 @@ console.log(foo) // ReferenceError
 전역에 네임스페이스 역할을 담당할 객체를 생성하고 전역 변수처럼 사용하고 싶은 변수를 프로퍼티로 추가하는 방법이다.
 
 ```jsx
-var MYAPP = {}
+var MYAPP = {};
 
-MYAPP.name = 'Son'
+MYAPP.name = 'Son';
 
-console.log(MYAPP.name) // Son
+console.log(MYAPP.name); // Son
 ```
 
 네임스페이스 객체에 또 다른 네임스페이스 객체를 프로퍼티로 추가해서 네임스페이스를 계층적으로 구성할 수도 있다.
 
 ```jsx
-var MYAPP = {}
+var MYAPP = {};
 
 MYAPP.person = {
   name: 'Son',
   address: 'Seoul',
-}
+};
 
-console.log(MYAPP.person.name) // Son
+console.log(MYAPP.person.name); // Son
 ```
 
 네임스페이스를 분리해서 식별자 충돌을 방지하는 효과는 있으나 네임스페이스 객체 자체가 전역 변수에 할당되므로 그다지 유용하지 않는다.
