@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 16장 프로퍼티 어트리뷰트'
-date: 2023-08-03
+title: 'Modern Javascript Deep Dive - 16장 프로퍼티 어트리뷰트'
+date: 2023-08-03 12:38:39
 category: 'Javascript'
 draft: false
 ---
@@ -29,10 +29,10 @@ o.__proto__; // Object.prototype
 ```jsx
 const person = {
   name: 'Son',
-}
+};
 
 // 프로퍼티 어트리뷰트 정보를 제공하는 프로퍼티 디스크립터 객체를 반환한다.
-console.log(Object.getOwnPropertyDescriptor(person, 'name'))
+console.log(Object.getOwnPropertyDescriptor(person, 'name'));
 
 // { value: 'Son', writable: true, enumerable: true, configurable: true }
 ```
@@ -78,25 +78,25 @@ const person = {
 
   // fullName은 접근자 함수로 구성된 접근자 프로퍼티다.
   get fullName() {
-    return `${this.firstName} ${this.lastName}`
+    return `${this.firstName} ${this.lastName}`;
   },
   set fullName(name) {
     // 배열 디스트럭처링 할당
-    ;[this.firstName, this.lastName] = name.split(' ')
+    [this.firstName, this.lastName] = name.split(' ');
   },
-}
+};
 
 // 데이터 프로퍼티를 통한 프로퍼티 값의 참조
-console.log(person.firstName + ' ' + person.lastName) // Sunny Son
+console.log(person.firstName + ' ' + person.lastName); // Sunny Son
 
 // 접근자 프로퍼티를 통한 프로퍼티 값 저장 및 참조
-person.fullName = 'Cloud Kim'
-console.log(person) // {firstName: "Cloud", lastName: "Kim"}
+person.fullName = 'Cloud Kim';
+console.log(person); // {firstName: "Cloud", lastName: "Kim"}
 
-console.log(person.fullName) // Cloud Kim
+console.log(person.fullName); // Cloud Kim
 
-let descriptor = Object.getOwnPropertyDescriptor(person, 'firstName')
-console.log(descriptor)
+let descriptor = Object.getOwnPropertyDescriptor(person, 'firstName');
+console.log(descriptor);
 //   {
 //     value: 'Cloud',
 //     writable: true,
@@ -104,9 +104,8 @@ console.log(descriptor)
 //     configurable: true
 //   }
 
-descriptor = Object.getOwnPropertyDescriptor(person, 'fullName')
-console.log(descriptor)
-
+descriptor = Object.getOwnPropertyDescriptor(person, 'fullName');
+console.log(descriptor);
 //   {
 //     get: [Function: get fullName],
 //     set: [Function: set fullName],
@@ -123,10 +122,10 @@ console.log(descriptor)
 
 ```jsx
 // 일반 객체의 __proto__는 접근자 프로퍼티다.
-Object.getOwnPropertyDescriptor(Object.prototype, '__proto_-')
+Object.getOwnPropertyDescriptor(Object.prototype, '__proto_-');
 
 // 함수 객체의 prototype은 데이터 프로퍼티다.
-Object.getOwnPropertyDescriptor(function() {}, 'prototype')
+Object.getOwnPropertyDescriptor(function() {}, 'prototype');
 ```
 
 # 4. 프로퍼티 정의
@@ -134,7 +133,7 @@ Object.getOwnPropertyDescriptor(function() {}, 'prototype')
 프로퍼티 정의란 새로운 프로퍼티를 추가하면서 프로퍼티 어트리뷰트를 명시적으로 정의하거나, 기존 프로퍼티의 프로퍼티 어트리뷰트를 재정의하는 것을 말한다.
 
 ```jsx
-const person = {}
+const person = {};
 
 // 데이터 프로퍼티 정의
 Object.defineProperty(person, 'firstName', {
@@ -142,14 +141,14 @@ Object.defineProperty(person, 'firstName', {
   writable: true,
   enumerable: true,
   configurable: true,
-})
+});
 
 Object.defineProperty(person, 'lastName', {
   value: 'Son',
-})
+});
 
-let descriptor = Object.getOwnPropertyDescriptor(person, 'firstName')
-console.log('firstName', descriptor)
+let descriptor = Object.getOwnPropertyDescriptor(person, 'firstName');
+console.log('firstName', descriptor);
 // firstName {
 //     value: 'Sunny',
 //     writable: true,
@@ -158,8 +157,8 @@ console.log('firstName', descriptor)
 //   }
 
 // 디스크립터 객체의 프로퍼티를 누락시키면 undefined, false가 기본값이다.
-descriptor = Object.getOwnPropertyDescriptor(person, 'lastName')
-console.log('lastName', descriptor)
+descriptor = Object.getOwnPropertyDescriptor(person, 'lastName');
+console.log('lastName', descriptor);
 // lastName {
 //     value: 'Son',
 //     writable: false,
@@ -168,24 +167,24 @@ console.log('lastName', descriptor)
 //   }
 
 // lastName 프로퍼티는 [[Writable]] 의 값이 false 이므로 변경 할 수 없다.
-person.lastName = 'Kim'
+person.lastName = 'Kim';
 // lastName 프로퍼티는 [[Enumerable]] 값이 false이므로 열거되지 않음
-console.log(Object.keys(person)) // ["firstName"]
+console.log(Object.keys(person)); // ["firstName"]
 // lastName 프로퍼티는 [[Configurable]] 값이 false이므로 삭제하거나 재정의할 수 없다.
-delete person.lastName
-Object.defineProperty(person, 'lastName', { enumerable: true }) // SyntaxError
+delete person.lastName;
+Object.defineProperty(person, 'lastName', { enumerable: true }); // SyntaxError
 
 // 접근자 프로퍼티 정의
 Object.defineProperty(person, 'fullName', {
   get() {
-    return `${this.firstName} ${this.lastName}`
+    return `${this.firstName} ${this.lastName}`;
   },
   set(name) {
-    ;[this.firstName, this.lastName] = name.split(' ')
+    [this.firstName, this.lastName] = name.split(' ');
   },
   enumerable: true,
   configurable: true,
-})
+});
 ```
 
 `Object.defineProperties()` 사용하면 여러 개의 프로퍼티를 한 번에 정의할 수 있다.
@@ -203,24 +202,24 @@ Object.defineProperty(person, 'fullName', {
 ```jsx
 const person = {
   name: 'Sunny',
-}
+};
 
 // 확장이 금지되지 않음
-console.log(Object.isExtensible(person)) // true
+console.log(Object.isExtensible(person)); // true
 
 // 확장 금지
-Object.preventExtensions(person)
+Object.preventExtensions(person);
 
 // 프로퍼티 추가가 되지 않음
-person.age = 20
-console.log(person) // {name: "Sunny"}
+person.age = 20;
+console.log(person); // {name: "Sunny"}
 
 // 프로퍼티 삭제는 가능
-delete person.name
-console.log(person) // {}
+delete person.name;
+console.log(person); // {}
 
 // 프로퍼티 정의에 의한 프로퍼티 추가도 금지
-Object.defineProperty(person, 'age', { value: 20 }) // TypeError
+Object.defineProperty(person, 'age', { value: 20 }); // TypeError
 ```
 
 ## 5.2 객체 밀봉
@@ -232,28 +231,28 @@ Object.defineProperty(person, 'age', { value: 20 }) // TypeError
 ```jsx
 const person = {
   name: 'Sunny',
-}
+};
 
 // 밀봉되지 않음
-console.log(Object.isSealed(person)) // false
+console.log(Object.isSealed(person)); // false
 
 // 밀봉
-Object.seal(person)
+Object.seal(person);
 
 // 프로퍼티 추가가 되지 않음
-person.age = 20
-console.log(person) // {name: "Sunny"}
+person.age = 20;
+console.log(person); // {name: "Sunny"}
 
 // 프로퍼티 삭제 금지
-delete person.name
-console.log(person) // {name: "Sunny"}
+delete person.name;
+console.log(person); // {name: "Sunny"}
 
 // 프로퍼티 값 갱신은 가능
-person.name = 'Kim'
-console.log(person) // {name: "Kim"}
+person.name = 'Kim';
+console.log(person); // {name: "Kim"}
 
 // 프로퍼티 어트리뷰트 재정의가 금지
-Object.defineProperty(person, 'name', { configurable: true }) // TypeError
+Object.defineProperty(person, 'name', { configurable: true }); // TypeError
 ```
 
 ## 5.3 객체 동결
@@ -265,28 +264,28 @@ Object.defineProperty(person, 'name', { configurable: true }) // TypeError
 ```jsx
 const person = {
   name: 'Sunny',
-}
+};
 
 // 동결되지 않음
-console.log(Object.isFrozen(person)) // false
+console.log(Object.isFrozen(person)); // false
 
 // 동결
-Object.freeze(person)
+Object.freeze(person);
 
 // 프로퍼티 추가가 되지 않음
-person.age = 20
-console.log(person) // {name: "Sunny"}
+person.age = 20;
+console.log(person); // {name: "Sunny"}
 
 // 프로퍼티 삭제 금지
-delete person.name
-console.log(person) // {name: "Sunny"}
+delete person.name;
+console.log(person); // {name: "Sunny"}
 
 // 프로퍼티 값 갱신 금지
-person.name = 'Kim'
-console.log(person) // {name: "Sunny"}
+person.name = 'Kim';
+console.log(person); // {name: "Sunny"}
 
 // 프로퍼티 어트리뷰트 재정의가 금지
-Object.defineProperty(person, 'name', { configurable: true }) // TypeError
+Object.defineProperty(person, 'name', { configurable: true }); // TypeError
 ```
 
 ## 5.4 불변 객체
@@ -297,17 +296,17 @@ Object.defineProperty(person, 'name', { configurable: true }) // TypeError
 const person = {
   name: 'Sunny',
   address: { city: 'Seoul' },
-}
+};
 
 // 얕은 동결
-Object.freeze(person)
+Object.freeze(person);
 
 // 중첩 객체까지 동결하지 못함
-console.log(Object.isFrozen(person)) // true
-console.log(Object.isFrozen(person.address)) // false
+console.log(Object.isFrozen(person)); // true
+console.log(Object.isFrozen(person.address)); // false
 
-person.address.city = 'Busan'
-console.log(person) // { name: 'Sunny', address: { city: 'Busan' } }
+person.address.city = 'Busan';
+console.log(person); // { name: 'Sunny', address: { city: 'Busan' } }
 ```
 
 객체의 중첩 객체까지 동결하여 변경이 불가능한 읽기 전용의 불변 객체를 구현하려면 객체를 값으로 갖는 모든 프로퍼티에 대해 재귀적으로 `Object.freeze()` 메서드를 호출해야 한다.
@@ -320,21 +319,21 @@ function deepFreeze(target) {
     Object.keys(target).forEach(key => deepFreeze(target[key]))
   }
 
-  return target
+  return target;
 }
 
 const person = {
   name: 'Sunny',
   address: { city: 'Seoul' },
-}
+};
 
 // 깊은 동결
-deepFreeze(person)
+deepFreeze(person);
 
 // 중첩 객체까지 동결하지 못함
-console.log(Object.isFrozen(person)) // true
-console.log(Object.isFrozen(person.address)) // true
+console.log(Object.isFrozen(person)); // true
+console.log(Object.isFrozen(person.address)); // true
 
-person.address.city = 'Busan'
-console.log(person) // { name: 'Sunny', address: { city: 'Seoul' } }
+person.address.city = 'Busan';
+console.log(person); // { name: 'Sunny', address: { city: 'Seoul' } }
 ```
