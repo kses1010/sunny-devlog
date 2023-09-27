@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 25장 클래스(1)'
-date: 2023-08-08
+title: 'Modern Javascript Deep Dive - 25장 클래스(1)'
+date: 2023-08-08 17:43:38
 category: 'Javascript'
 draft: false
 ---
@@ -18,21 +18,21 @@ ES5에서는 클래스 없이 생성자 함수와 프로토타입을 통해 객�
 var Person = (function() {
   // 생성자 함수
   function Person(name) {
-    this.name = name
+    this.name = name;
   }
 
   // 프로토타입 메서드
   Person.prototype.sayHi = function() {
-    console.log(`Hi! My name is ${this.name}`)
+    console.log(`Hi! My name is ${this.name}`);
   }
 
   // 생성자 함수 반환
-  return Person
-})()
+  return Person;
+})();
 
 // 인스턴스 생성
-var me = new Person('Son')
-me.sayHi() // Hi! My name is Son
+var me = new Person('Son');
+me.sayHi(); // Hi! My name is Son
 ```
 
 ES6부터 지원하는 클래스는 사실 함수이며 기존 프로토타입 기반 패턴을 클래스 기반 패턴처럼 사용할 수 있도록 하는 문법적 설탕(syntatic sugar)다.
@@ -49,17 +49,17 @@ ES6부터 지원하는 클래스는 사실 함수이며 기존 프로토타입 �
 
 ```jsx
 // class 선언문
-class Person {}
+class Person {};
 ```
 
 일반적이지는 않지만 함수처럼 표현식으로 클래스를 정의할 수 있다. 이때 클래스는 함수와 마찬가지로 이름을 가질 수 있고, 갖지 않을 수도 있다.
 
 ```jsx
 // 익명 클래스 표현식
-const Person = class {}
+const Person = class {};
 
 // 기명 클래스 표현식
-const Person = class MyClass {}
+const Person = class MyClass {};
 ```
 
 클래스를 표현식으로 정의할 수 있다는 것은 클래스가 값으로 사용할 수 있는 일급 객체라는 것을 의미한다.
@@ -79,29 +79,29 @@ class Person {
   // 생성자
   constructor(name) {
     // 인스턴스 생성 및 초기화
-    this.name = name // name 프로퍼티는 public 이다.
+    this.name = name; // name 프로퍼티는 public 이다.
   }
 
   // 프로토타입 메서드
   sayHi() {
-    console.log(`Hi! My name is ${this.name}`)
+    console.log(`Hi! My name is ${this.name}`);
   }
 
   // 정적 메서드
   static sayHello() {
-    console.log('Hello!')
+    console.log('Hello!');
   }
 }
 
 // 인스턴스 생성
-const me = new Person('Son')
+const me = new Person('Son');
 
 // 인스턴스의 프로퍼티 참조
-console.log(me.name) // Son
+console.log(me.name); // Son
 // 프로토타입 메서드 호출
-me.sayHi() // Hi! My name is Son
+me.sayHi(); // Hi! My name is Son
 // 정적 메서드 호출
-Person.sayHello() // Hello
+Person.sayHello(); // Hello
 ```
 
 위 코드는 생성자 함수의 정의 방식으로 바꾼다면
@@ -111,22 +111,22 @@ Person.sayHello() // Hello
 var Person = (function() {
   // 생성자 함수
   function Person(name) {
-    this.name = name
+    this.name = name;
   }
 
   // 프로토타입 메서드
   Person.prototype.sayHi = function() {
-    console.log(`Hi! My name is ${this.name}`)
+    console.log(`Hi! My name is ${this.name}`);
   }
 
   // 정적 메서드
   Person.sayHello = function() {
-    console.log('Hello!')
+    console.log('Hello!');
   }
 
   // 생성자 함수 반환
-  return Person
-})()
+  return Person;
+})();
 ```
 
 # 3. 클래스 호이스팅
@@ -135,9 +135,9 @@ var Person = (function() {
 
 ```jsx
 // 클래스 선언문
-class Person {}
+class Person {};
 
-console.log(typeof Person) // function
+console.log(typeof Person); // function
 ```
 
 클래스 선언문으로 정의한 클래스는 프로토타입, 생성자 함수가 쌍으로 생성된다.
@@ -145,10 +145,10 @@ console.log(typeof Person) // function
 단, 클래스는 클래스 정의 이전에 참조할 수 없다.
 
 ```jsx
-console.log(Person) // ReferenceError
+console.log(Person); // ReferenceError
 
 // 클래스 선언문
-class Person {}
+class Person {};
 ```
 
 클래스 선언문은 호이스팅이 발생하지 않은 것처럼 보이나 그렇지 않다.
@@ -157,9 +157,9 @@ class Person {}
 const Person = ''
 {
   // 호이스팅이 발생하지 않는다면 '' 이 출력되어야 한다.
-  console.log(Person) // ReferenceError 발생
+  console.log(Person); // ReferenceError 발생
   // 클래스 선언문
-  class Person {}
+  class Person {};
 }
 ```
 
@@ -170,33 +170,33 @@ const Person = ''
 클래스 생성자 함수이며 new 연산자와 함께 호출되어 인스턴스를 생성한다.
 
 ```jsx
-class Person {}
+class Person {};
 
 // 인스턴스 생성
-const me = new Person()
-console.log(me) // Person {}
+const me = new Person();
+console.log(me); // Person {}
 ```
 
 만약 new 키워드를 뺀다면
 
 ```jsx
-class Person {}
+class Person {};
 
 // TypeError
-const me = Person()
+const me = Person();
 ```
 
 클래스 표현식으로 정의된 클래스의 경우 식별자를 상용해 인스턴스를 생성하지 않고 기명 클래스 표현식의 클래스 이름을 사용해 인스턴스를 생성하면 에러가 발생한다.
 
 ```jsx
-const Person = class MyClass {}
+const Person = class MyClass {};
 
-const me = new Person()
+const me = new Person();
 
 // 클래스 몸체 내부에서만 유효한 식별자다.
-console.log(MyClass) // ReferenceError
+console.log(MyClass); // ReferenceError
 
-const you = new MyClass() // ReferenceError
+const you = new MyClass(); // ReferenceError
 ```
 
 기명 함수 표현식과 마찬가지로 클래스 포현식에서 사용한 클래스 이름은 외부 코드에서 접근 불가능하다.
@@ -218,7 +218,7 @@ class Person {
   // 생성자
   constructor(name) {
     // 인스턴스 생성 및 초기화
-    this.name = name
+    this.name = name;
   }
 }
 ```
@@ -231,8 +231,8 @@ constructor는 생성자 함수와 유사하지만 몇가지 차이가 있다.
 
 ```jsx
 class Person {
-  constructor() {}
-  constructor() {}
+  constructor() {};
+  constructor() {};
 }
 // SyntaxError
 ```
@@ -240,7 +240,7 @@ class Person {
 - constructor는 생략할 수 있다.
 
 ```jsx
-class Person {}
+class Person {};
 ```
 
 constructor는 생략하면 클래스에 빈 constructor가 암묵적으로 정의된다.
@@ -248,12 +248,12 @@ constructor는 생략하면 클래스에 빈 constructor가 암묵적으로 정�
 ```jsx
 class Person {
   // constructor는 생략하면 빈 constructor가 암묵적으로 정의된다.
-  constructor() {}
+  constructor() {};
 }
 
 // 빈 객체가 생성된다.
-const me = new Person()
-console.log(me) // Person {}
+const me = new Person();
+console.log(me); // Person {}
 ```
 
 프로퍼티가 추가되어 초기화된 인스턴스를 생성하려면 constructor 내부에서 this에 인스턴스 프로퍼티를 추가한다.
@@ -262,13 +262,13 @@ console.log(me) // Person {}
 class Person {
   constructor() {
     // 고정값으로 인스턴스 초기화
-    this.name = 'Son'
-    this.address = 'Seoul'
+    this.name = 'Son';
+    this.address = 'Seoul';
   }
 }
 
-const me = new Person()
-console.log(me) // Person { name: 'Son', address: 'Seoul' }
+const me = new Person();
+console.log(me); // Person { name: 'Son', address: 'Seoul' }
 ```
 
 클래스 외부에서 인스턴스 프로퍼티의 초기값을 전달하려면 constructor에 매개변수를 선언하고 인스턴스를 생성할 때 초기값을 전달한다.
@@ -276,13 +276,13 @@ console.log(me) // Person { name: 'Son', address: 'Seoul' }
 ```jsx
 class Person {
   constructor(name, address) {
-    this.name = name
-    this.address = address
+    this.name = name;
+    this.address = address;
   }
 }
 
-const me = new Person('Son', 'Seoul')
-console.log(me) // Person { name: 'Son', address: 'Seoul' }
+const me = new Person('Son', 'Seoul');
+console.log(me); // Person { name: 'Son', address: 'Seoul' }
 ```
 
 → 인스턴스를 초기화하려면 constructor를 생략해서는 안 된다.
@@ -292,7 +292,7 @@ constructor는 별도의 반환문을 갖지 않아야 한다.
 ```jsx
 class Person {
   constructor(name) {
-    this.name = name
+    this.name = name;
 
     // 명시적으로 객체를 반환하면 암묵적인 this 반환이 무시된다.
     // return  {};
@@ -301,8 +301,8 @@ class Person {
   }
 }
 
-const me = new Person('Son')
-console.log(me)
+const me = new Person('Son');
+console.log(me);
 // return {} 시: {}
 // return 100 시: Person {name: "Son"}
 ```
@@ -317,32 +317,32 @@ console.log(me)
 class Person {
   // 생성자
   constructor(name) {
-    this.name = name
+    this.name = name;
   }
 
   // 프로토타입 메서드
   sayHi() {
-    console.log(`Hi! My name is ${this.name}`)
+    console.log(`Hi! My name is ${this.name}`);
   }
 }
 
-const me = new Person('Son')
-me.sayHi() // Hi! My name is Son
+const me = new Person('Son');
+me.sayHi(); // Hi! My name is Son
 ```
 
 생성자 함수와 마찬가지로 클래스가 생성한 인스턴스는 프로토타입 체인의 일원이 된다.
 
 ```jsx
 // me 객체의 프로토타입은 Person.prototype이다.
-Object.getPrototypeOf(me) === Person.prototype // true
-me instanceof Person // true
+Object.getPrototypeOf(me) === Person.prototype; // true
+me instanceof Person; // true
 
 // Person.prototype의 프로토타입은 Object.prototype이다.
-Object.getPrototypeOf(Person.prototype) === Object.prototype // true
-me instanceof Object // true
+Object.getPrototypeOf(Person.prototype) === Object.prototype; // true
+me instanceof Object; // true
 
 // me 객체의 constructo는 Person 클래스다.
-me.constructor === Person // true
+me.constructor === Person; // true
 ```
 
 → 클래스는 생성자 함수와 같이 인스턴스를 생성하는 생성자 함수라고 볼 수 있다.
@@ -358,12 +358,12 @@ class Person {
   // 생성자
   constructor(name) {
     // 인스턴스 생성 및 초기화
-    this.name = name
+    this.name = name;
   }
 
   // 정적 메서드
   static sayHi() {
-    console.log('hi')
+    console.log('hi');
   }
 }
 ```
@@ -371,7 +371,7 @@ class Person {
 정적 메서드는 프로토타입처럼 인스턴스로 호출하지 않고 클래스로 호출한다.
 
 ```jsx
-Person.sayHi() // hi
+Person.sayHi(); // hi
 ```
 
 정적 메서드는 인스턴스로 호출할 수 없다.
@@ -380,8 +380,8 @@ Person.sayHi() // hi
 
 ```jsx
 // 인스턴스 생성
-const me = new Person('Son')
-me.sayHi() // TypeError
+const me = new Person('Son');
+me.sayHi(); // TypeError
 ```
 
 ## 5.4 정적 메서드와 프로토타입 메서드의 차이
@@ -394,11 +394,11 @@ me.sayHi() // TypeError
 class Square {
   // 정적 메서드
   static area(width, height) {
-    return width * height
+    return width * height;
   }
 }
 
-console.log(Square.area(10, 10)) // 100
+console.log(Square.area(10, 10)); // 100
 ```
 
 정적 메서드 area는 2개의 인수를 전달받아 면적을 계산한다. 이때 정적 메서드 area는 인스턴스 프로퍼티를 참조하지 않는다.
@@ -408,18 +408,18 @@ console.log(Square.area(10, 10)) // 100
 ```jsx
 class Square {
   constructor(width, height) {
-    this.width = width
-    this.height = height
+    this.width = width;
+    this.height = height;
   }
 
   // 프로토타입 메서드
   area() {
-    return this.width * this.height
+    return this.width * this.height;
   }
 }
 
-const square = new Square(10, 10)
-console.log(square.area())
+const square = new Square(10, 10);
+console.log(square.area());
 ```
 
 표준 빌트인 객체인 Math, Number, JSON, Object, Reflect 등은 다양한 정적 메서드를 가지고 있다.
@@ -428,11 +428,11 @@ console.log(square.area())
 
 ```jsx
 // 표준 빌트인 객체의 정적 메서드
-Math.max(1, 2, 3) // 3
-Number.isNaN(NaN) // true
-JSON.stringify({ a: 1 }) // "{"a": 1}"
-Object.is({}, {}) // false
-Reflect.has({ a: 1 }, 'a') // true
+Math.max(1, 2, 3); // 3
+Number.isNaN(NaN); // true
+JSON.stringify({ a: 1 }); // "{"a": 1}"
+Object.is({}, {}); // false
+Reflect.has({ a: 1 }, 'a'); // true
 ```
 
 ## 5.5 클래스에서 정의한 메서드의 특징

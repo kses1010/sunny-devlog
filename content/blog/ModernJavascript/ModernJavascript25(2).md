@@ -14,9 +14,7 @@ new 연산자와 함께 클래스를 호출하면 생성자 함수와 마찬가�
 클래스는 다음 과정을 거쳐 인스턴스가 생성된다.
 
 ### 1. 인스턴스 생성과 this 바인딩
-
 ### 2. 인스턴스 초기화
-
 ### 3. 인스턴스 반환
 
 ```jsx
@@ -24,11 +22,11 @@ class Person {
   // 생성자
   constructor(name) {
     // 1. 암묵적으로 인스턴스가 생성되고 this가 바인딩된다.
-    console.log(this) // Person {}
-    console.log(Obejct.getPrototypeOf(this) === Person.prototype) // true
+    console.log(this); // Person {}
+    console.log(Obejct.getPrototypeOf(this) === Person.prototype); // true
 
     // 2. this에 바인딩되어 있는 인스턴스를 초기화한다.
-    this.name = name
+    this.name = name;
 
     // 3. 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환한다.
   }
@@ -45,13 +43,13 @@ class Person {
 class Person {
   constructor(name) {
     // 인스턴스 프로퍼티
-    this.name = name // name 프로퍼티는 public 이다.
+    this.name = name; // name 프로퍼티는 public 이다.
   }
 }
 
-const me = new Person('Son')
-console.log(me) // Person { name: 'Son' }
-console.log(me.name) // Son
+const me = new Person('Son');
+console.log(me); // Person { name: 'Son' }
+console.log(me.name); // Son
 ```
 
 ## 7.2 접근자 프로퍼티
@@ -61,36 +59,36 @@ console.log(me.name) // Son
 ```jsx
 class Person {
   constructor(firstName, lastName) {
-    this.firstName = firstName
-    this.lastName = lastName
+    this.firstName = firstName;
+    this.lastName = lastName;
   }
 
   // fullName은 접근자 함수로 구성된 접근자 프로퍼티다.
   // getter 함수
   get fullName() {
-    return `${this.firstName} ${this.lastName}`
+    return `${this.firstName} ${this.lastName}`;
   }
 
   // setter 함수
   set fullName(name) {
-    ;[this.firstName, this.lastName] = name.split(' ')
+    ;[this.firstName, this.lastName] = name.split(' ');
   }
 }
 
-const me = new Person('Sunny', 'Son')
+const me = new Person('Sunny', 'Son');
 
 // 데이터 프로퍼티를 통한 프로퍼티 값 참조
-console.log(`${me.firstName} ${me.lastName}`) // Sunny Son
+console.log(`${me.firstName} ${me.lastName}`); // Sunny Son
 
 // 접근자 프로퍼티를 통한 프로퍼티 값 저장
-me.fullName = 'Cloud Kim'
-console.log(me) // Person { firstName: 'Cloud', lastName: 'Kim' }
+me.fullName = 'Cloud Kim';
+console.log(me); // Person { firstName: 'Cloud', lastName: 'Kim' }
 
 // 접근자 프로퍼티를 통한 프로퍼티 값의 참조
-console.log(me.fullName) // Cloud Kim
+console.log(me.fullName); // Cloud Kim
 
 // fullName은 접근자 프로퍼티다.
-console.log(Object.getOwnPropertyDescriptor(Person.prototype, 'fullName'))
+console.log(Object.getOwnPropertyDescriptor(Person.prototype, 'fullName'));
 
 // {
 //  get: [Function: get fullName],
@@ -115,10 +113,10 @@ setter는 단 하나의 값만 할당받기 때문에 단 하나의 매개변수
 ```jsx
 class Person {
   // 클래스 필드 정의
-  name = 'Son'
+  name = 'Son';
 }
 
-const me = new Person('Son')
+const me = new Person('Son');
 ```
 
 그러나 이 코드는 정상 동작한다. ECMAScript의 정식 표준 사양으로 승급되진 않았지만 최신 브라우저(Chrome 72 이상), 최신 Node.js(버전 12 이상)는 미리 구현해 놓았다.
@@ -139,15 +137,15 @@ class Person {
 
 ```jsx
 class Person {
-  name
+  name;
   constructor(name) {
     // 클래스 필드 초기화
-    this.name = name
+    this.name = name;
   }
 }
 
-const me = new Person('Son')
-console.log(me) // Person { name: 'Son' }
+const me = new Person('Son');
+console.log(me); // Person { name: 'Son' }
 ```
 
 함수는 일급 객체이므로 함수를 클래스 필드에 할당할 수 있다.
@@ -156,27 +154,27 @@ console.log(me) // Person { name: 'Son' }
 
 ```jsx
 class Person {
-  name = 'Son'
+  name = 'Son';
 
   // 클래스 필드에 함수를 할당
   getName = function() {
-    return this.name
+    return this.name;
   }
 
   // 화살표로도 가능
   // getName = () => this.name;
 }
 
-const me = new Person()
-console.log(me) // Person { name: 'Son', getName: [Function: getName] }
-console.log(me.getName()) // Son
+const me = new Person();
+console.log(me); // Person { name: 'Son', getName: [Function: getName] }
+console.log(me.getName()); // Son
 ```
 
 클래스 필드에 함수를 할당하는 경우, 이 함수는 프로퍼티 메서드가 아닌 인스턴스 메서드가 된다.
 
 모든 클래스 필드는 인스턴스 프로퍼티가 되기 때문이다.
 
-→ 클래스 필드에 함수를 할당하는 것은 권장하지 않는다.
+**→ 클래스 필드에 함수를 할당하는 것은 권장하지 않는다.**
 
 ## 7.4 private 필드 정의 제안
 
@@ -187,17 +185,17 @@ console.log(me.getName()) // Son
 ```jsx
 class Person {
   constructor(name) {
-    this.name = name // 기본적으로 public
+    this.name = name; // 기본적으로 public
   }
 }
 
-const me = new Person('Son')
-console.log(me.name) // Son
+const me = new Person('Son');
+console.log(me.name); // Son
 ```
 
 현재 private 필드를 정의할 수 있는 새로운 표준 사양이 제안되었으며, 최신 브라우저(Chrome 74 이상), Node.js(버전 12이상)에 이미 구현되어 있다.
 
-private 필드의 선두에는 #을 붙여준다. private 필드를 참조할 때도 #을 붙여주어야 한다.
+private 필드의 선두에는 `#`을 붙여준다. private 필드를 참조할 때도 `#`을 붙여주어야 한다.
 
 ```jsx
 class Person {
@@ -219,21 +217,21 @@ console.log(me.#name); // SyntaxError
 ```jsx
 class Person {
   // private 필드 정의
-  #name = ''
+  #name = '';
   // #name; 도 가능
   constructor(name) {
-    this.#name = name
+    this.#name = name;
   }
 
   // name 은 접근자 프로퍼티다.
   get name() {
     // private 필드를 참조하여 trime한 다음 반환한다.
-    return this.#name.trim()
+    return this.#name.trim();
   }
 }
 
-const me = new Person(' Son ')
-console.log(me.name) // Son
+const me = new Person(' Son ');
+console.log(me.name); // Son
 ```
 
 private 필드는 반드시 클래스 몸체에 정의해야 한다.
@@ -247,19 +245,19 @@ static 필드도 정의 가능하도록 표준 사양이 제안되었으며, 최
 ```jsx
 class MyMath {
   // static public 필드 정의
-  static PI = 22 / 7
+  static PI = 22 / 7;
 
   // static private 필드 정의
-  static #num = 10
+  static #num = 10;
 
   // static 메서드
   static increment() {
-    return ++MyMath.#num
+    return ++MyMath.#num;
   }
 }
 
-console.log(MyMath.PI) // 3.142857142857143
-console.log(MyMath.increment()) // 11
+console.log(MyMath.PI); // 3.142857142857143
+console.log(MyMath.increment()); // 11
 ```
 
 # 8. 상속에 의한 클래스 확장
@@ -271,34 +269,34 @@ console.log(MyMath.increment()) // 11
 ```jsx
 class Animal {
   constructor(age, weight) {
-    this.age = age
-    this.weight = weight
+    this.age = age;
+    this.weight = weight;
   }
 
   eat() {
-    return 'eat'
+    return 'eat';
   }
 
   move() {
-    return 'move'
+    return 'move';
   }
 }
 
 // 상속을 통해 Animal 클래스를 확장한 Bird 클래스
 class Bird extends Animal {
   fly() {
-    return 'fly'
+    return 'fly';
   }
 }
 
-const bird = new Bird(1, 5)
-console.log(bird) // Bird { age: 1, weight: 5 }
-console.log(bird instanceof Bird) // true
-console.log(bird instanceof Animal) // true
+const bird = new Bird(1, 5);
+console.log(bird); // Bird { age: 1, weight: 5 }
+console.log(bird instanceof Bird); // true
+console.log(bird instanceof Animal); // true
 
-console.log(bird.eat()) // eat
-console.log(bird.move()) // move
-console.log(bird.fly()) // fly
+console.log(bird.eat()); // eat
+console.log(bird.move()); // move
+console.log(bird.fly()); // fly
 ```
 
 ## 8.2 extends 키워드
@@ -330,33 +328,33 @@ extends 키워드는 클래스뿐만 아니라 생성자 함수를 상속받아 
 ```jsx
 // 생성자 함수
 function Base(a) {
-  this.a = a
+  this.a = a;
 }
 
 // 생성자 함수를 상속받는 서브클래스
 class Derived extends Base {}
 
 const derived = new Derived(1)
-console.log(derived) // Derived { a: 1 }
+console.log(derived); // Derived { a: 1 }
 ```
 
 extends 키워드 다음에는 클래스뿐만이 아니라 Construct 내부 메서드를 갖는 함수 객체로 평가될 수 있는 모든 표현식을 사용할 수 있다. → 동적으로 상속받을 대상을 결정할 수 있다.
 
 ```jsx
-function Base1() {}
+function Base1() {};
 
 class Base2 {}
 
-let condition = true
+let condition = true;
 
 // 조건에 따라 동적으로 상속 대상을 결정하는 서브클래스
 class Derived extends (condition ? Base1 : Base2) {}
 
-const derived = new Derived()
-console.log(derived) // Derived {}
+const derived = new Derived();
+console.log(derived); // Derived {}
 
-console.log(derived instanceof Base1) // true
-console.log(derived instanceof Base2) // false
+console.log(derived instanceof Base1); // true
+console.log(derived instanceof Base2); // false
 ```
 
 ## 8.4 서브클래스의 constructor
@@ -386,12 +384,12 @@ class Base {
 
 class Derived extends Base {
   constructor(...args) {
-    super(...args)
+    super(...args);
   }
 }
 
-const derived = new Derived()
-console.log(derived) // Derived {}
+const derived = new Derived();
+console.log(derived); // Derived {}
 ```
 
 프로퍼티를 소유하는 인스턴스를 생성하려면 constructor 내부에서 프로퍼티를 추가해야 한다.
@@ -411,8 +409,8 @@ super 는 다음과 같이 동작한다.
 // 수퍼클래스
 class Base {
   constructor(a, b) {
-    this.a = a
-    this.b = b
+    this.a = a;
+    this.b = b;
   }
 }
 
@@ -424,16 +422,16 @@ class Derived extends Base {
   // }
 }
 
-const derived = new Derived(1, 2)
-console.log(derived) // Derived { a: 1, b: 2 }
+const derived = new Derived(1, 2);
+console.log(derived); // Derived { a: 1, b: 2 }
 ```
 
 ```jsx
 // 수퍼클래스
 class Base {
   constructor(a, b) {
-    this.a = a
-    this.b = b
+    this.a = a;
+    this.b = b;
   }
 }
 
@@ -441,13 +439,13 @@ class Base {
 // 서브클래스의 프로퍼티를 추가하려면 super와 함께 호출한다.
 class Derived extends Base {
   constructor(a, b, c) {
-    super(a, b)
-    this.c = c
+    super(a, b);
+    this.c = c;
   }
 }
 
-const derived = new Derived(1, 2, 3)
-console.log(derived)
+const derived = new Derived(1, 2, 3);
+console.log(derived);
 ```
 
 **super를 호출할 때 주의할 사항은 다음과 같다.**
@@ -462,14 +460,14 @@ class Base {}
 class Derived extends Base {
   constructor() {
     // ReferenceError
-    console.log('constructor call')
+    console.log('constructor call');
   }
 }
 
-const derived = new Derived()
+const derived = new Derived();
 ```
 
-1. 서브클래스의 constructor에서 super를 호출하기 전에는 this를 참조할 수 없다.
+2. 서브클래스의 constructor에서 super를 호출하기 전에는 this를 참조할 수 없다.
 
 ```jsx
 // 수퍼클래스
@@ -479,22 +477,22 @@ class Base {}
 class Derived extends Base {
   constructor() {
     // ReferenceError
-    console.log('constructor call')
-    this.a = 1
-    super()
+    console.log('constructor call');
+    this.a = 1;
+    super();
   }
 }
 
-const derived = new Derived(1)
+const derived = new Derived(1);
 ```
 
-1. super는 반드시 서브클래스의 constructor에서만 호출한다.
+3. super는 반드시 서브클래스의 constructor에서만 호출한다.
 
 ```jsx
 class Base {
   constructor() {
     // SyntaxError
-    super()
+    super();
   }
 }
 ```
@@ -509,11 +507,11 @@ class Base {
 // 수퍼클래스
 class Base {
   constructor(name) {
-    this.name = name
+    this.name = name;
   }
 
   sayHi() {
-    return `Hi! ${this.name}`
+    return `Hi! ${this.name}`;
   }
 }
 
@@ -521,21 +519,21 @@ class Base {
 class Derived extends Base {
   sayHi() {
     // super.sayHi는 수퍼클래스의 프로토타입 메서드를 가리킨다.
-    return `${super.sayHi()}. how are you?`
+    return `${super.sayHi()}. how are you?`;
   }
 }
 
-const derived = new Derived('Son')
-console.log(derived.sayHi()) // Hi! Son. how are you?
+const derived = new Derived('Son');
+console.log(derived.sayHi()); // Hi! Son. how are you?
 ```
 
-1. 서브클래스의 정적 메서드 내에서 super.sayHi는 수퍼클래스의 정적 메서드 sayHi를 가리킨다.
+2. 서브클래스의 정적 메서드 내에서 super.sayHi는 수퍼클래스의 정적 메서드 sayHi를 가리킨다.
 
 ```jsx
 // 수퍼클래스
 class Base {
   static sayHi() {
-    return `Hi!`
+    return `Hi!`;
   }
 }
 
@@ -543,11 +541,11 @@ class Base {
 class Derived extends Base {
   static sayHi() {
     // super.sayHi는 수퍼클래스의 정적 메서드를 가리킨다.
-    return `${super.sayHi()}. how are you?`
+    return `${super.sayHi()}. how are you?`;
   }
 }
 
-console.log(Derived.sayHi()) // Hi!. how are you?
+console.log(Derived.sayHi()); // Hi!. how are you?
 ```
 
 ## 8.6 상속 클래스의 인스턴스 생성 과정
@@ -558,40 +556,40 @@ console.log(Derived.sayHi()) // Hi!. how are you?
 // 수퍼클래스
 class Rectangle {
   constructor(width, height) {
-    this.width = width
-    this.height = height
+    this.width = width;
+    this.height = height;
   }
 
   getArea() {
-    return this.width * this.height
+    return this.width * this.height;
   }
 
   toString() {
-    return `width = ${this.width}, height = ${this.height}`
+    return `width = ${this.width}, height = ${this.height}`;
   }
 }
 
 // 서브클래스
 class ColorRectangle extends Rectangle {
   constructor(width, height, color) {
-    super(width, height)
-    this.color = color
+    super(width, height);
+    this.color = color;
   }
 
   // 메서드 오버라이딩
   toString() {
-    return super.toString + `, color = ${this.color}`
+    return super.toString + `, color = ${this.color}`;
   }
 }
 
-const colorRectangle = new ColorRectangle(2, 4, 'Blue')
-console.log(colorRectangle)
+const colorRectangle = new ColorRectangle(2, 4, 'Blue');
+console.log(colorRectangle);
 // ColorRectangle { width: 2, height: 4, color: 'Blue' }
 
 // 상속을 통해 getArea 메서드 호출
-console.log(colorRectangle.getArea()) // 8
+console.log(colorRectangle.getArea()); // 8
 // 오버라이딩된 toString 메서드를 호출
-console.log(colorRectangle.toString()) // width = 2, height = 4, color = Blue
+console.log(colorRectangle.toString()); // width = 2, height = 4, color = Blue
 ```
 
 ### 1. 서브클래스의 super 호출
@@ -625,22 +623,22 @@ String, Number, Array 같은 표준 빌트인 객체도 Construct 내부 메서�
 class MyArray extends Array {
   // 중복된 배열 요소를 제거하고 반환한다.
   uniq() {
-    return this.filter((v, i, self) => self.indexOf(v) === i)
+    return this.filter((v, i, self) => self.indexOf(v) === i);
   }
 
   // 모든 배열 요소의 평균을 구한다
   average() {
-    return this.reduce((pre, cur) => pre + cur, 0) / this.length
+    return this.reduce((pre, cur) => pre + cur, 0) / this.length;
   }
 }
 
-const myArray = new MyArray(1, 1, 2, 3)
-console.log(myArray) // MyArray(4) [ 1, 1, 2, 3 ]
+const myArray = new MyArray(1, 1, 2, 3);
+console.log(myArray); // MyArray(4) [ 1, 1, 2, 3 ]
 
 // MyArray.prototype.uniq 호출
-console.log(myArray.uniq()) // MyArray(3) [ 1, 2, 3 ]
+console.log(myArray.uniq()); // MyArray(3) [ 1, 2, 3 ]
 // MyArray.prototype.average 호출
-console.log(myArray.average()) // 1.75
+console.log(myArray.average()); // 1.75
 ```
 
 이때 주의할 것은 Array.prototype의 메서드 중에서 map, filter와 같이 새로운 배열을 반환하는 메서드가 MyArray 클래스의 인스턴스를 반환한다.
@@ -654,7 +652,7 @@ console.log(
     .filter(v => v % 2)
     .uniq()
     .average()
-) // 2
+); // 2
 ```
 
 `myArray.filter` 가 반환하는 인스턴스는 MyArray 클래스가 생성한 인스턴스, 즉 MyArray 타입이다.
@@ -668,25 +666,25 @@ console.log(
 class MyArray extends Array {
   // 모든 메서드가 Array 타입의 인스턴스를 반환하도록 한다.
   static get [Symbol.species]() {
-    return Array
+    return Array;
   }
 
   // 중복된 배열 요소를 제거하고 반환한다.
   uniq() {
-    return this.filter((v, i, self) => self.indexOf(v) === i)
+    return this.filter((v, i, self) => self.indexOf(v) === i);
   }
 
   // 모든 배열 요소의 평균을 구한다
   average() {
-    return this.reduce((pre, cur) => pre + cur, 0) / this.length
+    return this.reduce((pre, cur) => pre + cur, 0) / this.length;
   }
 }
 
-const myArray = new MyArray(1, 1, 2, 3)
-console.log(myArray.uniq() instanceof MyArray) // false
-console.log(myArray.uniq() instanceof Array) // true
+const myArray = new MyArray(1, 1, 2, 3);
+console.log(myArray.uniq() instanceof MyArray); // false
+console.log(myArray.uniq() instanceof Array); // true
 
 // 메서드체이닝
 // uniq 메서드는 Array 인스턴스를 반환하므로 average 메서드를 호출할 수 없다.
-console.log(myArray.uniq().average()) // TypeError
+console.log(myArray.uniq().average()); // TypeError
 ```

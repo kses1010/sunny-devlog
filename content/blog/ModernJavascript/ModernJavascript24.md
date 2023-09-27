@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 24장 클로저'
-date: 2023-08-07
+title: 'Modern Javascript Deep Dive - 24장 클로저'
+date: 2023-08-07 18:27:57
 category: 'Javascript'
 draft: false
 ---
@@ -14,19 +14,19 @@ MDN에서는 클로저에 대해 다음과 같이 정의하고 있다.
 > 클로저는 함수와 그 함수가 선언된 렉시컬 환경과의 조합이다.
 
 ```jsx
-const x = 1
+const x = 1;
 
 function outerFunc() {
-  const x = 10
+  const x = 10;
 
   function innerFunc() {
-    console.log(x) // 10;
+    console.log(x); // 10;
   }
 
-  innerFunc()
+  innerFunc();
 }
 
-outerFunc()
+outerFunc();
 ```
 
 outerFunc 함수 내부에서 중첩 함수 innerFunc가 정의되고 호출되었다
@@ -36,18 +36,18 @@ outerFunc 함수 내부에서 중첩 함수 innerFunc가 정의되고 호출되�
 → 중첩 함수 innerFunc 내부에서 자신을 포함하고 있는 외부 함수 outerFunc의 x 변수에 접근할 수 있다.
 
 ```jsx
-const x = 1
+const x = 1;
 
 function outerFunc() {
-  const x = 10
-  innerFunc()
+  const x = 10;
+  innerFunc();
 }
 
 function innerFunc() {
-  console.log(x) // 1;
+  console.log(x); // 1;
 }
 
-outerFunc()
+outerFunc();
 ```
 
 innerFunc 함수가 outerFunc 함수의 내부에서 정의한 중첩 함수가 아니라면 innerFunc 함수를 outerFunc 함수의 내부에서 호출한다 하더라도 outerFunc 함수의 변수에 접근할 수 없다.
@@ -59,19 +59,19 @@ innerFunc 함수가 outerFunc 함수의 내부에서 정의한 중첩 함수가 
 **자바스크립트 엔진은 함수를 어디서 호출했는지가 아니라 함수를 어디에 정의했는지에 따라 상위 스코프를 결정한다. → 렉시컬 스코프(정적 스코프)라 한다.**
 
 ```jsx
-const x = 1
+const x = 1;
 
 function foo() {
-  const x = 10
-  bar()
+  const x = 10;
+  bar();
 }
 
 function bar() {
-  console.log(x)
+  console.log(x);
 }
 
-foo() // 1
-bar() // 1
+foo(); // 1
+bar(); // 1
 ```
 
 foo 함수와 bar 함수의 상위 스코프는 전역이다.
@@ -89,46 +89,46 @@ foo 함수와 bar 함수의 상위 스코프는 전역이다.
 함수 객체는 내부 슬롯 Environment 에 저장한 렉시컬 환경의 참조, 상위 스코프를 자신이 존재하는 한 기억한다.
 
 ```jsx
-const x = 1
+const x = 1;
 
 function foo() {
-  const x = 10
+  const x = 10;
 
   // 상위 스코프는 함수 정의 환경(위치) 에 따라 결정된다.
   // 함수 호출 위치와 상위 스코프는 아무런 관계가 없다.
-  bar()
+  bar();
 }
 
 // 함수 bar는 자신의 상위 스코프, 즉 전역 렉시컬 환경을 Environment 에 저장하여 기억한다.
 function bar() {
-  console.log(x)
+  console.log(x);
 }
 
-foo()
-bar()
+foo();
+bar();
 ```
 
 # 3. 클로저와 렉시컬 환경
 
 ```jsx
-const x = 1
+const x = 1;
 
 // 1번
 function outer() {
-  const x = 10
+  const x = 10;
   // 2번
   const inner = function() {
-    console.log(x)
+    console.log(x);
   }
-  return inner
+  return inner;
 }
 
 // outer 함수를 호출하면 중첩 함수 inner를 반환한다.
 // 그리고 outer 함수의 실행 컨텍스트는 실행 컨텍스트 스택에서 팝되어 제거된다.
-const innerFunc = outer() // 3번
+const innerFunc = outer(); // 3번
 
 // 4번
-innerFunc()
+innerFunc();
 
 // 10
 ```
@@ -167,17 +167,17 @@ inner 함수는 전역 변수 innerFunc에 의해 참조되고 있으므로 가�
 
 ```jsx
 // 카운트 상태 변수
-let num = 0
+let num = 0;
 
 // 카운트 상태 변경 함수
 const increase = function() {
   // 카운트 상태를 1만큼 증가시킨다.
-  return ++num
+  return ++num;
 }
 
-console.log(increase()) // 1
-console.log(increase()) // 2
-console.log(increase()) // 3
+console.log(increase()); // 1
+console.log(increase()); // 2
+console.log(increase()); // 3
 ```
 
 코드는 잘 동작하지만 오류를 발생시킬만한 코드다. 다음 조건을 지켜야 한다.
@@ -193,15 +193,15 @@ increase만이 num 변수를 참조하도록 변경해보자.
 // 카운트 상태 변경 함수
 const increase = function() {
   // 카운트 상태 변수
-  let num = 0
+  let num = 0;
 
   // 카운트 상태를 1만큼 증가시킨다.
-  return ++num
+  return ++num;
 }
 
-console.log(increase()) // 1
-console.log(increase()) // 1
-console.log(increase()) // 1
+console.log(increase()); // 1
+console.log(increase()); // 1
+console.log(increase()); // 1
 ```
 
 이 경우 increase 함수가 호출될 때마다 지역 변수 num이 다시 선언되어 0으로 초기화된다.
@@ -212,18 +212,18 @@ console.log(increase()) // 1
 // 카운트 상태 변경 함수
 const increase = (function() {
   // 카운트 상태 변수
-  let num = 0
+  let num = 0;
 
   // 클로저
   return function() {
     // 카운트 상태를 1만큼 증가시킨다.
-    return ++num
+    return ++num;
   }
-})()
+})();
 
-console.log(increase()) // 1
-console.log(increase()) // 2
-console.log(increase()) // 3
+console.log(increase()); // 1
+console.log(increase()); // 2
+console.log(increase()); // 3
 ```
 
 클로저는 상태가 의도치 않게 변경되지 않도록 안전하게 은닉하고 특정 함수에게만 상태 변경을 허용하여 상태를 안전하게 변경하고 유지하기 위해 사용한다.
@@ -232,7 +232,7 @@ console.log(increase()) // 3
 // 카운트 상태 변경 함수
 const counter = (function() {
   // 카운트 상태 변수
-  let num = 0
+  let num = 0;
 
   // 클로저
   // 객체 리터럴은 스코프를 만들지 않는다.
@@ -240,19 +240,19 @@ const counter = (function() {
   return {
     increase() {
       // 카운트 상태를 1만큼 증가시킨다.
-      return ++num
+      return ++num;
     },
     decrease() {
       // 카운트 상태를 1만큼 감소시킨다.
-      return --num
+      return --num;
     },
   }
 })()
 
-console.log(counter.increase()) // 1
-console.log(counter.increase()) // 2
-console.log(counter.decrease()) // 1
-console.log(counter.decrease()) // 0
+console.log(counter.increase()); // 1
+console.log(counter.increase()); // 2
+console.log(counter.decrease()); // 1
+console.log(counter.decrease()); // 0
 ```
 
 즉시 실행 함수가 반환하는 객체 리터럴은 즉시 실행 함수의 실행 단계에서 평가되어 객체가 된다.
@@ -264,29 +264,29 @@ console.log(counter.decrease()) // 0
 ```jsx
 const Counter = (function() {
   // 카운트 상태 변수
-  let num = 0
+  let num = 0;
 
   function Counter() {
     // this.num = 0; // 프로퍼티는 public하므로 은닉하지 않는다.
   }
 
   Counter.prototype.increase = function() {
-    return ++num
+    return ++num;
   }
 
   Counter.prototype.decrease = function() {
-    return --num
+    return --num;
   }
 
-  return Counter
-})()
+  return Counter;
+})();
 
-const counter = new Counter()
+const counter = new Counter();
 
-console.log(counter.increase()) // 1
-console.log(counter.increase()) // 2
-console.log(counter.decrease()) // 1
-console.log(counter.decrease()) // 0
+console.log(counter.increase()); // 1
+console.log(counter.increase()); // 2
+console.log(counter.decrease()); // 1
+console.log(counter.decrease()); // 0
 ```
 
 num 변수의 값은 increase, decrease 메서드 만이 변경할 수 있다.
@@ -345,31 +345,31 @@ makeCounter 함수는 인자로 전달받은 보조 함수를 합성하여 자�
 // 이 함수는 카운트 상태를 유지하기 위한 자유 변수 counter를 기억하는 클로저를 반환한다.
 const counter = (function() {
   // 카운트 상태를 유지하기 위한 자유 변수
-  let counter = 0
+  let counter = 0;
 
   // 클로저를 반환
   return function(predicate) {
     // 인수로 전달받은 보조 함수에 상태 변경을 위임한다.
-    counter = predicate(counter)
-    return counter
+    counter = predicate(counter);
+    return counter;
   }
 })()
 
 // 보조 함수
 function increase(n) {
-  return ++n
+  return ++n;
 }
 
 function decrease(n) {
-  return --n
+  return --n;
 }
 
 // 보조 함수를 전달하여 호출
-console.log(counter(increase)) // 1
-console.log(counter(increase)) // 2
+console.log(counter(increase)); // 1
+console.log(counter(increase)); // 2
 
-console.log(counter(decrease)) // 1
-console.log(counter(decrease)) // 0
+console.log(counter(decrease)); // 1
+console.log(counter(decrease)); // 0
 ```
 
 # 5. 캡슐화와 정보 은닉
@@ -386,19 +386,19 @@ console.log(counter(decrease)) // 0
 
 ```jsx
 function Person(name, age) {
-  this.name = name // public
-  let _age = age // private
+  this.name = name; // public
+  let _age = age; // private
 
   // 인스턴스 메서드
   this.sayHi = function() {
-    console.log(`Hi! My name is ${this.name}. I am ${_age}.`)
+    console.log(`Hi! My name is ${this.name}. I am ${_age}.`);
   }
 }
 
-const me = new Person('Son', 20)
+const me = new Person('Son', 20);
 me.sayHi() // Hi! My name is Son. I am 20.
-console.log(me.name) // name
-console.log(me._age) // undefined
+console.log(me.name); // name
+console.log(me._age); // undefined
 ```
 
 name 프로퍼티는 public이다. \_age 변수는 Person 생성자 함수의 지역 변수이므로 Person 생성자 함수 외부에서 참조하거나 변경할 수 없다.
@@ -409,14 +409,14 @@ name 프로퍼티는 public이다. \_age 변수는 Person 생성자 함수의 �
 
 ```jsx
 function Person(name, age) {
-  this.name = name // public
-  let _age = age // private
+  this.name = name; // public
+  let _age = age; // private
 }
 
 // 프로토타입 메서드
 // Person 생성자 함수의 지역 변수 _age를 참조할 수 없다.
 Person.prototype.sayHi = function() {
-  console.log(`Hi! My name is ${this.name}. I am ${_age}.`)
+  console.log(`Hi! My name is ${this.name}. I am ${_age}.`);
 }
 ```
 
@@ -424,27 +424,27 @@ Person.prototype.sayHi = function() {
 
 ```jsx
 const Person = (function() {
-  let _age = 0 // private
+  let _age = 0; // private
 
   // 생성자 함수
   function Person(name, age) {
-    this.name = name // public
-    _age = age // private
+    this.name = name; // public
+    _age = age; // private
   }
 
   // 프로토타입 메서드
   Person.prototype.sayHi = function() {
-    console.log(`Hi! My name is ${this.name}. I am ${_age}.`)
+    console.log(`Hi! My name is ${this.name}. I am ${_age}.`);
   }
 
   // 생성자 함수를 반환
-  return Person
-})()
+  return Person;
+})();
 
-const me = new Person('Son', 20)
+const me = new Person('Son', 20);
 me.sayHi() // Hi! My name is Son. I am 20.
-console.log(me.name) // name
-console.log(me._age) // undefined
+console.log(me.name); // name
+console.log(me._age); // undefined
 ```
 
 즉시 실행 함수가 반환하는 Person 생성자 함수와 Person 생성자 함수의 인스턴스가 상속받아 호출할 Person.prototype.sayHi 메서드는 즉시 실행 함수가 종료된 이후 호출된다.
@@ -454,14 +454,14 @@ console.log(me._age) // undefined
 하지만 이 코드도 문제가 있다. Person 생성자 함수가 여러 개의 인스턴스를 생성할 경우 다음과 같이 `_age` 변수의 상태가 유지되지 않는다.
 
 ```jsx
-const me = new Person('Son', 20)
+const me = new Person('Son', 20);
 me.sayHi() // Hi! My name is Son. I am 20.
 
-const you = new Person('Sunny', 30)
+const you = new Person('Sunny', 30);
 you.sayHi() // Hi! My name is Sunny. I am 30.
 
 // _age 값이 변경되었다.
-me.sayHi() // Hi! My name is Son. I am 30.
+me.sayHi(); // Hi! My name is Son. I am 30.
 ```
 
 Person.prototype.sayHi 메서드가 단 한 번 생성되는 클로저이기 때문에 발생하는 현상이다.
@@ -469,16 +469,16 @@ Person.prototype.sayHi 메서드가 단 한 번 생성되는 클로저이기 때
 # 6. 자주 발생하는 실수
 
 ```jsx
-var funcs = []
+var funcs = [];
 
 for (var i = 0; i < 3; i++) {
   funcs[i] = function() {
-    return i
+    return i;
   }
 }
 
 for (var j = 0; j < funcs.length; j++) {
-  console.log(funcs[j]())
+  console.log(funcs[j]());
 }
 // 3 3 3
 ```
@@ -492,18 +492,18 @@ for 문의 변수 선언문에서 var 키워드로 선언한 i 변수는 블록 
 클로저를 사용한다면
 
 ```jsx
-var funcs = []
+var funcs = [];
 
 for (var i = 0; i < 3; i++) {
   funcs[i] = (function(id) {
     return function() {
-      return id
+      return id;
     }
-  })(i)
+  })(i);
 }
 
 for (var j = 0; j < funcs.length; j++) {
-  console.log(funcs[j]())
+  console.log(funcs[j]());
 }
 // 0 1 2
 ```
@@ -513,16 +513,16 @@ for (var j = 0; j < funcs.length; j++) {
 ES6의 let 키워드를 사용하면 해결된다.
 
 ```jsx
-var funcs = []
+var funcs = [];
 
 for (let i = 0; i < 3; i++) {
   funcs[i] = function() {
-    return i
+    return i;
   }
 }
 
 for (var j = 0; j < funcs.length; j++) {
-  console.log(funcs[j]())
+  console.log(funcs[j]());
 }
 
 // 0 1 2
