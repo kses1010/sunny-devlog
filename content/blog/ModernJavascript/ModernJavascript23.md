@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 23장 실행 컨텍스트'
-date: 2023-08-07
+title: 'Modern Javascript Deep Dive - 23장 실행 컨텍스트'
+date: 2023-08-07 16:03:37
 category: 'Javascript'
 draft: false
 ---
@@ -25,8 +25,8 @@ ECMAScript사양은 소스코드를 4가지 타입으로 구분한다.
 소스코드의 평가과정에서는 실행 컨텍스트를 생성하고 변수, 함수 등의 선언문만 먼저 실행하여 생성된 변수나 함수 식별자를 키로 실행 컨텍스트가 관리하는 스코프에 등록한다.
 
 ```jsx
-var x
-x = 1
+var x;
+x = 1;
 ```
 
 자바스크립트 엔진은 2개의 과정으로 나누어 처리한다.
@@ -37,7 +37,7 @@ x = 1
 | ------------- | --------- |
 | x             | undefined |
 
-1. 평가과정이 끝나면 소스코드 실행 과정이 시작된다. 소스코드 실행 과정에서는 변수 할당문 `x = 1` 만 실행된다. 이때 x 변수에 값을 할당하려면 먼저 x 변수가 선언된 변수인지 확인해야 한다.
+2. 평가과정이 끝나면 소스코드 실행 과정이 시작된다. 소스코드 실행 과정에서는 변수 할당문 `x = 1` 만 실행된다. 이때 x 변수에 값을 할당하려면 먼저 x 변수가 선언된 변수인지 확인해야 한다.
 
 | 실행 컨텍스트 |     |
 | ------------- | --- |
@@ -49,24 +49,24 @@ x = 1
 
 ```jsx
 // 전역 변수 선언
-const x = 1
-const y = 2
+const x = 1;
+const y = 2;
 
 // 함수 정의
 function foo(a) {
   // 지역 변수 선언
-  const x = 10
-  const y = 20
+  const x = 10;
+  const y = 20;
 
   // 메서드 호출
-  console.log(a + x + y) // 130
+  console.log(a + x + y); // 130
 }
 
 // 함수 호출
-foo(100)
+foo(100);
 
 // 메서드 호출
-console.log(x + y) //3
+console.log(x + y); //3
 ```
 
 ### 코드 실행 계획
@@ -92,19 +92,19 @@ console.log(x + y) //3
 # 4. 실행 컨텍스트 스택
 
 ```jsx
-const x = 1
+const x = 1;
 
 function foo() {
-  const y = 2
+  const y = 2;
 
   function bar() {
-    const z = 3
-    console.log(x + y + z)
+    const z = 3;
+    console.log(x + y + z);
   }
-  bar()
+  bar();
 }
 
-foo() // 6
+foo(); // 6
 ```
 
 자바스크립트 엔진은 먼저 전역 코드를 평가하여 전역 실행 컨텍스트를 생성한다.
@@ -139,21 +139,21 @@ foo() // 6
 # 6. 실행 컨텍스트의 생성과 식별자 검색 과정
 
 ```jsx
-var x = 1
-const y = 2
+var x = 1;
+const y = 2;
 
 function foo(a) {
-  var x = 3
-  const y = 4
+  var x = 3;
+  const y = 4;
 
   function bar(b) {
-    const z = 5
-    console.log(a + b + x + y + z)
+    const z = 5;
+    console.log(a + b + x + y + z);
   }
-  bar(10)
+  bar(10);
 }
 
-foo(20) // 42
+foo(20); // 42
 ```
 
 ## 6.1 전역 객체 생성
@@ -164,9 +164,9 @@ foo(20) // 42
 
 ```jsx
 // Object.prototype.toString
-window.toString() // "[object window]"
+window.toString(); // "[object window]"
 
-window.__proto__.__proto__.__proto__.__proto__ === Object.prototype // true
+window.__proto__.__proto__.__proto__.__proto__ === Object.prototype; // true
 ```
 
 ## 6.2 전역 코드 평가
@@ -194,21 +194,21 @@ window.__proto__.__proto__.__proto__.__proto__ === Object.prototype // true
 ## 6.4 foo 함수 코드 평가
 
 ```jsx
-var x = 1
-const y = 2
+var x = 1;
+const y = 2;
 
 function foo(a) {
-  var x = 3
-  const y = 4
+  var x = 3;
+  const y = 4;
 
   function bar(b) {
-    const z = 5
-    console.log(a + b + x + y + z)
+    const z = 5;
+    console.log(a + b + x + y + z);
   }
-  bar(10)
+  bar(10);
 }
 
-foo(20) // <- 호출 직전
+foo(20); // <- 호출 직전
 ```
 
 함수 코드 평가는 다음과 같다.
@@ -228,21 +228,21 @@ foo(20) // <- 호출 직전
 ## 6.6 bar 함수 코드 실행
 
 ```jsx
-var x = 1
-const y = 2
+var x = 1;
+const y = 2;
 
 function foo(a) {
-  var x = 3
-  const y = 4
+  var x = 3;
+  const y = 4;
 
   function bar(b) {
-    const z = 5
-    console.log(a + b + x + y + z)
+    const z = 5;
+    console.log(a + b + x + y + z);
   }
-  bar(10) // <- 호출 직전
+  bar(10); // <- 호출 직전
 }
 
-foo(20)
+foo(20);
 ```
 
 bar 함수가 호출되면 bar 함수 내부로 코드의 제어권이 이동된다.
@@ -272,12 +272,12 @@ var 키워드로 선언한 변수는 오로지 함수의 코드 블록만 지역
 let, const 키워드로 선언한 변수는 모든 코드 블록을 지역 스코프로 인정하는 블록 레벨 스코프를 따른다.
 
 ```jsx
-let x = 1
+let x = 1;
 
 if (true) {
-  let x = 10
-  console.log(x) // 10
+  let x = 10;
+  console.log(x); // 10
 }
 
-console.log(x) // 1
+console.log(x); // 1
 ```
