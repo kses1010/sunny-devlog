@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 25장 클래스(2)'
-date: 2023-08-08
+title: 'Modern Javascript Deep Dive - 25장 클래스(2)'
+date: 2023-08-08 18:00:00
 category: 'Javascript'
 draft: false
 ---
