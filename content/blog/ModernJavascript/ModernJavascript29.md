@@ -1,5 +1,5 @@
 ---
-title: 'Modrn Javascript Deep Dive - 29장 Math'
+title: 'Modern Javascript Deep Dive - 29장 Math'
 date: 2023-08-14
 category: 'Javascript'
 draft: false
@@ -110,5 +110,4 @@ Math.max(...[1, 2, 3]); // 3
 
 Math.min.apply(null, [1, 2, 3]); // 1
 Math.min(...[[1, 2, 3]); // 1
-
 ```
