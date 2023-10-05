@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 40장 이벤트(2)'
-date: 2023-08-30
+title: 'Modern Javascript Deep Dive - 40장 이벤트(2)'
+date: 2023-08-30 19:00:00
 category: 'Javascript'
 draft: false
 ---
@@ -46,20 +46,22 @@ DOM 트리 상에 존재하는 DOM 요소 노드에서 발생한 이벤트는 DO
       <li id="orange">Orange</li>
     </ul>
     <script>
-      const $fruits = document.getElementById('fruits')
+      const $fruits = document.getElementById('fruits');
 
       // #fruits 요소의 하위 요소인 li 요소를 클릭한 경우
       $fruits.addEventListener('click', e => {
-        console.log(`이벤트 단계: ${e.eventPhase}`) // 3: 버블링 단계
-        console.log(`이벤트 타깃: ${e.target}`) // [object HTMLElement]
-        console.log(`커런트 타깃: ${e.currentTarget}`) // [object HTMLUListElement]
+        console.log(`이벤트 단계: ${e.eventPhase}`); // 3: 버블링 단계
+        console.log(`이벤트 타깃: ${e.target}`); // [object HTMLElement]
+        console.log(`커런트 타깃: ${e.currentTarget}`); // [object HTMLUListElement]
       })
     </script>
   </body>
 </html>
 ```
 
-`li` 요소를 클릭하면 클릭 이벤트가 발생하여 클릭 이벤트 객체가 생성되고 클릭된 `li` 요소가 이벤트 타깃이 된다. 이때 클릭 이벤트 객체는 window에서 시작해서 이벤트 타깃 방향으로 전파된다. → 캡처링 단계
+`li` 요소를 클릭하면 클릭 이벤트가 발생하여 클릭 이벤트 객체가 생성되고 클릭된 `li` 요소가 이벤트 타깃이 된다. 
+
+이때 클릭 이벤트 객체는 window에서 시작해서 이벤트 타깃 방향으로 전파된다. → 캡처링 단계
 
 이후 이벤트 객체는 이벤트를 발생시킨 이벤트 타깃에 도달한다. → 타깃 단계
 
@@ -83,33 +85,31 @@ addEventListener 메서드 방식으로 등록한 이벤트 핸들러는 타깃 
       <li id="orange">Orange</li>
     </ul>
     <script>
-      const $fruits = document.getElementById('fruits')
-      const $banana = document.getElementById('banana')
+      const $fruits = document.getElementById('fruits');
+      const $banana = document.getElementById('banana');
 
       // #fruits 요소의 하위 요소인 li 요소를 클릭한 경우 캡처링 단계의 이벤트를 캐치
       $fruits.addEventListener(
-        'click',
-        e => {
-          console.log(`이벤트 단계: ${e.eventPhase}`) // 1: 캡처링 단계
-          console.log(`이벤트 타깃: ${e.target}`) // [object HTMLElement]
-          console.log(`커런트 타깃: ${e.currentTarget}`) // [object HTMLUListElement]
-        },
-        true
-      )
+        'click', e => {
+          console.log(`이벤트 단계: ${e.eventPhase}`); // 1: 캡처링 단계
+          console.log(`이벤트 타깃: ${e.target}`); // [object HTMLElement]
+          console.log(`커런트 타깃: ${e.currentTarget}`); // [object HTMLUListElement]
+        }, true
+      );
 
       // 타깃 단계의 이벤트를 캐치
       $banana.addEventListener('click', e => {
-        console.log(`이벤트 단계: ${e.eventPhase}`) // 2: 타깃 단계
-        console.log(`이벤트 타깃: ${e.target}`) // [object HTMLElement]
-        console.log(`커런트 타깃: ${e.currentTarget}`) // [object HTMLULIElement]
-      })
+        console.log(`이벤트 단계: ${e.eventPhase}`); // 2: 타깃 단계
+        console.log(`이벤트 타깃: ${e.target}`); // [object HTMLElement]
+        console.log(`커런트 타깃: ${e.currentTarget}`); // [object HTMLULIElement]
+      });
 
       // 버블링 단계의 이벤트를 캐치
       $fruits.addEventListener('click', e => {
-        console.log(`이벤트 단계: ${e.eventPhase}`) // 3: 버블링 단계
-        console.log(`이벤트 타깃: ${e.target}`) // [object HTMLElement]
-        console.log(`커런트 타깃: ${e.currentTarget}`) // [object HTMLUListElement]
-      })
+        console.log(`이벤트 단계: ${e.eventPhase}`); // 3: 버블링 단계
+        console.log(`이벤트 타깃: ${e.target}`); // [object HTMLElement]
+        console.log(`커런트 타깃: ${e.currentTarget}`); // [object HTMLUListElement]
+      });
     </script>
   </body>
 </html>
@@ -147,22 +147,20 @@ addEventListener 메서드 방식으로 등록한 이벤트 핸들러는 타깃 
     <script>
       // 버블링 단계의 이벤트를 캐치
       document.body.addEventListener('click', () => {
-        console.log('Handler for body.')
-      })
+        console.log('Handler for body.');
+      });
 
       // 캡처링 단계의 이밴트를 캐치
       document.querySelector('p').addEventListener(
-        'click',
-        () => {
-          console.log('Handler for paragraph.')
-        },
-        true
-      )
+        'click', () => {
+          console.log('Handler for paragraph.');
+        }, true
+      );
 
       // 버블링 단계의 이벤트를 캐치
       document.querySelector('button').addEventListener('click', () => {
-        console.log('Handler for button.')
-      })
+        console.log('Handler for button.');
+      });
     </script>
   </body>
 </html>
@@ -223,28 +221,28 @@ Handler for body.
     </nav>
     <div>선택된 내비게이션 아이탬: <em class="msg">apple</em></div>
     <script>
-      const $fruits = document.getElementById('fruits')
-      const $msg = document.querySelector('.msg')
+      const $fruits = document.getElementById('fruits');
+      const $msg = document.querySelector('.msg');
 
       // 사용자 클릭에 의해 선택된 내비게이션 아이탬에 active 클래스를 추가
       // 그 외에 모든 내비게이션 아이템의 active 클래스를 제거
       function activate({ target }) {
-        ;[...$fruits.children].forEach($fruit => {
-          $fruit.classList.toggle('active', $fruit === target)
-          $msg.textContent = target.id
-        })
+        [...$fruits.children].forEach($fruit => {
+          $fruit.classList.toggle('active', $fruit === target);
+          $msg.textContent = target.id;
+        });
       }
 
       // 모든 내비게이션 아이템에 이벤트 핸들러를 등록
-      document.getElementById('apple').onclick = activate
-      document.getElementById('banana').onclick = activate
-      document.getElementById('orange').onclick = activate
+      document.getElementById('apple').onclick = activate;
+      document.getElementById('banana').onclick = activate;
+      document.getElementById('orange').onclick = activate;
     </script>
   </body>
 </html>
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2dd130b1-a173-4927-9bf5-b8a54f241cf3/Untitled.png)
+![image](https://github.com/kses1010/sunny-devlog/assets/49144662/798bddcc-97b6-4836-b303-5e6e82f130a3)
 
 이 코드는 모든 내비게이션 아이템에 이벤트 핸들러인 activate를 등록했다.
 
@@ -294,23 +292,23 @@ Handler for body.
     </nav>
     <div>선택된 내비게이션 아이탬: <em class="msg">apple</em></div>
     <script>
-      const $fruits = document.getElementById('fruits')
-      const $msg = document.querySelector('.msg')
+      const $fruits = document.getElementById('fruits');
+      const $msg = document.querySelector('.msg');
 
       // 사용자 클릭에 의해 선택된 내비게이션 아이탬에 active 클래스를 추가
       // 그 외에 모든 내비게이션 아이템의 active 클래스를 제거
       function activate({ target }) {
         // 이벤트를 발생시킨 요소(target)가 ul#fruits의 자식 요소가 아니라면 무시
-        if (!target.matches('#fruits > li')) return
+        if (!target.matches('#fruits > li')) return;
 
         ;[...$fruits.children].forEach($fruit => {
-          $fruit.classList.toggle('active', $fruit === target)
-          $msg.textContent = target.id
+          $fruit.classList.toggle('active', $fruit === target);
+          $msg.textContent = target.id;
         })
       }
 
       // 이벤트 위임: 상위 요소(ul#fruits)는 하위 요소의 이벤트를 캐치할 수 있다.
-      $fruits.onclick = activate
+      $fruits.onclick = activate;
     </script>
   </body>
 </html>
@@ -318,12 +316,12 @@ Handler for body.
 
 이벤트 위임을 통해 하위 DOM 요소에서 발생한 이벤트를 처리할 때 주의할 점은 상위 요소에 이벤트 핸들러를 등록하기 때문에 이벤트 타깃, 즉 이벤트를 실제로 발생시킨 DOM 요소가 개발자가 기대한 DOM 요소가 아닐 수도 있다는 것이다.
 
-Element.prototype.matches 메서드는 인수로 전달된 선택자에 의해 특정 노드를 탐색 가능한지 확인한다.
+`Element.prototype.matches` 메서드는 인수로 전달된 선택자에 의해 특정 노드를 탐색 가능한지 확인한다.
 
 ```jsx
 function activate({target}) {
-	// 이벤트를 발생시킨 요소(target)가 ul#fruits의 자식 요소가 아니라면 무시
-	if (!target.matches('#fruits > li')) return;
+    // 이벤트를 발생시킨 요소(target)가 ul#fruits의 자식 요소가 아니라면 무시
+    if (!target.matches('#fruits > li')) return;
 ....
 }
 ```
@@ -347,12 +345,12 @@ function activate({target}) {
     <script>
       document.querySelector('a').onclick = e => {
         // a 요소의 기본 동작을 중단한다.
-        e.preventDefault()
+        e.preventDefault();
       }
 
       document.querySelector('input[type=checkbox]').onclick = e => {
         // checkbox 기본 동작을 중단한다.
-        e.preventDefault()
+        e.preventDefault();
       }
     </script>
   </body>
@@ -379,22 +377,22 @@ function activate({target}) {
     <script>
       // 이벤트 위임. 클릭된 하위 버튼 요소의 color를 변경한다.
       document.querySelector('.container').onclick = ({ target }) => {
-        if (!target.matches('.container > button')) return
+        if (!target.matches('.container > button')) return;
 
-        target.style.color = 'red'
+        target.style.color = 'red';
       }
 
       // .btn2 요소는 이벤트를 전파하지 않으므로 상위 요소에서 이벤트를 캐치할 수 없다.
       document.querySelector('.btn2').onclick = e => {
-        e.stopPropagation() // 이벤트 전파 중단
-        e.target.style.color = 'blue'
+        e.stopPropagation(); // 이벤트 전파 중단
+        e.target.style.color = 'blue';
       }
     </script>
   </body>
 </html>
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1ccf5209-8d85-4ba0-a19e-ceba886ec9d7/Untitled.png)
+![image](https://github.com/kses1010/sunny-devlog/assets/49144662/a604dd4a-918f-4c8c-a7b0-e3a72e06c406)
 
 stopPrapagation 메서드는 하위 DOM 요소의 이벤트를 개별적으로 처리하기 위해 이벤트의 전파를 중단시킨다.
 
@@ -413,7 +411,7 @@ stopPrapagation 메서드는 하위 DOM 요소의 이벤트를 개별적으로 �
     <button onclick="handleClick()">Click me</button>
     <script>
       function handleClick() {
-        console.log(this) // window
+        console.log(this); // window
       }
     </script>
   </body>
@@ -435,8 +433,8 @@ this는 전역 객체를 가리킨다.
     <button onclick="handleClick(this)">Click me</button>
     <script>
       function handleClick(button) {
-        console.log(button) // 이벤트를 바인딩한 button 요소
-        console.log(this)
+        console.log(button); // 이벤트를 바인딩한 button 요소
+        console.log(this);
       }
     </script>
   </body>
@@ -462,29 +460,29 @@ this는 전역 객체를 가리킨다.
     <button class="btn1">0</button>
     <button class="btn2">0</button>
     <script>
-      const $button1 = document.querySelector('.btn1')
-      const $button2 = document.querySelector('.btn2')
+      const $button1 = document.querySelector('.btn1');
+      const $button2 = document.querySelector('.btn2');
 
       // 이벤트 핸들러 프로퍼티 방식
       $button1.onclick = function(e) {
         // this는 이벤트를 바인딩한 DOM 요소를 가리킨다.
-        console.log(this) // $button1
-        console.log(e.currentTarget) // $button1
-        console.log(this === e.currentTarget) // true
+        console.log(this); // $button1
+        console.log(e.currentTarget); // $button1
+        console.log(this === e.currentTarget); // true
 
         // $button1의 textContent를 1 증가.
-        ++this.textContent
+        ++this.textContent;
       }
 
       // addEventListener 메서드 방식
       $button2.addEventListener('click', function(e) {
         // this는 이벤트를 바인딩한 DOM 요소를 가리킨다.
-        console.log(this) // $button2
-        console.log(e.currentTarget) // $button2
-        console.log(this === e.currentTarget) // true
+        console.log(this); // $button2
+        console.log(e.currentTarget); // $button2
+        console.log(this === e.currentTarget); // true
 
         // $button2의 textContent를 1 증가.
-        ++this.textContent
+        ++this.textContent;
       })
     </script>
   </body>
@@ -504,30 +502,30 @@ this는 전역 객체를 가리킨다.
     <button class="btn1">0</button>
     <button class="btn2">0</button>
     <script>
-      const $button1 = document.querySelector('.btn1')
-      const $button2 = document.querySelector('.btn2')
+      const $button1 = document.querySelector('.btn1');
+      const $button2 = document.querySelector('.btn2');
 
       // 이벤트 핸들러 프로퍼티 방식
       $button1.onclick = e => {
         // this는 이벤트를 바인딩한 DOM 요소를 가리킨다.
-        console.log(this) // window
-        console.log(e.currentTarget) // $button1
-        console.log(this === e.currentTarget) // false
+        console.log(this); // window
+        console.log(e.currentTarget); // $button1
+        console.log(this === e.currentTarget); // false
 
         // this는 window를 가리키므로 window.textContent에 NaN을 할당한다.
-        ++this.textContent
+        ++this.textContent;
       }
 
       // addEventListener 메서드 방식
       $button2.addEventListener('click', e => {
         // this는 이벤트를 바인딩한 DOM 요소를 가리킨다.
-        console.log(this) // window
-        console.log(e.currentTarget) // $button2
-        console.log(this === e.currentTarget) // false
+        console.log(this); // window
+        console.log(e.currentTarget); // $button2
+        console.log(this === e.currentTarget); // false
 
         // this는 window를 가리키므로 window.textContent에 NaN을 할당한다.
-        ++this.textContent
-      })
+        ++this.textContent;
+      });
     </script>
   </body>
 </html>
@@ -547,20 +545,20 @@ this는 전역 객체를 가리킨다.
     <script>
       class App {
         constructor() {
-          this.$button = document.querySelector('.btn')
-          this.count = 0
+          this.$button = document.querySelector('.btn');
+          this.count = 0;
 
           // increase 메서드를 이벤트 핸들러로 등록
-          this.$button.onclick = this.increase
+          this.$button.onclick = this.increase;
         }
 
         increase() {
           // 이벤트 핸들러 increase 내부의 this는 DOM 요소(this.$button)를 가리킨다.
           // this.$button은 this.$button.$button과 같다.
-          this.$button.textContent = ++this.count // TypeError
+          this.$button.textContent = ++this.count; // TypeError
         }
       }
-      new App()
+      new App();
     </script>
   </body>
 </html>
@@ -580,21 +578,21 @@ increase 메서드를 이벤트 핸들러로 바인딩할 때 bind 메서드를 
     <script>
       class App {
         constructor() {
-          this.$button = document.querySelector('.btn')
-          this.count = 0
+          this.$button = document.querySelector('.btn');
+          this.count = 0;
 
           // increase 메서드 내부의 this가 인스턴스를 가리키도록 한다.
-          this.$button.onclick = this.increase.bind(this)
+          this.$button.onclick = this.increase.bind(this);
         }
 
         increase() {
           // 이벤트 핸들러 increase 내부의 this는 DOM 요소(this.$button)를 가리킨다.
           // this.$button은 this.$button.$button과 같다.
-          this.$button.textContent = ++this.count // typeError
+          this.$button.textContent = ++this.count; // typeError
         }
       }
 
-      new App()
+      new App();
     </script>
   </body>
 </html>
@@ -616,16 +614,16 @@ increase 메서드를 이벤트 핸들러로 바인딩할 때 bind 메서드를 
     <script>
       class App {
         constructor() {
-          this.$button = document.querySelector('.btn')
-          this.count = 0
+          this.$button = document.querySelector('.btn');
+          this.count = 0;
 
           // 화살표 함수인 increase를 이벤트 핸들러로 등록
-          this.$button.onclick = this.increase
+          this.$button.onclick = this.increase;
         }
 
         // 클래스 필드 정의
         // increase는 인스턴스 메서드이며 내부의 this는 인스턴스를 가리킨다.
-        increase = () => (this.$button.textContent = ++this.count)
+        increase = () => (this.$button.textContent = ++this.count);
       }
 
       new App()
@@ -649,18 +647,18 @@ increase 메서드를 이벤트 핸들러로 바인딩할 때 bind 메서드를 
     <label>User name <input type="text"/></label>
     <em class="message"></em>
     <script>
-      const MIN_USER_NAME_LENGTH = 5 // 이름 최소 길이
-      const $input = document.querySelector('input[type=text]')
-      const $msg = document.querySelector('.message')
+      const MIN_USER_NAME_LENGTH = 5; // 이름 최소 길이
+      const $input = document.querySelector('input[type=text]');
+      const $msg = document.querySelector('.message');
 
       const checkUserNameLength = min => {
         $msg.textContent =
-          $input.value.length < min ? `이름은 ${min}자 이상 입력해 주세요` : ''
+          $input.value.length < min ? `이름은 ${min}자 이상 입력해 주세요` : '';
       }
 
       // 이벤트 핸들러 내부에서 함수를 호출하면서 인수를 전달한다.
       $input.onblur = () => {
-        checkUserNameLength(MIN_USER_NAME_LENGTH)
+        checkUserNameLength(MIN_USER_NAME_LENGTH);
       }
     </script>
   </body>
@@ -680,17 +678,17 @@ increase 메서드를 이벤트 핸들러로 바인딩할 때 bind 메서드를 
     <label>User name <input type="text"/></label>
     <em class="message"></em>
     <script>
-      const MIN_USER_NAME_LENGTH = 5 // 이름 최소 길이
-      const $input = document.querySelector('input[type=text]')
-      const $msg = document.querySelector('.message')
+      const MIN_USER_NAME_LENGTH = 5; // 이름 최소 길이
+      const $input = document.querySelector('input[type=text]');
+      const $msg = document.querySelector('.message');
 
       const checkUserNameLength = min => e => {
         $msg.textContent =
-          $input.value.length < min ? `이름은 ${min}자 이상 입력해 주세요` : ''
+          $input.value.length < min ? `이름은 ${min}자 이상 입력해 주세요` : '';
       }
 
       // 이벤트 핸들러를 반환하는 함수를 호출하면서 인수를 전달한다.
-      $input.onblur = checkUserNameLength(MIN_USER_NAME_LENGTH)
+      $input.onblur = checkUserNameLength(MIN_USER_NAME_LENGTH);
     </script>
   </body>
 </html>
@@ -710,12 +708,12 @@ increase 메서드를 이벤트 핸들러로 바인딩할 때 bind 메서드를 
 
 ```jsx
 // KeyboardEvent 생성자 함수로 keyup 이벤트 타입의 커스텀 이벤트 객체를 생성
-const keyboardEvent = new KeyboardEvent('keyup')
-console.log(keyboardEvent.type) // keyup
+const keyboardEvent = new KeyboardEvent('keyup');
+console.log(keyboardEvent.type); // keyup
 
 // CustomEvent 생성자 함수로 foo 이벤트 타입의 커스텀 이벤트 객체를 생성
-const customEvent = new CustomEvent('foo')
-console.log(customEvent.type) // foo
+const customEvent = new CustomEvent('foo');
+console.log(customEvent.type); // foo
 ```
 
 생성된 커스텀 이벤트 객체는 버블링되지 않으며 preventDefault 메서드로 취소할 수도 없다.
@@ -724,10 +722,10 @@ console.log(customEvent.type) // foo
 
 ```jsx
 // MouseEvent 생성자 함수로 click 이벤트 타입의 커스텀 이벤트 객체를 생성
-const customEvent = new MouseEvent('click')
-console.log(customEvent.type) // click
-console.log(customEvent.bubbles) // false
-console.log(customEvent.cancelable) // false
+const customEvent = new MouseEvent('click');
+console.log(customEvent.type); // click
+console.log(customEvent.bubbles); // false
+console.log(customEvent.cancelable); // false
 ```
 
 커스텀 이벤트 객체의 bubbles or cancelable 프로퍼티를 true로 설정하려면 이벤트 생성자 함수의 두 번째 인수로 bubbles or cancelable 프로퍼티를 갖는 객체를 전달한다.
@@ -737,10 +735,10 @@ console.log(customEvent.cancelable) // false
 const customEvent = new MouseEvent('click', {
   bubbles: true,
   cancelable: true,
-})
+});
 
-console.log(customEvent.bubbles) // true
-console.log(customEvent.cancelable) // true
+console.log(customEvent.bubbles); // true
+console.log(customEvent.cancelable); // true
 ```
 
 커스텀 이벤트 객체에는 bubbles or cancelable 프로퍼티뿐만 아니라 이벤트 타입에 따라 가지는 이벤트 고유의 프로퍼티 값을 지정할 수 있다.
@@ -752,15 +750,15 @@ const mouseEvent = new MouseEvent('click', {
   cancelable: true,
   clientX: 50,
   clientY: 100,
-})
+});
 
-console.log(mouseEvent.clientX) // 50
-console.log(mouseEvent.clientY) // 100
+console.log(mouseEvent.clientX); // 50
+console.log(mouseEvent.clientY); // 100
 
 // KeyboardEvent 생성자 함수로 keyup 이벤트 타입의 커스텀 이벤트 객체를 생성
-const keyboardEvent = new KeyboardEvent('keyup', { key: 'Enter' })
+const keyboardEvent = new KeyboardEvent('keyup', { key: 'Enter' });
 
-console.log(keyboardEvent.key) // Enter
+console.log(keyboardEvent.key); // Enter
 ```
 
 이벤트 생성자 함수로 생성한 커스텀 이벤트는 isTrusted 프로퍼티의 값이 언제나 false다.
@@ -769,8 +767,8 @@ console.log(keyboardEvent.key) // Enter
 
 ```jsx
 // InputEvent 생성자 함수로 foo 이벤트 타입의 커스텀 이벤트 객체를 생성
-const customEvent = new InputEvent('foo')
-console.log(customEvent.isTrusted) // false
+const customEvent = new InputEvent('foo');
+console.log(customEvent.isTrusted); // false
 ```
 
 ## 11.2 커스텀 이벤트 디스패치
@@ -787,18 +785,18 @@ console.log(customEvent.isTrusted) // false
   <body>
     <button class="btn">Click me</button>
     <script>
-      const $button = document.querySelector('.btn')
+      const $button = document.querySelector('.btn');
 
       $button.addEventListener('click', e => {
         console.log(e) // MouseEvent {...}
-        alert(`${e} clicked!`)
-      })
+        alert(`${e} clicked!`);
+      });
 
       // 커스텀 이벤트 생성
-      const customEvent = new MouseEvent('click')
+      const customEvent = new MouseEvent('click');
 
       // 커스텀 이벤트 디스패치(동기 처리). click 이벤트가 발생한다.
-      $button.dispatchEvent(customEvent)
+      $button.dispatchEvent(customEvent);
     </script>
   </body>
 </html>
@@ -818,13 +816,13 @@ console.log(customEvent.isTrusted) // false
   <body>
     <button class="btn">Click me</button>
     <script>
-      const $button = document.querySelector('.btn')
+      const $button = document.querySelector('.btn');
 
       // 버튼 요소에 foo 커스텀 이벤트 핸들러를 등록
       // 커스텀 이벤트를 디스패치하기 이전에 이벤트 핸들러를 등록해야 한다.
       $button.addEventListener('foo', e => {
         // e.detail에는 CustomEvent 함수의 두 번째 인수로 전달한 정보가 담겨 있다.
-        alert(e.detail.message)
+        alert(e.detail.message);
       })
 
       // CustomEvent 생성자 함수로 foo 이벤트 타입의 커스텀 이벤트 객체를 생성
@@ -833,7 +831,7 @@ console.log(customEvent.isTrusted) // false
       })
 
       // 커스텀 이벤트 디스패치
-      $button.dispatchEvent(customEvent)
+      $button.dispatchEvent(customEvent);
     </script>
   </body>
 </html>
