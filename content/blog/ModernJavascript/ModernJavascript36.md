@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 36장 디스트럭처링 할당'
-date: 2023-08-21
+title: 'Modern Javascript Deep Dive - 36장 디스트럭처링 할당'
+date: 2023-08-21 17:58:40
 category: 'Javascript'
 draft: false
 ---
@@ -14,23 +14,23 @@ draft: false
 ES5에서 구조화된 배열을 디스트럭처링 하여 1개 이상의 변수에 할당하는 방법은 다음과 같다.
 
 ```jsx
-var arr = [1, 2, 3]
+var arr = [1, 2, 3];
 
-var one = arr[0]
-var two = arr[1]
-var three = arr[2]
+var one = arr[0];
+var two = arr[1];
+var three = arr[2];
 
-console.log(one, two, three) // 1 2 3
+console.log(one, two, three); // 1 2 3
 ```
 
 **ES6 배열 디스트럭처링 할당의 대상은 이터러블이어야 하며, 할당 기준은 배열의 인덱스다.**
 
 ```jsx
-const arr = [1, 2, 3]
+const arr = [1, 2, 3];
 
-const [one, two, three] = arr
+const [one, two, three] = arr;
 
-console.log(one, two, three) // 1 2 3
+console.log(one, two, three); // 1 2 3
 ```
 
 배열 디스트럭처링 할당을 위해서는 할당 연산자 왼쪽에 값을 할당받을 변수를 선언해야 한다.
@@ -49,44 +49,44 @@ const [a, b] = {}; // TypeError
 배열 디스트럭처링 할당의 변수 선언문은 다음처럼 선언과 할당을 분리할 수도 있다. const 키워드는 변수를 선언할 수 없으므로 권장하지 않는다.
 
 ```jsx
-let x, y
-;[x, y] = [1, 2]
+let x, y;
+[x, y] = [1, 2];
 ```
 
 배열 디스트럭처링 할당의 기준은 배열의 인덱스다. 즉, 순서대로 할당된다.
 
 ```jsx
-const [a, b] = [1, 2]
+const [a, b] = [1, 2];
 console.log(a, b) // 1 2
 
-const [c, d] = [1]
-console.log(c, d) // 1 undefined
+const [c, d] = [1];
+console.log(c, d); // 1 undefined
 
-const [e, f] = [1, 2, 3]
-console.log(e, f) // 1 2
+const [e, f] = [1, 2, 3];
+console.log(e, f); // 1 2
 
-const [g, , h] = [1, 2, 3]
-console.log(g, h) // 1 3
+const [g, , h] = [1, 2, 3];
+console.log(g, h); // 1 3
 ```
 
 배열 디스트럭처링 할당을 위한 변수에 기본값을 설정할 수 있다.
 
 ```jsx
 // 기본값
-const [a, b, c = 3] = [1, 2]
-console.log(a, b, c) // 1 2 3
+const [a, b, c = 3] = [1, 2];
+console.log(a, b, c); // 1 2 3
 
 // 기본값보다 할당된 값이 우선한다.
-const [e, f = 10, g = 3] = [1, 2]
-console.log(e, f, g) //  1 2 3
+const [e, f = 10, g = 3] = [1, 2];
+console.log(e, f, g); //  1 2 3
 ```
 
 배열 디스트럭처링 할당을 위한 변수에 Rest 파라미터와 유사하게 Rest 요소를 사용할 수 있다.
 
 ```jsx
 // Rest 요소
-const [x, ...y] = [1, 2, 3]
-console.log(x, y) // 1 [2, 3]
+const [x, ...y] = [1, 2, 3];
+console.log(x, y); // 1 [2, 3]
 ```
 
 # 2. 객체 디스트럭처링 할당
@@ -97,12 +97,12 @@ ES5에서 객체의 각 프로퍼티를 객체로부터 디스트럭처링하여
 var user = {
   firstName: 'Sunny',
   lastName: 'Son',
-}
+};
 
-var firstName = user.firstName
-var lastName = user.lastName
+var firstName = user.firstName;
+var lastName = user.lastName;
 
-console.log(firstName, lastName) // Sunny Son
+console.log(firstName, lastName); // Sunny Son
 ```
 
 ES6의 객체 디스트럭처링 할당은 객체의 각 프로퍼티를 객체로부터 추출하여 1개 이상의 변수에 할당한다.
@@ -113,18 +113,18 @@ ES6의 객체 디스트럭처링 할당은 객체의 각 프로퍼티를 객체�
 const user = {
   firstName: 'Sunny',
   lastName: 'Son',
-}
+};
 
 // 프로퍼티 키를 기준으로 디스트럭처링 할당이 이루어진다. 순서는 의미가 없다.
-const { lastName, firstName } = user
+const { lastName, firstName } = user;
 
-console.log(firstName, lastName) // Sunny Son
+console.log(firstName, lastName); // Sunny Son
 ```
 
 객체 디스트럭처링 할당을 위해서는 할당 연산자 왼쪽에 프로퍼티 값을 할당받을 변수를 선언해야 한다.
 
 ```jsx
-const { lastName, firstName } = { firstName: 'Sunny', lastName: 'Son' }
+const { lastName, firstName } = { firstName: 'Sunny', lastName: 'Son' };
 ```
 
 우변에 객체 또는 객체로 평가될 수 있는 표현식을 할당하지 않으면 에러가 발생한다.
@@ -138,9 +138,9 @@ const {lastName, firstName} = null; // TypeError
 객체 리터럴 형태로 선언한 lastName, firstName이다. 프로퍼티 축약 표현을 통해 선언한 것이다.
 
 ```jsx
-const { lastName, firstName } = user
+const { lastName, firstName } = user;
 // 위와 아래는 동치다.
-const { lastName: lastName, firstName: firstName } = user
+const { lastName: lastName, firstName: firstName } = user;
 ```
 
 객체의 프로퍼티 키와 다른 변수 이름으로 프로퍼티 값을 할당받으려면 다음과 같이 변수를 선언한다.
@@ -149,37 +149,37 @@ const { lastName: lastName, firstName: firstName } = user
 const user = {
   firstName: 'Sunny',
   lastName: 'Son',
-}
+};
 
 // 프로퍼티 키를 기준으로 디스트럭처링 할당이 이루어진다.
 // 프로퍼티 키를 변수 선언과 함께 따로 할당한다.
-const { lastName: ln, firstName: fn } = user
+const { lastName: ln, firstName: fn } = user;
 
-console.log(fn, ln) // Sunny Son
+console.log(fn, ln); // Sunny Son
 ```
 
 객체 디스트럭처링 할당을 위한 변수에 기본값을 설정할 수 있다.
 
 ```jsx
-const { firstName = 'Cloud', lastName } = { lastName: 'Kim' }
-console.log(firstName, lastName) // Cloud Kim
+const { firstName = 'Cloud', lastName } = { lastName: 'Kim' };
+console.log(firstName, lastName); // Cloud Kim
 
-const { lastName: ln, firstName: fn = 'Sunny' } = { lastName: 'Son' }
-console.log(fn, ln) // Sunny Son
+const { lastName: ln, firstName: fn = 'Sunny' } = { lastName: 'Son' };
+console.log(fn, ln); // Sunny Son
 ```
 
 객체 디스트럭처링 할당은 객체에서 프로퍼티 키로 필요한 프로퍼티 값만 추출하여 변수에 할당하고 싶을 때 유용하다.
 
 ```jsx
-const str = 'Hello'
+const str = 'Hello';
 // String 래퍼 객체로부터 length 프로퍼티만 추출한다.
-const { length } = str
-console.log(length) // 5
+const { length } = str;
+console.log(length); // 5
 
-const todo = { id: 1, content: 'HTML', completed: true }
+const todo = { id: 1, content: 'HTML', completed: true };
 // todo 객체로부터 id 프로퍼티만 추출한다.
-const { id } = todo
-console.log(id) // 1
+const { id } = todo;
+console.log(id); // 1
 ```
 
 객체 디스트럭처링 할당은 객체를 인수로 전달받은 함수의 매개변수에도 사용할 수 있다.
@@ -188,10 +188,10 @@ console.log(id) // 1
 function printTodo(todo) {
   console.log(
     `할일 ${todo.content}은 ${todo.completed ? '완료' : '비완료'} 상태입니다.`
-  )
+  );
 }
 
-printTodo({ id: 1, content: 'HTML', completed: true })
+printTodo({ id: 1, content: 'HTML', completed: true });
 // 할일 HTML은 완료 상태입니다.
 ```
 
@@ -199,10 +199,10 @@ printTodo({ id: 1, content: 'HTML', completed: true })
 
 ```jsx
 function printTodo(content, completed) {
-  console.log(`할일 ${content}은 ${completed ? '완료' : '비완료'} 상태입니다.`)
+  console.log(`할일 ${content}은 ${completed ? '완료' : '비완료'} 상태입니다.`);
 }
 
-printTodo({ id: 1, content: 'HTML', completed: true })
+printTodo({ id: 1, content: 'HTML', completed: true });
 // 할일 HTML은 완료 상태입니다.
 ```
 
@@ -213,11 +213,11 @@ const todos = [
   { id: 1, content: 'HTML', completed: true },
   { id: 2, content: 'CSS', completed: false },
   { id: 3, content: 'JS', completed: false },
-]
+];
 
 // todos 배열의 두 번째 요소인 객체로부터 id 프로퍼티만 추출한다.
-const [, { id }] = todos
-console.log(id) // 2
+const [, { id }] = todos;
+console.log(id); // 2
 ```
 
 중첩 객체의 경우는 다음과 같이 사용한다.
@@ -229,18 +229,18 @@ const user = {
     zipCode: '01023',
     city: 'Seoul',
   },
-}
+};
 
 // address 프로퍼티 키로 객체를 추출하고 이 객체의 city 프로퍼티 키로 값을 추출한다.
 const {
   address: { city },
-} = user
-console.log(city)
+} = user;
+console.log(city); // Seoul
 ```
 
 객체 디스트럭처링 할당을 위한 Rest 파라미터나 Rest 요소와 유사하게 Rest 프로퍼티 `...` 을 사용할 수 있다.
 
 ```jsx
-const { x, ...rest } = { x: 1, y: 2, z: 3 }
-console.log(x, rest) // 1 {y: 2, z: 3}
+const { x, ...rest } = { x: 1, y: 2, z: 3 };
+console.log(x, rest); // 1 {y: 2, z: 3}
 ```
