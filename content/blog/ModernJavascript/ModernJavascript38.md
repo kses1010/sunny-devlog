@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 38장 브라우저의 렌더링 과정'
-date: 2023-08-24
+title: 'Modern Javascript Deep Dive - 38장 브라우저의 렌더링 과정'
+date: 2023-08-24 18:54:49
 category: 'Javascript'
 draft: false
 ---
@@ -46,7 +46,7 @@ HTML 문서를 브라우저가 이해할 수 있는 자료구조(객체)로 변�
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
@@ -188,7 +188,7 @@ DOM API인 `document.getElementById()` DOM에서 id가 “apple”인 HTML 요�
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
