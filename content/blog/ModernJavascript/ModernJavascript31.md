@@ -1,5 +1,5 @@
 ---
-title: 'Modrn Javascript Deep Dive - 31장 RegExp'
+title: 'Modern Javascript Deep Dive - 31장 RegExp'
 date: 2023-08-16 23:02:08
 category: 'Javascript'
 draft: false
