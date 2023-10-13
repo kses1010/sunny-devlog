@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 43장 Ajax'
-date: 2023-09-10
+title: 'Modern Javascript Deep Dive - 43장 Ajax'
+date: 2023-09-10 16:22:59
 category: 'Javascript'
 draft: false
 ---
@@ -58,17 +58,17 @@ const obj = {
   age: 20,
   alive: true,
   hobby: ['traveling', 'football'],
-}
+};
 
 // 객체를 JSON 포맷의 문자열로 변환
-const json = JSON.stringify(obj)
-console.log(typeof json, json)
+const json = JSON.stringify(obj);
+console.log(typeof json, json);
 
 // string {"name":"Son","age":20,"alive":true,"hobby":["traveling","football"]}
 
 // 객체를 JSON 포맷의 문자열로 변환하면서 들여쓰기 한다.
-const prettyJson = JSON.stringify(obj, null, 2)
-console.log(typeof prettyJson, prettyJson)
+const prettyJson = JSON.stringify(obj, null, 2);
+console.log(typeof prettyJson, prettyJson);
 
 /*
 string {
@@ -85,12 +85,12 @@ string {
 // replacer 함수. 값의 타입이 Number이면 필터링되어 반환하지 않음
 function filter(key, value) {
   // undefined: 반환하지 않음
-  return typeof value === 'number' ? undefined : value
+  return typeof value === 'number' ? undefined : value;
 }
 
 // JSON.stringfy 메서드에 두 번째 인수로 replacer 함수를 전달한다.
-const strFilteredObject = JSON.stringify(obj, filter, 2)
-console.log(typeof strFilteredObject, strFilteredObject)
+const strFilteredObject = JSON.stringify(obj, filter, 2);
+console.log(typeof strFilteredObject, strFilteredObject);
 
 /*
 string {
@@ -150,10 +150,10 @@ const obj = {
   age: 20,
   alive: true,
   hobby: ['traveling', 'football'],
-}
+};
 
 // 객체를 JSON 포맷의 문자열로 변환
-const json = JSON.stringify(obj)
+const json = JSON.stringify(obj);
 
 /*
 object {
@@ -174,14 +174,14 @@ const todos = [
   { id: 1, content: 'HTML', completed: false },
   { id: 2, content: 'CSS', completed: true },
   { id: 3, content: 'JavaScript', completed: false },
-]
+];
 
 // 배열을 JSON 포맷의 문자열로 변환한다.
-const json = JSON.stringify(todos)
+const json = JSON.stringify(todos);
 
 // JSON 포맷의 문자열을 배열로 변환. 배열의 요소까지 객체로 변환된다.
-const parsed = JSON.parse(json)
-console.log(typeof parsed, parsed)
+const parsed = JSON.parse(json);
+console.log(typeof parsed, parsed);
 
 /*
 object [
@@ -204,7 +204,7 @@ Web API인 XMLHttpRequest 객체는 HTTP 요청 전송과 HTTP 응답 수신을 
 
 ```jsx
 // XMLHttpRequest 객체 생성
-const xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest();
 ```
 
 ## 3.2 XMLHttpRequest 객체의 프로퍼티와 메서드
@@ -216,16 +216,15 @@ const xhr = new XMLHttpRequest()
 | 프로토타입 프로퍼티 | 설명                                   |
 | ------------------- | -------------------------------------- |
 | readyState          | HTTP 요청의 현재 상태를 나타내는 정수. |
-
-- UNSENT: 0
-- OPENED: 1
-- HEADERS_RECEIVED: 2
-- LOADING: 3
-- DONE: 4 |
-  | status | HTTP 요청에 대한 응답 상태(HTTP 상태 코드)를 나타내는 정수 |
-  | statusText | HTTP 요청에 대한 응답 메시지를 나타내는 문자열 |
-  | responseType | HTTP 응답 타입 |
-  | response | HTTP 요청에 대한 응답 몸체(responseBody), responseType에 따라 타입이 다르다. |
+|                     | UNSENT: 0                              |
+|                     | OPENED: 1                              |
+|                     | HEADERS_RECEIVED: 2                    |
+|                     | LOADING: 3                             |
+|                     | DONE: 4                                       |
+| status | HTTP 요청에 대한 응답 상태(HTTP 상태 코드)를 나타내는 정수 |
+| statusText | HTTP 요청에 대한 응답 메시지를 나타내는 문자열 |
+| responseType | HTTP 응답 타입 |
+| response | HTTP 요청에 대한 응답 몸체(responseBody), responseType에 따라 타입이 다르다. |
 
 ### XMLHttpRequest 객체의 이벤트 핸들러 프로퍼티
 
@@ -255,17 +254,17 @@ const xhr = new XMLHttpRequest()
 
 ```jsx
 // XMLHttpRequest 객체 생성
-const xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest();
 
 // HTTP 요청 초기화
-xhr.open('GET', '/users')
+xhr.open('GET', '/users');
 
 // HTTP 요청 헤더 설정
 // 클라이언트가 서버로 전송하 ㄹ데이터의 MIME 타입 지정: json
-xhr.setRequestHeader('content-type', 'application/json')
+xhr.setRequestHeader('content-type', 'application/json');
 
 // HTTP 요청 전송
-xhr.send()
+xhr.send();
 ```
 
 ### XMLHttpRequest.prototype.open
@@ -291,7 +290,7 @@ send 메서드는 요청 몸체에 담아 전송할 데이터(페이로드)를 �
 페이로드가 객체인 경우 JSON.stringfy 메서드를 사용하여 직렬화한 다음 전달해야 한다.
 
 ```jsx
-xhr.send(JSON.stringfy({ id: 1, content: 'HTML', completed: false }))
+xhr.send(JSON.stringfy({ id: 1, content: 'HTML', completed: false }));
 ```
 
 **HTTP 요청 메서드가 GET인 경우 send 메서드에 페이로드로 전달한 인수는 무시되고 요청 몸체는 null로 설정된다.**
@@ -314,7 +313,7 @@ HTTP 클라이언트가 서버에 요청할 때 서버가 응답할 데이터의
 
 ```jsx
 // 서버가 응답할 데이터의 MIME 타입 지정: json
-xhr.setRequestHeader('accept', 'application/json')
+xhr.setRequestHeader('accept', 'application/json');
 ```
 
 Accept 헤더를 설정하지 않으면 send 메서드가 호출될 때 Accept 헤더가 `*/*` 으로 전송된다.
@@ -325,13 +324,13 @@ Accept 헤더를 설정하지 않으면 send 메서드가 호출될 때 Accept �
 
 ```jsx
 // XMLHttpRequest 객체 생성
-const xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest();
 
 // HTTP 요청 초기화
-xhr.open('GET', '/users')
+xhr.open('GET', '/users');
 
 // HTTP 요청 전송
-xhr.send()
+xhr.send();
 
 // readystatechange 이벤트는 HTTP 요청의 현재 상태를 나타내는 readyState 프로퍼티가
 // 변경될 때마다 발생한다.
@@ -339,15 +338,15 @@ xhr.onreadystatechange = () => {
   // readyState 프로퍼티는 HTTP 요청의 현재 상태를 나타낸다.
   // readyState 프로퍼티 값이 4(XMLHttpRequest.DONE)가 아니면 서버 응답이 완료되지 않음.
   // 서버 응답 완료되지 않으면 아무런 처리하지 않음
-  if (xhr.readyState !== XMLHttpRequest.DONE) return
+  if (xhr.readyState !== XMLHttpRequest.DONE) return;
 
   // status 프로퍼티는 응답 상태 코드를 나타낸다.
   // status 프로퍼티 값이 200이 정상 코드
   // 200이 아니면 error 발생
   if (xhr.status === 200) {
-    console.log(JSON.parse(xhr.response))
+    console.log(JSON.parse(xhr.response));
   } else {
-    console.error('Error', xhr.status, xhr.statusText)
+    console.error('Error', xhr.status, xhr.statusText);
   }
 }
 ```
@@ -360,13 +359,13 @@ load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생한다.
 
 ```jsx
 // XMLHttpRequest 객체 생성
-const xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest();
 
 // HTTP 요청 초기화
-xhr.open('GET', '/users')
+xhr.open('GET', '/users');
 
 // HTTP 요청 전송
-xhr.send()
+xhr.send();
 
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우에만 발생
 xhr.onload = () => {
@@ -374,9 +373,9 @@ xhr.onload = () => {
   // status 프로퍼티 값이 200이 정상 코드
   // 200이 아니면 error 발생
   if (xhr.status === 200) {
-    console.log(JSON.parse(xhr.response))
+    console.log(JSON.parse(xhr.response));
   } else {
-    console.error('Error', xhr.status, xhr.statusText)
+    console.error('Error', xhr.status, xhr.statusText);
   }
 }
 ```

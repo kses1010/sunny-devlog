@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 44장 REST API'
-date: 2023-09-17
+title: 'Modern Javascript Deep Dive - 44장 REST API'
+date: 2023-09-17 17:29:03
 category: 'Javascript'
 draft: false
 ---

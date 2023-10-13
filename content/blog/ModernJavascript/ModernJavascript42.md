@@ -1,6 +1,6 @@
 ---
-title: 'Modrn Javascript Deep Dive - 42장 비동기 프로그래밍'
-date: 2023-09-04
+title: 'Modern Javascript Deep Dive - 42장 비동기 프로그래밍'
+date: 2023-09-04 20:29:53
 category: 'Javascript'
 draft: false
 ---
@@ -10,11 +10,11 @@ draft: false
 다음 코드의 함수는 호출된 순서대로 스택 자료구조인 실행 컨텍스트 스택에 푸시되어 실행된다.
 
 ```jsx
-const foo = () => {}
-const bar = () => {}
+const foo = () => {};
+const bar = () => {};
 
-foo()
-bar()
+foo();
+bar();
 ```
 
 자바스크립트 엔진은 단 하나의 실행 컨텍스트 스택을 갖는다.
@@ -27,21 +27,21 @@ bar()
 // sleep 함수는 일정 시간(delay)이 경과한 이후에 콜백 함수(func)를 호출한다.
 function sleep(func, delay) {
   // Date.now()는 현재 시간을 숫자(ms)로 반환한다.
-  const delayUntil = Date.now() + delay
+  const delayUntil = Date.now() + delay;
 
   // 현재 시간에 delay를 더한 delayUntil이 현재 시간보다 작으면 계속 반복한다.
   while (Date.now() < delayUntil);
 
   // 일정 시간이 경과한 이후에 콜백 함수(func)를 호출한다.
-  func()
+  func();
 }
 
 function foo() {
-  console.log('foo')
+  console.log('foo');
 }
 
 function bar() {
-  console.log('bar')
+  console.log('bar');
 }
 
 // sleep 함수는 3초 이상 실행된다.
@@ -59,27 +59,27 @@ bar()
 // sleep 함수는 일정 시간(delay)이 경과한 이후에 콜백 함수(func)를 호출한다.
 function sleep(func, delay) {
   // Date.now()는 현재 시간을 숫자(ms)로 반환한다.
-  const delayUntil = Date.now() + delay
+  const delayUntil = Date.now() + delay;
 
   // 현재 시간에 delay를 더한 delayUntil이 현재 시간보다 작으면 계속 반복한다.
   while (Date.now() < delayUntil);
 
   // 일정 시간이 경과한 이후에 콜백 함수(func)를 호출한다.
-  func()
+  func();
 }
 
 function foo() {
-  console.log('foo')
+  console.log('foo');
 }
 
 function bar() {
-  console.log('bar')
+  console.log('bar');
 }
 
 // 타이머 함수 setTimeout은 일정 시간이 경과한 이후에 콜백 함수 foo를 호출한다.
 // 타이머 함수 setTimeout은 bar 함수를 블로킹 하지 않는다.
-setTimeout(foo, 3 * 1000)
-bar()
+setTimeout(foo, 3 * 1000);
+bar();
 // bar 호출 -> (3초 대기) foo 호출
 ```
 
